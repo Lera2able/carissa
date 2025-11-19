@@ -22,6 +22,7 @@
                 <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
                 <li><a href="{{ url_for('digest') }}" class="{% if request.endpoint == 'digest' %}active{% endif %}">School Digest</a></li>
                 <li><a href="{{ url_for('gallery') }}" class="{% if request.endpoint == 'gallery' %}active{% endif %}">Gallery</a></li>
+                <li><a href="{{ url_for('elearning') }}" class="{% if request.endpoint == 'elearning' %}active{% endif %}">eLearning</a></li>
                 <li><a href="{{ url_for('admissions') }}" class="{% if request.endpoint == 'admissions' %}active{% endif %}">Admissions</a></li>
                 <li><a href="{{ url_for('contact') }}" class="{% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
                 {% if session.user_id %}

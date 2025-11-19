@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}eLearning Configuration - Admin{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>eLearning Platform Configuration</h1>
+    <p style="color: var(--text-light); margin-bottom: 2rem;">Configure external eLearning platform integrations and embedded content.</p>
+
+    <div style="background-color: var(--background-light); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Integration Settings</h2>
+
+        <form method="POST" action="#">
+            <div class="form-group">
+                <label for="platform_name">Platform Name</label>
+                <input type="text" id="platform_name" name="platform_name" placeholder="e.g., Google Classroom, Khan Academy">
+            </div>
+
+            <div class="form-group">
+                <label for="platform_url">Platform URL or iFrame Embed Code</label>
+                <textarea id="platform_url" name="platform_url" style="min-height: 100px;" placeholder="https://example.com OR <iframe src='...'></iframe>"></textarea>
+                <small style="color: var(--text-light);">You can paste either a direct URL or an iframe embed code</small>
+            </div>
+
+            <div class="form-group">
+                <label for="platform_description">Description</label>
+                <textarea id="platform_description" name="platform_description" placeholder="Brief description of this platform"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="grade_level">Available for Grades</label>
+                <select id="grade_level" name="grade_level" multiple style="height: 150px;">
+                    <option value="All">All Grades</option>
+                    <option value="Grade R">Grade R</option>
+                    <option value="Grade 1">Grade 1</option>
+                    <option value="Grade 2">Grade 2</option>
+                    <option value="Grade 3">Grade 3</option>
+                    <option value="Grade 4">Grade 4</option>
+                    <option value="Grade 5">Grade 5</option>
+                    <option value="Grade 6">Grade 6</option>
+                    <option value="Grade 7">Grade 7</option>
+                </select>
+                <small style="color: var(--text-light);">Hold Ctrl/Cmd to select multiple grades</small>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="featured"> Featured Platform (Show on homepage)
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Integration</button>
+        </form>
+    </div>
+
+    <!-- Current Integrations -->
+    <div style="margin-top: 3rem;">
+        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Current Integrations</h2>
+        
+        <div class="data-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Type</th>
+                        <th>Grades</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Khan Academy</td>
+                        <td>External Link</td>
+                        <td>All Grades</td>
+                        <td><span style="color: var(--success);">Active</span></td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Edit</button>
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem; background-color: var(--danger);">Remove</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Google Classroom</td>
+                        <td>External Link</td>
+                        <td>Grade 4-7</td>
+                        <td><span style="color: var(--success);">Active</span></td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Edit</button>
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem; background-color: var(--danger);">Remove</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Siyavula</td>
+                        <td>iFrame Embed</td>
+                        <td>Grade 4-7</td>
+                        <td><span style="color: var(--success);">Active</span></td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Edit</button>
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem; background-color: var(--danger);">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- API Configuration -->
+    <div style="background-color: var(--background-light); padding: 2rem; border-radius: 10px; margin-top: 3rem;">
+        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">API Integration Settings</h2>
+        <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+            Configure API credentials for platforms that support automatic grade syncing and SSO.
+        </p>
+
+        <div style="background-color: white; padding: 1.5rem; border-radius: 5px; margin-bottom: 1rem;">
+            <h4>Supported Integration Methods:</h4>
+            <ul style="margin-top: 1rem; color: var(--text-dark);">
+                <li style="margin-bottom: 0.5rem;">📌 <strong>Simple Links</strong> - Direct links to external platforms</li>
+                <li style="margin-bottom: 0.5rem;">🖼️ <strong>iFrame Embedding</strong> - Display platforms within your site</li>
+                <li style="margin-bottom: 0.5rem;">🔑 <strong>LTI Integration</strong> - Learning Tools Interoperability standard</li>
+                <li style="margin-bottom: 0.5rem;">🔄 <strong>API Sync</strong> - Automatic data synchronization</li>
+                <li style="margin-bottom: 0.5rem;">🎯 <strong>SSO</strong> - Single Sign-On for seamless access</li>
+            </ul>
+        </div>
+
+        <form method="POST" action="#">
+            <div class="form-group">
+                <label for="api_key">API Key</label>
+                <input type="text" id="api_key" name="api_key" placeholder="Enter API key from eLearning platform">
+            </div>
+
+            <div class="form-group">
+                <label for="api_secret">API Secret</label>
+                <input type="password" id="api_secret" name="api_secret" placeholder="Enter API secret">
+            </div>
+
+            <div class="form-group">
+                <label for="webhook_url">Webhook URL (for grade sync)</label>
+                <input type="text" id="webhook_url" name="webhook_url" placeholder="https://yourschool.com/api/webhook">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save API Configuration</button>
+        </form>
+    </div>
+
+    <!-- Documentation -->
+    <div style="margin-top: 3rem; padding: 2rem; border: 2px dashed var(--primary-color); border-radius: 10px;">
+        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📚 Integration Documentation</h3>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">
+            Need help integrating a specific platform? Here are some helpful resources:
+        </p>
+        <ul style="color: var(--text-dark);">
+            <li style="margin-bottom: 0.5rem;">
+                <a href="https://developers.google.com/classroom" target="_blank" style="color: var(--primary-color);">Google Classroom API Documentation</a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+                <a href="https://www.imsglobal.org/activity/learning-tools-interoperability" target="_blank" style="color: var(--primary-color);">LTI Standard Documentation</a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+                <a href="https://canvas.instructure.com/doc/api/" target="_blank" style="color: var(--primary-color);">Canvas LMS API</a>
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+                <a href="https://www.siyavula.com/intl/en/about/api/" target="_blank" style="color: var(--primary-color);">Siyavula API Information</a>
+            </li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 2rem;">
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

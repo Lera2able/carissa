@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}eLearning Platform - Carissa Primary School{% endblock %}
+
+{% block content %}
+<div class="hero" style="padding: 2rem;">
+    <h1>eLearning Platform</h1>
+    <p>Access educational resources and integrate with external learning platforms</p>
+</div>
+
+<div class="container">
+    <!-- For Students -->
+    {% if session.user_id and session.role == 'student' %}
+    <div style="background-color: var(--primary-color); color: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+        <h2>Welcome, {{ session.full_name }}!</h2>
+        <p>Your grade-specific learning resources are ready for you.</p>
+        <a href="{{ url_for('student_dashboard') }}" class="btn btn-primary">Go to My Learning Portal</a>
+    </div>
+    {% endif %}
+
+    <!-- eLearning Options -->
+    <div class="news-grid" style="margin-bottom: 3rem;">
+        <div class="news-card">
+            <div class="news-content">
+                <h3 class="news-title">📚 Internal Learning Platform</h3>
+                <p class="news-excerpt">Access our CAPS-aligned educational activities, worksheets, and video lessons for Grade R to Grade 7.</p>
+                {% if session.user_id %}
+                    {% if session.role == 'student' %}
+                    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Access My Activities</a>
+                    {% elif session.role == 'teacher' or session.role == 'admin' %}
+                    <a href="{{ url_for('add_activity') }}" class="btn btn-secondary">Add Learning Content</a>
+                    {% endif %}
+                {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-secondary">Login to Access</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div class="news-content">
+                <h3 class="news-title">🌐 External eLearning Platforms</h3>
+                <p class="news-excerpt">Connect with popular educational platforms like Khan Academy, Google Classroom, and more.</p>
+                <a href="#integrations" class="btn btn-secondary">View Integrations</a>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <div class="news-content">
+                <h3 class="news-title">📖 Digital Library</h3>
+                <p class="news-excerpt">Access our collection of digital textbooks, reference materials, and educational videos.</p>
+                <a href="#library" class="btn btn-secondary">Browse Library</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Integration Section -->
+    <section id="integrations" style="margin-bottom: 3rem;">
+        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Integrated eLearning Platforms</h2>
+        <p style="color: var(--text-light); margin-bottom: 2rem;">
+            Carissa School partners with leading educational platforms to provide comprehensive learning experiences.
+        </p>
+
+        <div class="activities-grid">
+            <div class="activity-card">
+                <h3 class="activity-title">Khan Academy</h3>
+                <p class="activity-subject">Free world-class education in Maths, Science, and more</p>
+                <div class="activity-actions">
+                    <a href="https://www.khanacademy.org/" target="_blank" class="btn btn-primary">Visit Platform</a>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3 class="activity-title">Google Classroom</h3>
+                <p class="activity-subject">Collaborate with teachers and submit assignments online</p>
+                <div class="activity-actions">
+                    <a href="https://classroom.google.com/" target="_blank" class="btn btn-primary">Visit Platform</a>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3 class="activity-title">BBC Bitesize</h3>
+                <p class="activity-subject">Interactive lessons and educational games</p>
+                <div class="activity-actions">
+                    <a href="https://www.bbc.co.uk/bitesize" target="_blank" class="btn btn-primary">Visit Platform</a>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3 class="activity-title">Siyavula</h3>
+                <p class="activity-subject">South African CAPS-aligned Mathematics and Science</p>
+                <div class="activity-actions">
+                    <a href="https://www.siyavula.com/" target="_blank" class="btn btn-primary">Visit Platform</a>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3 class="activity-title">Curious Learning</h3>
+                <p class="activity-subject">Reading and literacy resources for early learners</p>
+                <div class="activity-actions">
+                    <a href="https://curiouslearning.org/" target="_blank" class="btn btn-primary">Visit Platform</a>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3 class="activity-title">YouTube Education</h3>
+                <p class="activity-subject">Educational videos and tutorials</p>
+                <div class="activity-actions">
+                    <a href="https://www.youtube.com/education" target="_blank" class="btn btn-primary">Visit Platform</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Integration Section -->
+    <section id="custom-integration" style="background-color: var(--background-light); padding: 2rem; border-radius: 10px; margin-bottom: 3rem;">
+        <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Custom eLearning Integration</h2>
+        <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+            Need to integrate a specific eLearning platform? Our system supports embedding external platforms via iFrames and API connections.
+        </p>
+        
+        <div style="background-color: white; padding: 1.5rem; border-radius: 5px; margin-bottom: 1rem;">
+            <h4>Integration Options:</h4>
+            <ul style="margin-top: 1rem; color: var(--text-dark);">
+                <li style="margin-bottom: 0.5rem;">✅ <strong>iFrame Embedding</strong> - Display external platforms within our website</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Single Sign-On (SSO)</strong> - One login for all platforms</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>API Integration</strong> - Sync grades and progress automatically</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>LTI Standard</strong> - Compatible with Learning Tools Interoperability</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Custom Links</strong> - Direct access to your preferred platforms</li>
+            </ul>
+        </div>
+
+        {% if session.user_id and session.role == 'admin' %}
+        <a href="{{ url_for('admin_elearning_config') }}" class="btn btn-primary">Configure Integrations</a>
+        {% endif %}
+    </section>
+
+    <!-- Demo iFrame Integration -->
+    <section id="demo" style="margin-bottom: 3rem;">
+        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Example: Embedded Learning Platform</h2>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">
+            Below is an example of how external eLearning platforms can be embedded directly into your school website:
+        </p>
+        
+        <div style="background-color: var(--background-light); padding: 1rem; border-radius: 10px;">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe 
+                    src="https://www.khanacademy.org/" 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 5px;"
+                    title="Khan Academy Demo"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                <em>Example integration - This can be replaced with any eLearning platform URL</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- Digital Library -->
+    <section id="library" style="margin-bottom: 3rem;">
+        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Digital Library Resources</h2>
+        
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-content">
+                    <h3 class="news-title">📕 Mathematics</h3>
+                    <p class="news-excerpt">Grade R to 7 Maths textbooks, worksheets, and practice problems.</p>
+                    {% if session.user_id %}
+                    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Access Resources</a>
+                    {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-secondary">Login to Access</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-content">
+                    <h3 class="news-title">📗 English</h3>
+                    <p class="news-excerpt">Reading materials, grammar guides, and comprehension exercises.</p>
+                    {% if session.user_id %}
+                    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Access Resources</a>
+                    {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-secondary">Login to Access</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-content">
+                    <h3 class="news-title">📘 Sciences</h3>
+                    <p class="news-excerpt">Natural Sciences resources with interactive experiments and videos.</p>
+                    {% if session.user_id %}
+                    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Access Resources</a>
+                    {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-secondary">Login to Access</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-content">
+                    <h3 class="news-title">📙 Life Skills</h3>
+                    <p class="news-excerpt">Personal and social skills, health education, and life orientation.</p>
+                    {% if session.user_id %}
+                    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Access Resources</a>
+                    {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-secondary">Login to Access</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information for Parents -->
+    <section style="background-color: var(--primary-color); color: white; padding: 2rem; border-radius: 10px;">
+        <h2 style="margin-bottom: 1rem;">For Parents</h2>
+        <p style="margin-bottom: 1rem;">
+            Our eLearning platform is designed to support your child's education both at school and at home. 
+            Students receive login credentials from their teachers to access grade-appropriate materials.
+        </p>
+        <p>
+            If you need assistance or have questions about our eLearning programs, please contact the school office.
+        </p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary" style="margin-top: 1rem; background-color: white; color: var(--primary-color);">Contact Us</a>
+    </section>
+</div>
+{% endblock %}

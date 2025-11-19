@@ -195,6 +195,15 @@ def admissions():
 def contact():
     return render_template('contact.html')
 
+@app.route('/elearning')
+def elearning():
+    return render_template('elearning.html')
+
+@app.route('/admin/elearning-config')
+@admin_required
+def admin_elearning_config():
+    return render_template('admin_elearning_config.html')
+
 # Authentication routes
 @app.route('/login', methods=['GET', 'POST'])
 def login():
