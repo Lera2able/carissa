@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Add Activity{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Add Learning Activity</h1>
+    
+    <div style="max-width: 800px; margin-top: 2rem;">
+        <form method="POST" action="{{ url_for('add_activity') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Activity Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="grade">Grade Level</label>
+                <select id="grade" name="grade" required>
+                    <option value="">Select Grade</option>
+                    <option value="Grade R">Grade R</option>
+                    <option value="Grade 1">Grade 1</option>
+                    <option value="Grade 2">Grade 2</option>
+                    <option value="Grade 3">Grade 3</option>
+                    <option value="Grade 4">Grade 4</option>
+                    <option value="Grade 5">Grade 5</option>
+                    <option value="Grade 6">Grade 6</option>
+                    <option value="Grade 7">Grade 7</option>
+                    <option value="All Grades">All Grades</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" required>
+                    <option value="">Select Subject</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="English">English</option>
+                    <option value="Afrikaans">Afrikaans</option>
+                    <option value="Life Skills">Life Skills</option>
+                    <option value="Natural Sciences">Natural Sciences</option>
+                    <option value="Social Sciences">Social Sciences</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Arts & Culture">Arts & Culture</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="content_type">Content Type</label>
+                <select id="content_type" name="content_type" required>
+                    <option value="">Select Type</option>
+                    <option value="Worksheet">Worksheet</option>
+                    <option value="Game">Game</option>
+                    <option value="Quiz">Quiz</option>
+                    <option value="Reading">Reading Material</option>
+                    <option value="Video Lesson">Video Lesson</option>
+                    <option value="Activity">Activity</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="file">Upload File (PDF, Doc, Image, Video)</label>
+                <input type="file" id="file" name="file">
+            </div>
+
+            <div class="form-group">
+                <label for="video_url">Or Paste Video URL (YouTube, etc.)</label>
+                <input type="url" id="video_url" name="video_url" placeholder="https://youtube.com/...">
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="btn btn-primary">Add Activity</button>
+                <a href="{{ url_for('teacher_dashboard') if session.role == 'teacher' else url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

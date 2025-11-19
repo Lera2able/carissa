@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Admissions - Admin{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Edit Admissions Information</h1>
+    
+    <div style="max-width: 800px; margin-top: 2rem;">
+        <form method="POST" action="{{ url_for('edit_admissions') }}">
+            <div class="form-group">
+                <label for="content">About Admissions</label>
+                <textarea id="content" name="content" required style="min-height: 150px;">{{ info.content if info else '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="fees_structure">Fees Structure</label>
+                <textarea id="fees_structure" name="fees_structure" required style="min-height: 150px;">{{ info.fees_structure if info else '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="requirements">Requirements</label>
+                <textarea id="requirements" name="requirements" required style="min-height: 150px;">{{ info.requirements if info else '' }}</textarea>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="btn btn-primary">Update Information</button>
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

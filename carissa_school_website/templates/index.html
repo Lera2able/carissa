@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Carissa Primary School{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Carissa Primary School</h1>
+        <p>Devoted to excellence in teaching, learning, and developing leaders who make a difference globally</p>
+        <a href="{{ url_for('admissions') }}" class="btn btn-primary">Apply Now</a>
+    </div>
+</section>
+
+<!-- About Section -->
+<div class="container">
+    <section class="about-section">
+        <div class="about-content">
+            <h2>About Carissa School</h2>
+            <p>Carissa school is devoted to excellence in teaching, learning, and to developing leaders in many disciplines who make a difference globally. The School which is based in Emalahleni, in the Mpumalanga province has an enrolment of over 900 pupils which includes Grade R.</p>
+            
+            <p>As Carissa we are committed to helping young children meet their academic, professional and personal goals. Carissa was once a nursery school before it grew to become the primary school that it is now. The times have changed, but our objective has remained the same to help people enhance their lives through education.</p>
+            
+            <p>Together we will keep working to improve the lives of our students and strengthen our communities. We are proud to provide students access to quality education, ongoing support and a range of resources to help them succeed.</p>
+            
+            <p>Through innovation and dedication we can continue to work toward a better tomorrow. We invite you to learn about our School and see how we can help you pursue your education and follow your dreams.</p>
+        </div>
+        <div class="about-image">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Carissa School" style="width: 100%; border-radius: 10px;">
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">900+</div>
+            <div class="stat-label">Students</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">Grade R-7</div>
+            <div class="stat-label">Grade Levels</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">CAPS</div>
+            <div class="stat-label">Curriculum</div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section style="margin-top: 4rem;">
+        <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 2rem;">Quick Links</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-content">
+                    <h3 class="news-title">School Digest</h3>
+                    <p class="news-excerpt">Stay updated with the latest news, events and newsletters from our school community.</p>
+                    <a href="{{ url_for('digest') }}" class="btn btn-secondary">View Digest</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-content">
+                    <h3 class="news-title">Picture Gallery</h3>
+                    <p class="news-excerpt">Browse through memorable moments and events captured at Carissa School.</p>
+                    <a href="{{ url_for('gallery') }}" class="btn btn-secondary">View Gallery</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-content">
+                    <h3 class="news-title">Admissions</h3>
+                    <p class="news-excerpt">Learn about our enrolment process, fees structure and admission requirements.</p>
+                    <a href="{{ url_for('admissions') }}" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

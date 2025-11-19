@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Manage News - Admin{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h1>Manage School Digest</h1>
+        <a href="{{ url_for('add_news') }}" class="btn btn-primary">Add News</a>
+    </div>
+
+    {% if news_items %}
+    <div class="data-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for news in news_items %}
+                <tr>
+                    <td>{{ news.id }}</td>
+                    <td>{{ news.title }}</td>
+                    <td>{{ news.category }}</td>
+                    <td>{{ news.created_at }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_news', news_id=news.id) }}" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Edit</a>
+                        <a href="{{ url_for('delete_news', news_id=news.id) }}" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem; background-color: var(--danger);" onclick="return confirm('Delete this news item?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p style="text-align: center; color: var(--text-light); padding: 2rem;">No news items yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

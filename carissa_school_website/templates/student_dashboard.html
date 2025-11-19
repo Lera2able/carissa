@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}My Learning - Student Portal{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>My Learning Portal</h1>
+    <p>Welcome, {{ session.full_name }} - {{ session.grade }}</p>
+</div>
+
+<div class="container">
+    <h2>Educational Activities & Games</h2>
+    <p style="color: var(--text-light); margin-bottom: 2rem;">CAPS-aligned learning resources for {{ session.grade }}</p>
+
+    {% if activities %}
+    <div class="activities-grid">
+        {% for activity in activities %}
+        <div class="activity-card">
+            <div class="activity-header">
+                <div>
+                    <h3 class="activity-title">{{ activity.title }}</h3>
+                    <p class="activity-subject">{{ activity.subject }}</p>
+                </div>
+                <span class="activity-grade">{{ activity.grade }}</span>
+            </div>
+            <p>{{ activity.description }}</p>
+            
+            <div class="activity-actions">
+                {% if activity.file_path %}
+                <a href="{{ url_for('static', filename=activity.file_path) }}" class="btn btn-primary" target="_blank">Open Resource</a>
+                {% endif %}
+                {% if activity.video_url %}
+                <a href="{{ activity.video_url }}" class="btn btn-secondary" target="_blank">Watch Video</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p style="text-align: center; color: var(--text-light); padding: 2rem;">No activities available for your grade yet. Check back soon!</p>
+    {% endif %}
+</div>
+{% endblock %}

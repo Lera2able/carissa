@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Teacher Dashboard</h1>
+    <p>Welcome back, {{ session.full_name }}!</p>
+</div>
+
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2>My Activities</h2>
+        <a href="{{ url_for('add_activity') }}" class="btn btn-primary">Add Activity</a>
+    </div>
+
+    {% if activities %}
+    <div class="activities-grid">
+        {% for activity in activities %}
+        <div class="activity-card">
+            <div class="activity-header">
+                <div>
+                    <h3 class="activity-title">{{ activity.title }}</h3>
+                    <p class="activity-subject">{{ activity.subject }} | {{ activity.content_type }}</p>
+                </div>
+                <span class="activity-grade">{{ activity.grade }}</span>
+            </div>
+            <p>{{ activity.description }}</p>
+            {% if activity.file_path %}
+            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;">📎 File attached</p>
+            {% endif %}
+            {% if activity.video_url %}
+            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;">🎥 Video: {{ activity.video_url }}</p>
+            {% endif %}
+            <div style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem;">
+                Created: {{ activity.created_at }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p style="text-align: center; color: var(--text-light); padding: 2rem;">No activities added yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

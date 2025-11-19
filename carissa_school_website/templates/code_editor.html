@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Code Editor - Admin{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Custom Page Code Editor</h1>
+    <p style="color: var(--text-light); margin-bottom: 2rem;">Create and edit custom pages with HTML, CSS, and JavaScript</p>
+
+    <div class="code-editor-container">
+        <div class="pages-sidebar">
+            <h3 style="margin-bottom: 1rem;">Saved Pages</h3>
+            <ul class="page-list">
+                {% for page in pages %}
+                <li onclick="loadPage('{{ page.page_name }}')">{{ page.page_name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="editor-section">
+            <form method="POST" action="{{ url_for('code_editor') }}">
+                <div class="form-group">
+                    <label for="page_name">Page Name</label>
+                    <input type="text" id="page_name" name="page_name" placeholder="e.g., custom-about" required>
+                </div>
+
+                <div class="editor-tabs">
+                    <button type="button" class="tab-btn active" onclick="switchTab('html')">HTML</button>
+                    <button type="button" class="tab-btn" onclick="switchTab('css')">CSS</button>
+                    <button type="button" class="tab-btn" onclick="switchTab('js')">JavaScript</button>
+                </div>
+
+                <div class="form-group" id="html-editor">
+                    <textarea class="code-textarea" id="html_content" name="html_content" placeholder="Enter HTML code here..."></textarea>
+                </div>
+
+                <div class="form-group" id="css-editor" style="display: none;">
+                    <textarea class="code-textarea" id="css_content" name="css_content" placeholder="Enter CSS code here..."></textarea>
+                </div>
+
+                <div class="form-group" id="js-editor" style="display: none;">
+                    <textarea class="code-textarea" id="js_content" name="js_content" placeholder="Enter JavaScript code here..."></textarea>
+                </div>
+
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary">Save Page</button>
+                    <button type="button" class="btn btn-secondary" onclick="clearEditor()">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function switchTab(tab) {
+    // Hide all editors
+    document.getElementById('html-editor').style.display = 'none';
+    document.getElementById('css-editor').style.display = 'none';
+    document.getElementById('js-editor').style.display = 'none';
+    
+    // Remove active class from all tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    
+    // Show selected editor and mark tab as active
+    document.getElementById(tab + '-editor').style.display = 'block';
+    event.target.classList.add('active');
+}
+
+function loadPage(pageName) {
+    fetch('/admin/load-page/' + pageName)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('page_name').value = pageName;
+            document.getElementById('html_content').value = data.html || '';
+            document.getElementById('css_content').value = data.css || '';
+            document.getElementById('js_content').value = data.js || '';
+        })
+        .catch(error => {
+            alert('Error loading page: ' + error);
+        });
+}
+
+function clearEditor() {
+    if (confirm('Clear all fields?')) {
+        document.getElementById('page_name').value = '';
+        document.getElementById('html_content').value = '';
+        document.getElementById('css_content').value = '';
+        document.getElementById('js_content').value = '';
+    }
+}
+</script>
+{% endblock %}

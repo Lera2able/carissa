@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Picture Gallery - Carissa Primary School{% endblock %}
+
+{% block content %}
+<div class="hero" style="padding: 2rem;">
+    <h1>Picture Gallery</h1>
+    <p>Memorable moments from our school community</p>
+</div>
+
+<div class="container">
+    {% if images %}
+        <div class="gallery-grid">
+            {% for image in images %}
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename=image.image_path) }}" alt="{{ image.title }}">
+                <div class="gallery-overlay">
+                    <h4>{{ image.title }}</h4>
+                    {% if image.description %}
+                    <p style="font-size: 0.9rem;">{{ image.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div style="text-align: center; padding: 4rem; color: var(--text-light);">
+            <h3>No images yet</h3>
+            <p>Check back soon for photos from our school events!</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

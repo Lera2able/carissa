@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Carissa Primary School{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Admin Dashboard</h1>
+    <p>Welcome back, {{ session.full_name }}!</p>
+</div>
+
+<div class="container">
+    <div class="dashboard-stats">
+        <div class="dashboard-card">
+            <h3>Total Users</h3>
+            <div class="number">{{ stats.total_users }}</div>
+        </div>
+        <div class="dashboard-card">
+            <h3>Students</h3>
+            <div class="number">{{ stats.total_students }}</div>
+        </div>
+        <div class="dashboard-card">
+            <h3>Teachers</h3>
+            <div class="number">{{ stats.total_teachers }}</div>
+        </div>
+        <div class="dashboard-card">
+            <h3>News Items</h3>
+            <div class="number">{{ stats.total_news }}</div>
+        </div>
+        <div class="dashboard-card">
+            <h3>Activities</h3>
+            <div class="number">{{ stats.total_activities }}</div>
+        </div>
+    </div>
+
+    <h2 style="margin-bottom: 1.5rem;">Management Tools</h2>
+    <div class="activities-grid">
+        <div class="activity-card">
+            <h3 class="activity-title">User Management</h3>
+            <p class="activity-subject">Manage students, teachers and administrators</p>
+            <div class="activity-actions">
+                <a href="{{ url_for('admin_users') }}" class="btn btn-primary">View Users</a>
+                <a href="{{ url_for('add_user') }}" class="btn btn-secondary">Add User</a>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <h3 class="activity-title">School Digest</h3>
+            <p class="activity-subject">Manage news, events and newsletters</p>
+            <div class="activity-actions">
+                <a href="{{ url_for('manage_news') }}" class="btn btn-primary">Manage News</a>
+                <a href="{{ url_for('add_news') }}" class="btn btn-secondary">Add News</a>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <h3 class="activity-title">Picture Gallery</h3>
+            <p class="activity-subject">Upload and manage school photos</p>
+            <div class="activity-actions">
+                <a href="{{ url_for('manage_gallery') }}" class="btn btn-primary">Manage Gallery</a>
+                <a href="{{ url_for('add_gallery') }}" class="btn btn-secondary">Add Images</a>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <h3 class="activity-title">Admissions Info</h3>
+            <p class="activity-subject">Update enrolment and fees information</p>
+            <div class="activity-actions">
+                <a href="{{ url_for('edit_admissions') }}" class="btn btn-primary">Edit Info</a>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <h3 class="activity-title">Activities & Games</h3>
+            <p class="activity-subject">Manage educational content</p>
+            <div class="activity-actions">
+                <a href="{{ url_for('add_activity') }}" class="btn btn-secondary">Add Activity</a>
+            </div>
+        </div>
+
+        <div class="activity-card" style="border-left-color: var(--warning);">
+            <h3 class="activity-title">Code Editor</h3>
+            <p class="activity-subject">Advanced page customization</p>
+            <div class="activity-actions">
+                <a href="{{ url_for('code_editor') }}" class="btn btn-primary">Open Editor</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

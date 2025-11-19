@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Carissa Primary School{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Carissa School Logo" class="logo">
+                <div>
+                    <div class="school-name">CARISSA SCHOOL</div>
+                    <div class="school-tagline">GROWING</div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
+                <li><a href="{{ url_for('digest') }}" class="{% if request.endpoint == 'digest' %}active{% endif %}">School Digest</a></li>
+                <li><a href="{{ url_for('gallery') }}" class="{% if request.endpoint == 'gallery' %}active{% endif %}">Gallery</a></li>
+                <li><a href="{{ url_for('admissions') }}" class="{% if request.endpoint == 'admissions' %}active{% endif %}">Admissions</a></li>
+                <li><a href="{{ url_for('contact') }}" class="{% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
+                {% if session.user_id %}
+                    {% if session.role == 'admin' %}
+                        <li><a href="{{ url_for('admin_dashboard') }}">Admin</a></li>
+                    {% elif session.role == 'teacher' %}
+                        <li><a href="{{ url_for('teacher_dashboard') }}">Dashboard</a></li>
+                    {% elif session.role == 'student' %}
+                        <li><a href="{{ url_for('student_dashboard') }}">My Learning</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('digest') }}">News</a>
+                <a href="{{ url_for('gallery') }}">Gallery</a>
+                <a href="{{ url_for('admissions') }}">Admissions</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </div>
+            <p>&copy; 2024 Carissa Primary School. All rights reserved.</p>
+            <p>23 Hofmeyer Street, Emalahleni, South Africa, 1035 | Tel: 013 656 1286</p>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

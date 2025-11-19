@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Admissions - Carissa Primary School{% endblock %}
+
+{% block content %}
+<div class="hero" style="padding: 2rem;">
+    <h1>Admissions</h1>
+    <p>Join the Carissa School family</p>
+</div>
+
+<div class="container">
+    {% if info %}
+    <div class="admissions-content">
+        <div class="admissions-section">
+            <h3>About Admissions</h3>
+            <p style="white-space: pre-wrap;">{{ info.content }}</p>
+        </div>
+
+        <div class="admissions-section">
+            <h3>Fees Structure</h3>
+            <div class="fees-table">
+                <p style="white-space: pre-wrap;">{{ info.fees_structure }}</p>
+            </div>
+        </div>
+
+        <div class="admissions-section">
+            <h3>Requirements</h3>
+            <p style="white-space: pre-wrap;">{{ info.requirements }}</p>
+        </div>
+
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary" style="color: white; background-color: var(--primary-color);">Contact Us for Enrolment</a>
+        </div>
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 4rem;">
+        <h3>Admissions Information Coming Soon</h3>
+        <p>Please contact us for more details about enrolment.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary" style="color: white; background-color: var(--primary-color); margin-top: 1rem;">Contact Us</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
