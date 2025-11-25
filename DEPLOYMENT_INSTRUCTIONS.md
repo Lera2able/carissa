@@ -31,6 +31,9 @@
 - ✅ All 11 school photos from Facebook embedded as base64
 - ✅ Proper captions for each photo (Deputy Principal, Career Day, etc.)
 - ✅ Photos include: campus activities, school events
+- ✅ **NEW: Lightbox feature - click any image to view full-size without cropping**
+- ✅ **NEW: Navigate between images with arrow buttons or keyboard**
+- ✅ **NEW: Close lightbox with X button, clicking outside, or ESC key**
 
 ### 3. contact.html (126KB) ⭐ MODIFIED
 **Previous content preserved:**
@@ -53,9 +56,32 @@
 - Dummy content for newsletters and events
 - All original content preserved
 
-### 5. elearning.html (124KB)
+### 5. elearning.html (141KB) ⭐ MODIFIED
+**Previous content preserved:**
 - eLearning platform information
-- All original content preserved
+- Features section
+- Subjects available
+
+**New amendments added:**
+- ✅ Working login forms with credentials (12345/12345 for both students and teachers)
+- ✅ **Student dashboard:**
+  - Simple, clean interface
+  - "Start Learning!" button linking to educational games
+  - Links to: https://www.education.com/resources/games/
+- ✅ **Teacher dashboard with comprehensive resources:**
+  - **Coding classroom section** with Scratch
+  - Detailed explanation of coding benefits for children
+  - "Enter Coding Classroom" button linking to https://scratch.mit.edu/
+  - "Educator Development Workshop (Coding)" button with Google Slides
+  - **Subject resource buttons:**
+    - 🔢 Mathematics - math resources
+    - 📖 English - language arts resources
+    - 🔬 Science - science resources
+    - 🌍 Social Studies - social studies resources
+  - All subject buttons with beautiful gradient designs and hover effects
+- ✅ Logout functionality for both dashboards
+- ✅ **"Enter Coding Classroom" button linking to https://scratch.mit.edu/**
+- ✅ Logout functionality
 
 ### 6. admissions.html (126KB)
 - Admission requirements and process
@@ -93,7 +119,7 @@
 
 4. Commit the changes:
    ```
-   git commit -m "Update gallery with photos, add Facebook link, fix Principal image - complete site"
+   git commit -m "Complete website update: gallery lightbox, eLearning login & Scratch coding, Facebook link, Principal photo"
    ```
 
 5. Push to GitHub:
@@ -133,6 +159,9 @@ Modified pages:
 - [ ] Gallery link works from homepage
 - [ ] All 11 school photos display in gallery (gallery.html)
 - [ ] Gallery is responsive on mobile
+- [ ] **Gallery lightbox works - click any image to view full-size**
+- [ ] **Navigate between images using arrow buttons in lightbox**
+- [ ] **Close lightbox with X button or ESC key**
 - [ ] Contact page loads properly (contact.html)
 - [ ] Facebook link on Contact page works
 
@@ -140,7 +169,10 @@ All pages working:
 - [ ] Home page (index.html) loads correctly
 - [ ] School Digest page (school-digest.html) loads
 - [ ] Gallery page (gallery.html) loads
-- [ ] eLearning page (elearning.html) loads
+- [ ] **eLearning page (elearning.html) loads and login works (12345/12345)**
+- [ ] **Teacher dashboard shows Scratch coding classroom after login**
+- [ ] **"Enter Coding Classroom" button links to Scratch correctly**
+- [ ] **"Educator Development Workshop" button links to Google Slides correctly**
 - [ ] Admissions page (admissions.html) loads
 - [ ] Contact page (contact.html) loads
 - [ ] Login page (login.html) loads

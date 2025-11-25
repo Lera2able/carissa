@@ -6,14 +6,14 @@ I've verified that ALL your previous work is included. You're getting 7 complete
 
 ### FILES OVERVIEW:
 
-**3 MODIFIED FILES** (with your new amendments):
+**4 MODIFIED FILES** (with your new amendments):
 1. ✅ index.html - Home page with Principal photo, Facebook video, and all original content
-2. ✅ gallery.html - Gallery with 11 school photos embedded
+2. ✅ gallery.html - Gallery with 11 school photos embedded + lightbox feature
 3. ✅ contact.html - Contact page with Facebook link added
+4. ✅ elearning.html - eLearning with working logins + Scratch coding classroom for teachers
 
-**4 UNCHANGED FILES** (original content preserved):
-4. ✅ school-digest.html - School news and updates (original content intact)
-5. ✅ elearning.html - eLearning platform page (original content intact)
+**3 UNCHANGED FILES** (original content preserved):
+5. ✅ school-digest.html - School news and updates (original content intact)
 6. ✅ admissions.html - Admissions information (original content intact)
 7. ✅ login.html - Login page (original content intact)
 
@@ -46,6 +46,9 @@ I've verified that ALL your previous work is included. You're getting 7 complete
 - 11 real school photos from your Facebook page
 - Photos include: Deputy Principal, Career Day, school activities
 - All embedded as base64 (no broken images)
+- **Lightbox feature: Click any image to view full-size without cropping**
+- **Navigate between images with arrow buttons or keyboard arrows**
+- **Close with X button, clicking outside, or ESC key**
 
 ### contact.html (Contact Page)
 **ALL ORIGINAL CONTENT PRESERVED:**
@@ -57,6 +60,36 @@ I've verified that ALL your previous work is included. You're getting 7 complete
 **NEW ADDITIONS:**
 - Facebook link in "Follow Us" section
 - Professional blue button linking to your Facebook page
+
+### elearning.html (eLearning Platform)
+**ALL ORIGINAL CONTENT PRESERVED:**
+- Platform information
+- Features section
+- Subjects available list
+
+**NEW ADDITIONS:**
+- **Working login forms** (Username: 12345, Password: 12345 for both students and teachers)
+- **Student dashboard:**
+  - Clean, simple interface
+  - Large "Start Learning!" button with purple gradient
+  - Links to: https://www.education.com/resources/games/
+  - Age-appropriate design
+- **Teacher dashboard** with comprehensive features:
+  - **Coding Classroom Section:**
+    - Comprehensive explanation of why children should learn to code
+    - Benefits: Critical thinking, creativity, future-ready skills, maths connection
+    - Information about Scratch (MIT's free coding platform for children)
+    - **"Enter Coding Classroom" button** linking to https://scratch.mit.edu/
+    - **"Educator Development Workshop (Coding)" button** - Google Slides presentation with teaching strategies, lesson plans, and professional development
+  - **Subject Resources Section:**
+    - 🔢 Mathematics button - math teaching resources
+    - 📖 English button - language arts resources  
+    - 🔬 Science button - science resources
+    - 🌍 Social Studies button - social studies resources
+    - All buttons link to education.com resources
+    - Beautiful gradient designs with hover effects
+  - Professional design with gradient backgrounds
+- **Logout functionality** for both dashboards
 
 ---
 
@@ -76,6 +109,7 @@ Before deploying, you can open each HTML file in your browser to verify:
 ✓ gallery.html - Check that you see:
   - 11 school photos displayed
   - Responsive grid layout
+  - Click image to open lightbox (full-size view)
 
 ✓ contact.html - Check that you see:
   - All contact information
@@ -83,7 +117,16 @@ Before deploying, you can open each HTML file in your browser to verify:
   - Contact form
   - FAQs
 
-✓ Other pages (school-digest, elearning, admissions, login):
+✓ elearning.html - Check that you see:
+  - Login forms for students and teachers
+  - Can login with 12345/12345
+  - Teacher dashboard shows after login
+  - "Enter Coding Classroom" button visible
+  - "Educator Development Workshop" button visible
+  - Scratch link works
+  - Workshop slides link works
+
+✓ Other pages (school-digest, admissions, login):
   - Should all display correctly with original content
 
 ---
