@@ -1,0 +1,216 @@
+===========================================================================
+ELEARNING.HTML - COMPLETE DROPDOWN MENU UPDATE
+===========================================================================
+
+✅ ALL CHANGES MADE:
+
+1. ADDED DROPDOWN FUNCTIONALITY
+   - All teacher dashboard sections now use collapsible dropdown menus
+   - Click section headers to expand/collapse content
+   - Smooth animations with rotating arrows
+   - Better organization and cleaner interface
+
+2. GOOGLE DOCS ADDED
+   - Link: https://docs.google.com/document/
+   - Location: Online Classroom section
+   - Description: Create and collaborate on documents in real-time
+
+3. AFRIKAANS SUBJECT ADDED
+   - Link: https://www.twinkl.co.za/search?q=afrikaans...
+   - Location: Subject Resources for Teaching section
+   - Emoji: 🇿🇦
+   - Description: Eerste addisionele taal
+
+4. RENAMED SECTION
+   - OLD: "Teacher Resources"
+   - NEW: "DBE Support Tools"
+
+5. ALL SECTIONS NOW HAVE DROPDOWNS:
+   ✅ Coding Classroom (purple gradient)
+   ✅ Subject Resources for Teaching (white card)
+   ✅ DBE Support Tools (grey gradient)
+   ✅ AI Tools (purple gradient)
+   ✅ Online Classroom (green gradient)
+
+===========================================================================
+HOW THE DROPDOWNS WORK:
+===========================================================================
+
+USER EXPERIENCE:
+1. Log in as teacher (12345/12345)
+2. See collapsed sections with arrows (▼)
+3. Click any section header to expand
+4. Click again to collapse
+5. Arrow rotates to show open/closed state
+
+TECHNICAL:
+- CSS classes: .dropdown-header, .dropdown-content, .dropdown-arrow
+- JavaScript function: toggleDropdown(sectionId)
+- Smooth max-height transitions
+- Hover effects on section headers
+
+===========================================================================
+DETAILED SECTION BREAKDOWN:
+===========================================================================
+
+1. CODING CLASSROOM 👨‍💻
+   Dropdown contains:
+   - Why teach coding explanation
+   - Benefits list (6 points)
+   - About Scratch information
+   - Link to Scratch (https://scratch.mit.edu/)
+   - Educator Development Workshop link
+
+2. SUBJECT RESOURCES FOR TEACHING 📚
+   Dropdown contains:
+   - Mathematics button
+   - English button
+   - AFRIKAANS button (NEW! 🇿🇦)
+   - Science button
+   - Social Studies button
+   All with gradient designs and hover effects
+
+3. DBE SUPPORT TOOLS 📚
+   (Renamed from "Teacher Resources")
+   Dropdown contains:
+   - DBE Annual Teaching Plans (ATPs)
+   - DBE Workbooks 2025
+   - DBE Foundation Phase Literacy Resources
+   - Thutong Foundation for Learning
+
+4. AI TOOLS 🤖
+   Dropdown contains:
+   - Ari AI Assistant
+   - Create Resources
+   - Twinkl Teacher Tools
+   - Google Translate
+   - Canva AI Image Generator
+   - Perchance AI Image Generator
+
+5. ONLINE CLASSROOM 💻
+   Dropdown contains:
+   - ClassDojo
+   - Google Docs (NEW! 📄)
+
+===========================================================================
+NEW CONTENT ADDED:
+===========================================================================
+
+GOOGLE DOCS:
+- Icon: 📄
+- Title: Google Docs
+- Subtitle: Create and collaborate on documents
+- Description: Write lesson plans, worksheets, and collaborate with
+  colleagues in real-time
+- Colour: Blue (#4285f4)
+
+AFRIKAANS SUBJECT:
+- Icon: 🇿🇦
+- Title: Afrikaans
+- Subtitle: Eerste addisionele taal
+- Gradient: Orange (#f39c12 to #d68910)
+- Link: Twinkl Afrikaans resources
+
+===========================================================================
+CSS ADDED:
+===========================================================================
+
+.dropdown-header {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    padding: 20px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.dropdown-arrow {
+    transition: transform 0.3s ease;
+    font-size: 1.5em;
+    color: #7f8c8d;
+}
+
+.dropdown-arrow.open {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    padding: 0 20px;
+}
+
+.dropdown-content.open {
+    max-height: 5000px;
+    padding: 20px;
+}
+
+===========================================================================
+JAVASCRIPT FUNCTION:
+===========================================================================
+
+function toggleDropdown(sectionId) {
+    const content = document.getElementById(sectionId);
+    const arrow = document.getElementById(sectionId + '-arrow');
+    
+    if (content.classList.contains('open')) {
+        content.classList.remove('open');
+        arrow.classList.remove('open');
+    } else {
+        content.classList.add('open');
+        arrow.classList.add('open');
+    }
+}
+
+===========================================================================
+USAGE INSTRUCTIONS:
+===========================================================================
+
+1. Download elearning.html from outputs folder
+2. Replace your current elearning.html file
+3. Upload to your website
+4. Test by logging in as teacher (12345/12345)
+5. Click dropdown headers to expand/collapse sections
+
+===========================================================================
+BENEFITS OF THIS UPDATE:
+===========================================================================
+
+✅ Cleaner interface - less scrolling
+✅ Better organization - related content grouped
+✅ Professional appearance - modern dropdown UI
+✅ Easier to navigate - find tools quickly
+✅ Responsive design - works on all devices
+✅ Smooth animations - polished user experience
+
+===========================================================================
+FILE SIZE & PERFORMANCE:
+===========================================================================
+
+Original file: 952 lines
+Updated file: 1086 lines
+Size increase: ~134 lines (dropdown code and new content)
+Performance impact: Minimal (simple CSS/JS animations)
+
+===========================================================================
+COMPATIBILITY:
+===========================================================================
+
+✅ Works in all modern browsers
+✅ Mobile responsive
+✅ No external dependencies
+✅ Pure HTML/CSS/JavaScript
+✅ GitHub Pages compatible
+✅ Vercel compatible
+
+===========================================================================
+
+Your teacher dashboard is now fully upgraded with dropdown menus! 🎉

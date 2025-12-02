@@ -1,0 +1,173 @@
+===========================================================================
+TEACHER DASHBOARD - COMPLETE TOOLS & LINKS REFERENCE
+===========================================================================
+
+📋 CODING CLASSROOM
+═══════════════════════════════════════════════════════════════════════
+🚀 Scratch
+   https://scratch.mit.edu/
+   Free programming platform for children (MIT)
+
+👩‍🏫 Educator Development Workshop (Coding)
+   https://docs.google.com/presentation/d/1kPXnODwuWKF_aoLICwAhE44yp63rAVMn6T5rR-Q4M5A/pub...
+
+
+📚 SUBJECT RESOURCES FOR TEACHING
+═══════════════════════════════════════════════════════════════════════
+🔢 Mathematics
+   https://www.education.com/resources/math/
+
+📖 English
+   https://www.education.com/resources/english-language-arts/
+
+🇿🇦 Afrikaans (NEW!)
+   https://www.twinkl.co.za/search?q=afrikaans&c=195&ca=386&ct=ks1&r=teacher&fco=30630
+
+🔬 Science
+   https://www.education.com/resources/science/
+
+🌍 Social Studies
+   https://www.education.com/resources/social-studies/
+
+
+📚 DBE SUPPORT TOOLS
+═══════════════════════════════════════════════════════════════════════
+📋 DBE Annual Teaching Plans (ATPs)
+   https://www.education.gov.za/Curriculum/NationalCurriculumStatementsGradesR-12/2023ATPsFP.aspx
+
+📚 DBE Workbooks 2025
+   https://www.education.gov.za/Curriculum/LearningandTeachingSupportMaterials(LTSM)/2025Workbooks1.aspx
+
+📖 DBE Foundation Phase Literacy Resources
+   [Link to be updated]
+
+🎯 Thutong Foundation for Learning
+   https://www.thutong.doe.gov.za/Default.aspx?alias=www.thutong.doe.gov.za/foundationsforlearning
+
+
+🤖 AI TOOLS
+═══════════════════════════════════════════════════════════════════════
+🤖 Ari AI Assistant
+   https://www.twinkl.co.za/ari-hub
+
+✨ Create Resources
+   https://www.twinkl.co.za/create
+
+🛠️ Twinkl Teacher Tools
+   https://www.twinkl.co.za/resources/south-africa-resources/teacher-tools-south-africa-suid-afrika/english-teacher-tools-south-africa-suid-afrika
+
+🌐 Google Translate
+   https://translate.google.com/?sl=af&tl=en&op=translate
+
+🎨 Canva AI Image Generator
+   https://www.canva.com/ai-image-generator/
+
+✨ Perchance AI Image Generator
+   https://perchance.org/ai-text-to-image-generator
+
+
+💻 ONLINE CLASSROOM
+═══════════════════════════════════════════════════════════════════════
+🎓 ClassDojo
+   https://teach.classdojo.com/#/launchpad
+
+📄 Google Docs (NEW!)
+   https://docs.google.com/document/
+
+
+===========================================================================
+TOTAL TOOLS AVAILABLE: 17
+===========================================================================
+
+Coding Tools: 2
+Subject Resources: 5 (including new Afrikaans!)
+DBE Support Tools: 4
+AI Tools: 6
+Online Classroom: 2 (including new Google Docs!)
+
+===========================================================================
+NEW ADDITIONS IN THIS UPDATE:
+===========================================================================
+
+✨ Google Docs
+   - For creating lesson plans and worksheets
+   - Real-time collaboration with colleagues
+   - Location: Online Classroom section
+
+✨ Afrikaans Resources
+   - Eerste addisionele taal teaching materials
+   - Twinkl South African curriculum resources
+   - Location: Subject Resources section
+
+===========================================================================
+LOGIN CREDENTIALS:
+===========================================================================
+
+Username: 12345
+Password: 12345
+
+===========================================================================
+QUICK ACCESS TIPS:
+===========================================================================
+
+1. Most frequently used? Bookmark these:
+   • Scratch (for coding lessons)
+   • Google Docs (for planning)
+   • Canva (for visual materials)
+   • DBE ATPs (for curriculum planning)
+
+2. Planning a lesson?
+   • Start with DBE ATPs for curriculum alignment
+   • Get resources from subject buttons
+   • Create visuals with Canva or Perchance
+   • Write lesson plans in Google Docs
+
+3. Need images?
+   • Professional look: Canva AI Image Generator
+   • Quick and free: Perchance AI Image Generator
+
+4. Need translation?
+   • Google Translate (Afrikaans ↔ English)
+
+5. Virtual teaching?
+   • ClassDojo for classroom management
+   • Google Docs for sharing materials
+
+===========================================================================
+CATEGORIZED BY PURPOSE:
+===========================================================================
+
+LESSON PLANNING:
+• DBE ATPs
+• Google Docs
+• Ari AI Assistant
+
+TEACHING RESOURCES:
+• All Subject Resource buttons
+• DBE Workbooks
+• Twinkl Teacher Tools
+• Create Resources
+
+VISUAL CONTENT CREATION:
+• Canva AI Image Generator
+• Perchance AI Image Generator
+
+CODING EDUCATION:
+• Scratch
+• Educator Development Workshop
+
+LANGUAGE SUPPORT:
+• Google Translate
+• Afrikaans Resources
+
+VIRTUAL CLASSROOM:
+• ClassDojo
+• Google Docs
+
+CURRICULUM SUPPORT:
+• DBE ATPs
+• DBE Workbooks
+• DBE Literacy Resources
+• Thutong Portal
+
+===========================================================================
