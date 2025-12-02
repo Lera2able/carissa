@@ -1,0 +1,48 @@
+===============================================
+HOW TO ADD "THE MEANING OF CARISSA" PAGE
+===============================================
+
+STEP 1: Upload the new page
+----------------------------
+Upload the file "meaning-of-carissa.html" to your website's root directory
+(the same folder where your index.html is located)
+
+
+STEP 2: Update the button on your homepage
+-------------------------------------------
+In your index.html file, find the "Begin Your Journey" button.
+
+It should look something like this:
+<button class="cta-button">Begin Your Journey</button>
+
+or
+
+<a href="#" class="cta-button">Begin Your Journey</a>
+
+
+CHANGE IT TO:
+<a href="meaning-of-carissa.html" class="cta-button">The Meaning of Carissa</a>
+
+
+STEP 3: Test it
+---------------
+- Save your changes
+- Push to GitHub (if using GitHub Pages)
+- Visit your website
+- Click the button - it should now open the new "Meaning of Carissa" page
+
+
+THAT'S IT!
+---------
+The button will now say "The Meaning of Carissa" and will open the 
+beautiful new page explaining the school's name.
+
+The "Back to Home" button on the new page will bring visitors back 
+to your homepage.
+
+
+===============================================
+NEED HELP?
+If you're not sure where the button code is in your index.html, 
+search for "Begin Your Journey" or "cta-button" in your file.
+===============================================
