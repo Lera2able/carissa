@@ -1,0 +1,56 @@
+===========================================================================
+ELEARNING.HTML - AI TOOLS UPDATE
+===========================================================================
+
+✅ CHANGES MADE:
+
+Added TWO new AI image creator tools to the Teacher Dashboard's AI Tools section:
+
+1. CANVA AI IMAGE GENERATOR
+   - Link: https://www.canva.com/ai-image-generator/
+   - Colour: Blue (#00c6ff)
+   - Icon: 🎨
+   - Description: Create stunning visuals for lessons, posters, worksheets and presentations
+
+2. PERCHANCE AI IMAGE GENERATOR
+   - Link: https://perchance.org/ai-text-to-image-generator
+   - Colour: Purple (#764ba2)
+   - Icon: ✨
+   - Description: Free unlimited AI image creation for educational materials - no sign up required
+
+===========================================================================
+WHERE THE TOOLS WERE ADDED:
+
+Location: Teacher Dashboard → AI Tools section
+Position: After Google Translate, before Online Class section
+Style: Matches existing AI tools (ChatGPT, Twinkl, Google Translate)
+
+===========================================================================
+HOW IT WORKS:
+
+1. Teachers log in with credentials (12345/12345)
+2. Scroll down to "AI Tools" section
+3. Click on either Canva or Perchance links
+4. Tools open in new browser tabs
+5. Create images for educational materials
+
+===========================================================================
+FEATURES:
+
+✅ Hover effects (slides right and shadow increases)
+✅ Opens in new tabs (target="_blank")
+✅ Matches existing design style
+✅ Mobile responsive
+✅ Clear descriptions for teachers
+
+===========================================================================
+NEXT STEPS:
+
+1. Download the updated elearning.html file
+2. Replace your current elearning.html with this updated version
+3. Upload to your website
+4. Test by logging in as a teacher (12345/12345)
+
+===========================================================================
+
+That's it! Your teachers now have access to AI image creation tools! 🎨✨
