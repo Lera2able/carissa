@@ -1,0 +1,88 @@
+===========================================================================
+INDEX.HTML - HOMEPAGE BUTTON UPDATE
+===========================================================================
+
+✅ CHANGE MADE:
+
+Updated the hero section button from:
+   "Begin Your Journey" → "The Meaning of Carissa"
+
+Button now links to:
+   meaning-of-carissa.html (instead of admissions.html)
+
+===========================================================================
+WHAT WAS CHANGED:
+
+OLD BUTTON:
+-----------
+<a href="admissions.html" target="_blank" class="btn btn-primary">Begin Your Journey</a>
+
+NEW BUTTON:
+-----------
+<a href="meaning-of-carissa.html" class="btn btn-primary">The Meaning of Carissa</a>
+
+===========================================================================
+LOCATION:
+
+Section: Hero Section (top of homepage)
+Position: Below the school tagline
+Line: 521 (in original file)
+
+===========================================================================
+FILES YOU NEED TO UPLOAD TO YOUR WEBSITE:
+
+1. index.html (updated homepage)
+2. meaning-of-carissa.html (new page about the school name)
+
+===========================================================================
+HOW TO DEPLOY:
+
+OPTION 1 - GitHub (if using GitHub Pages):
+------------------------------------------
+1. Download both files:
+   - index.html
+   - meaning-of-carissa.html
+
+2. Replace index.html in your repository
+3. Add meaning-of-carissa.html to your repository
+4. Commit and push:
+   git add index.html meaning-of-carissa.html
+   git commit -m "Added Meaning of Carissa page and updated homepage button"
+   git push origin main
+
+5. Wait 1-2 minutes for GitHub Pages to update
+6. Visit your site and test the button!
+
+OPTION 2 - Direct Upload (if using cPanel or hosting):
+------------------------------------------------------
+1. Download both files
+2. Log into your hosting control panel
+3. Go to File Manager
+4. Upload both files to your public_html folder
+5. Replace existing index.html
+6. Test by visiting your website
+
+===========================================================================
+WHAT HAPPENS NOW:
+
+When visitors click "The Meaning of Carissa" button:
+→ They'll see a beautiful page explaining:
+   - The meaning of "Carissa" (grace/beloved)
+   - The African Carissa shrub
+   - Your school's motto "Growing"
+   - Connection between the name and your values
+
+The page has a "Back to Home" button to return to homepage.
+
+===========================================================================
+TESTING:
+
+1. Upload both files
+2. Visit your homepage
+3. Look for the button - it should say "The Meaning of Carissa"
+4. Click it - you should see the new page
+5. Click "Back to Home" - you should return to homepage
+
+===========================================================================
+
+Your homepage button is now ready! 🎉
