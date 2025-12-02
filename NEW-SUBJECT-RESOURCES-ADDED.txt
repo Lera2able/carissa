@@ -1,0 +1,156 @@
+===========================================================================
+SUBJECT RESOURCES - NEW ADDITIONS
+===========================================================================
+
+✅ TWO NEW RESOURCES ADDED TO SUBJECT RESOURCES DROPDOWN
+
+===========================================================================
+NEW RESOURCE 1: FOUNDATION PHASE LIBRARY
+===========================================================================
+
+📚 Foundation Phase Library
+   Link: https://sites.google.com/wced.info/cwed-foundation-phase/home?authuser=0
+   Emoji: 📚
+   Colour: Teal/Turquoise gradient (#1abc9c to #16a085)
+   Description: WCED Foundation Phase resources
+
+What it is:
+- Western Cape Education Department Foundation Phase resource library
+- Comprehensive teaching materials
+- Foundation Phase specific content
+
+===========================================================================
+NEW RESOURCE 2: RAINBOW BOOKS
+===========================================================================
+
+🌈 Rainbow Books
+   Link: https://wcedeportal.co.za/rainbow-workbooks
+   Emoji: 🌈
+   Colour: Pink/Magenta gradient (#e91e63 to #c2185b)
+   Description: WCED Rainbow Workbooks
+
+What it is:
+- Official WCED Rainbow Workbooks portal
+- Learner workbooks for various subjects
+- Foundation Phase learning materials
+
+===========================================================================
+WHERE TO FIND THEM
+===========================================================================
+
+Location: Teacher Dashboard → Subject Resources for Teaching (dropdown)
+
+Order of all subject resources (after expanding dropdown):
+1. 🔢 Mathematics (Blue)
+2. 📖 English (Red)
+3. 🇿🇦 Afrikaans (Orange)
+4. 🔬 Science (Green)
+5. 🌍 Social Studies (Purple)
+6. 📚 Foundation Phase Library (Teal) ← NEW!
+7. 🌈 Rainbow Books (Pink) ← NEW!
+
+===========================================================================
+VISUAL LAYOUT
+===========================================================================
+
+The buttons appear in a responsive grid:
+
+Desktop (3 columns):
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+│ Mathematics │ │   English   │ │  Afrikaans  │
+└─────────────┘ └─────────────┘ └─────────────┘
+
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+│   Science   │ │Social Studies│ │ Foundation  │
+│             │ │             │ │Phase Library│
+└─────────────┘ └─────────────┘ └─────────────┘
+
+┌─────────────┐
+│  Rainbow    │
+│   Books     │
+└─────────────┘
+
+Tablet/Mobile: Stacks into 1-2 columns
+
+===========================================================================
+FEATURES
+===========================================================================
+
+✅ Same style as existing subject buttons
+✅ Gradient backgrounds with hover effects
+✅ Lift animation on hover
+✅ Enhanced shadow on hover
+✅ Opens links in new tabs
+✅ Mobile responsive
+✅ Touch-friendly on tablets/phones
+
+===========================================================================
+TOTAL SUBJECT RESOURCES NOW: 7
+===========================================================================
+
+Previously: 5 resources
+Added: 2 resources
+Total now: 7 resources
+
+All focused on Foundation Phase and South African curriculum!
+
+===========================================================================
+COLOUR SCHEME
+===========================================================================
+
+🔢 Mathematics      → Blue (#3498db)
+📖 English          → Red (#e74c3c)
+🇿🇦 Afrikaans       → Orange (#f39c12)
+🔬 Science          → Green (#2ecc71)
+🌍 Social Studies   → Purple (#9b59b6)
+📚 Foundation Phase → Teal (#1abc9c) ← NEW!
+🌈 Rainbow Books    → Pink (#e91e63) ← NEW!
+
+===========================================================================
+HOW TO USE
+===========================================================================
+
+1. Log in as teacher (12345/12345)
+2. Find "Subject Resources for Teaching" section
+3. Click header to expand dropdown
+4. Scroll to see all 7 subject resource buttons
+5. Click Foundation Phase Library or Rainbow Books
+6. Resources open in new tab
+
+===========================================================================
+QUICK REFERENCE: ALL SUBJECT RESOURCE LINKS
+===========================================================================
+
+Mathematics:
+https://www.education.com/resources/math/
+
+English:
+https://www.education.com/resources/english-language-arts/
+
+Afrikaans:
+https://www.twinkl.co.za/search?q=afrikaans&c=195&ca=386&ct=ks1&r=teacher&fco=30630
+
+Science:
+https://www.education.com/resources/science/
+
+Social Studies:
+https://www.education.com/resources/social-studies/
+
+Foundation Phase Library (NEW!):
+https://sites.google.com/wced.info/cwed-foundation-phase/home?authuser=0
+
+Rainbow Books (NEW!):
+https://wcedeportal.co.za/rainbow-workbooks
+
+===========================================================================
+DEPLOYMENT
+===========================================================================
+
+1. Download the updated elearning.html
+2. Replace your current elearning.html file
+3. Upload to your website
+4. Teachers can now access the 2 new resources!
+
+===========================================================================
+
+Subject Resources section is now complete with 7 resources! 🎉
