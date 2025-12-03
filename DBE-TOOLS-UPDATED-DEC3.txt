@@ -1,0 +1,115 @@
+===========================================================================
+DBE SUPPORT TOOLS - UPDATED (3 December 2025)
+===========================================================================
+
+File: elearning.html
+Section: Teacher Resources (DBE Support Tools section)
+
+===========================================================================
+CHANGES MADE
+===========================================================================
+
+✅ REMOVED:
+- DBE Foundation Phase Literacy Resources (no link available)
+
+✅ ADDED:
+1. DBE Rainbow Workbooks
+2. Curriculum Assessment Policy Statements (CAPS)
+
+===========================================================================
+NEW RESOURCE #1: DBE RAINBOW WORKBOOKS
+===========================================================================
+
+🌈 DBE Rainbow Workbooks
+   Link: https://wcedeportal.co.za/rainbow-workbooks
+   Emoji: 🌈
+   Colour: Green gradient (#2ecc71)
+   Border: Left border 5px solid green
+   Description: Official WCED Rainbow Workbooks for learners
+
+Position: Third item (after DBE Workbooks 2025, before CAPS)
+
+===========================================================================
+NEW RESOURCE #2: CURRICULUM ASSESSMENT POLICY STATEMENTS (CAPS)
+===========================================================================
+
+📋 Curriculum Assessment Policy Statements (CAPS)
+   Link: https://wcedeportal.co.za/curriculum-assessment-policy-statements
+   Emoji: 📋
+   Colour: Orange gradient (#f39c12)
+   Border: Left border 5px solid orange
+   Description: Official curriculum policy documents and guidelines
+
+Position: Fourth item (after Rainbow Workbooks, before Thutong)
+
+===========================================================================
+COMPLETE LIST OF DBE SUPPORT TOOLS (IN ORDER)
+===========================================================================
+
+1. 📋 DBE Annual Teaching Plans (ATPs) - Blue
+   https://www.education.gov.za/Curriculum/NationalCurriculumStatementsGradesR-12/2023ATPsFP.aspx
+
+2. 📚 DBE Workbooks 2025 - Red
+   https://www.education.gov.za/Curriculum/LearningandTeachingSupportMaterials(LTSM)/2025Workbooks1.aspx
+
+3. 🌈 DBE Rainbow Workbooks - Green ← NEW!
+   https://wcedeportal.co.za/rainbow-workbooks
+
+4. 📋 Curriculum Assessment Policy Statements (CAPS) - Orange ← NEW!
+   https://wcedeportal.co.za/curriculum-assessment-policy-statements
+
+5. 🎯 Thutong Foundation for Learning - Purple
+   https://www.thutong.doe.gov.za/Default.aspx?alias=www.thutong.doe.gov.za/foundationsforlearning
+
+Total DBE Support Tools: 5 resources
+
+===========================================================================
+VISUAL LAYOUT
+===========================================================================
+
+The resources appear as clickable cards with:
+- White background
+- Coloured left border (5px solid)
+- Hover animation (slides right 10px)
+- Shadow effect that increases on hover
+- Arrow indicator on the right (→)
+- Icon emoji on the left
+- Title in bold colour
+- Description in grey text
+
+All links open in new tabs (target="_blank")
+
+===========================================================================
+COLOUR SCHEME
+===========================================================================
+
+📋 DBE ATPs              → Blue (#3498db)
+📚 DBE Workbooks 2025    → Red (#e74c3c)
+🌈 Rainbow Workbooks     → Green (#2ecc71) ← NEW!
+📋 CAPS                  → Orange (#f39c12) ← NEW!
+🎯 Thutong Foundation    → Purple (#9b59b6)
+
+===========================================================================
+DEPLOYMENT INSTRUCTIONS
+===========================================================================
+
+1. Download the updated elearning.html file
+2. Replace your current elearning.html in your GitHub repository
+3. Commit and push to GitHub:
+   git add elearning.html
+   git commit -m "Update DBE Support Tools - Add Rainbow Workbooks and CAPS"
+   git push origin main
+
+4. Your live site will update automatically via GitHub Pages
+
+===========================================================================
+TECHNICAL DETAILS
+===========================================================================
+
+File size: 968 lines (was 952 lines)
+Change: +16 lines
+Files modified: 1 (elearning.html)
+
+===========================================================================
+
+Your DBE Support Tools section is now updated! 🎉
