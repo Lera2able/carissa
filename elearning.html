@@ -372,6 +372,52 @@
                 font-size: 32px;
             }
         }
+
+        /* Dropdown Section Styles */
+        .dropdown-header {
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            padding: 20px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .dropdown-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .dropdown-header h3 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+            font-size: 1.5em;
+            color: #7f8c8d;
+        }
+
+        .dropdown-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            padding: 0 20px;
+        }
+
+        .dropdown-content.open {
+            max-height: 5000px;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -477,361 +523,458 @@
                 <button onclick="logout()" class="btn" style="background: #e74c3c;">Logout</button>
             </div>
             
+            <!-- CODING SECTION WITH DROPDOWN -->
             <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 30px;">
-                <h3 style="color: #ffffff; font-size: 1.8em; margin-bottom: 15px;">👨‍💻 Coding Classroom with Scratch</h3>
-                <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px; color: #ffffff;">
-                    Introducing your students to coding opens doors to creativity, problem-solving, and logical thinking. 
-                    Coding isn't just about computers – it's about teaching children how to break down complex problems into manageable steps, 
-                    think critically, and express their ideas through technology.
-                </p>
+                <div class="dropdown-header" onclick="toggleDropdown('coding-section')" style="background: rgba(255,255,255,0.1); margin-bottom: 15px;">
+                    <h3 style="color: #ffffff;">
+                        <span>👨‍💻 Coding Classroom</span>
+                        <span class="dropdown-arrow" id="coding-section-arrow">▼</span>
+                    </h3>
+                </div>
                 
-                <div style="background: rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
-                    <h4 style="color: #ffffff; margin-bottom: 15px; font-size: 1.3em;">Why Teach Coding to Children?</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Critical Thinking:</strong> Children learn to approach problems systematically and develop logical reasoning skills</li>
-                        <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Creativity:</strong> Coding empowers students to create their own games, animations, and interactive stories</li>
-                        <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Future-Ready Skills:</strong> Prepares learners for a technology-driven world and future career opportunities</li>
-                        <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Mathematics Connection:</strong> Reinforces maths concepts through practical application</li>
-                        <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Confidence Building:</strong> Students gain confidence as they see their code come to life</li>
-                        <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Collaboration:</strong> Encourages teamwork and sharing of ideas</li>
-                    </ul>
-                </div>
-
-                <div style="background: rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
-                    <h4 style="color: #ffffff; margin-bottom: 15px; font-size: 1.3em;">About Scratch</h4>
-                    <p style="font-size: 1.05em; line-height: 1.8; color: #ffffff;">
-                        Scratch is a free programming platform developed by MIT specifically for children aged 8-16. 
-                        It uses colourful, drag-and-drop blocks instead of text-based code, making it perfect for beginners. 
-                        Students can create interactive stories, games, and animations while learning fundamental programming concepts.
+                <div id="coding-section" class="dropdown-content">
+                    <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px; color: #ffffff;">
+                        Introducing your students to coding opens doors to creativity, problem-solving, and logical thinking. 
+                        Coding isn't just about computers – it's about teaching children how to break down complex problems into manageable steps, 
+                        think critically, and express their ideas through technology.
                     </p>
-                </div>
-
-                <div style="text-align: center; margin-top: 30px;">
-                    <a href="https://scratch.mit.edu/" target="_blank" 
-                       style="display: inline-block; background: #FF6B35; color: #ffffff; padding: 18px 40px; 
-                              text-decoration: none; border-radius: 30px; font-size: 1.2em; font-weight: bold; 
-                              box-shadow: 0 5px 20px rgba(0,0,0,0.3); transition: all 0.3s ease;"
-                       onmouseover="this.style.background='#E55A2B'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)'"
-                       onmouseout="this.style.background='#FF6B35'; this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.3)'">
-                        🚀 Enter Coding Classroom
-                    </a>
-                    <p style="margin-top: 15px; font-size: 0.95em; color: #ffffff;">Click to access Scratch - Free & Safe for Children</p>
                     
-                    <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid rgba(255,255,255,0.3);">
-                        <h4 style="color: #ffffff; font-size: 1.3em; margin-bottom: 20px;">📚 Professional Development for Educators</h4>
-                        <p style="font-size: 1.05em; line-height: 1.8; margin-bottom: 20px; color: #ffffff;">
-                            Enhance your coding teaching skills with our comprehensive educator development workshop. 
-                            This presentation covers teaching strategies, lesson plans, and practical tips for introducing 
-                            coding concepts to primary school learners.
+                    <div style="background: rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4 style="color: #ffffff; margin-bottom: 15px; font-size: 1.3em;">Why Teach Coding to Children?</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Critical Thinking:</strong> Children learn to approach problems systematically and develop logical reasoning skills</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Creativity:</strong> Coding empowers students to create their own games, animations, and interactive stories</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Future-Ready Skills:</strong> Prepares learners for a technology-driven world and future career opportunities</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Mathematics Connection:</strong> Reinforces maths concepts through practical application</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Confidence Building:</strong> Students gain confidence as they see their code come to life</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">✅ <strong style="color: #ffffff;">Collaboration:</strong> Encourages teamwork and sharing of ideas</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4 style="color: #ffffff; margin-bottom: 15px; font-size: 1.3em;">About Scratch</h4>
+                        <p style="font-size: 1.05em; line-height: 1.8; color: #ffffff;">
+                            Scratch is a free programming platform developed by MIT specifically for children aged 8-16. 
+                            It uses colourful, drag-and-drop blocks instead of text-based code, making it perfect for beginners. 
+                            Students can create interactive stories, games, and animations while learning fundamental programming concepts.
                         </p>
-                        <a href="https://docs.google.com/presentation/d/1kPXnODwuWKF_aoLICwAhE44yp63rAVMn6T5rR-Q4M5A/pub?start=false&loop=false&delayms=30000&pli=1&slide=id.g1bcc234251_1_75" target="_blank" 
-                           style="display: inline-block; background: #2ecc71; color: #ffffff; padding: 18px 40px; 
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <a href="https://scratch.mit.edu/" target="_blank" 
+                           style="display: inline-block; background: #FF6B35; color: #ffffff; padding: 18px 40px; 
                                   text-decoration: none; border-radius: 30px; font-size: 1.2em; font-weight: bold; 
                                   box-shadow: 0 5px 20px rgba(0,0,0,0.3); transition: all 0.3s ease;"
-                           onmouseover="this.style.background='#27ae60'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)'"
-                           onmouseout="this.style.background='#2ecc71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.3)'">
-                            👩‍🏫 Educator Development Workshop (Coding)
+                           onmouseover="this.style.background='#E55A2B'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)'"
+                           onmouseout="this.style.background='#FF6B35'; this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.3)'">
+                            🚀 Enter Coding Classroom
                         </a>
-                        <p style="margin-top: 15px; font-size: 0.95em; color: #ffffff;">Professional development slides for teachers</p>
+                        <p style="margin-top: 15px; font-size: 0.95em; color: #ffffff;">Click to access Scratch - Free & Safe for Children</p>
+                        
+                        <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid rgba(255,255,255,0.3);">
+                            <h4 style="color: #ffffff; font-size: 1.3em; margin-bottom: 20px;">📚 Professional Development for Educators</h4>
+                            <p style="font-size: 1.05em; line-height: 1.8; margin-bottom: 20px; color: #ffffff;">
+                                Enhance your coding teaching skills with our comprehensive educator development workshop. 
+                                This presentation covers teaching strategies, lesson plans, and practical tips for introducing 
+                                coding concepts to primary school learners.
+                            </p>
+                            <a href="https://docs.google.com/presentation/d/1kPXnODwuWKF_aoLICwAhE44yp63rAVMn6T5rR-Q4M5A/pub?start=false&loop=false&delayms=30000&pli=1&slide=id.g1bcc234251_1_75" target="_blank" 
+                               style="display: inline-block; background: #2ecc71; color: #ffffff; padding: 18px 40px; 
+                                      text-decoration: none; border-radius: 30px; font-size: 1.2em; font-weight: bold; 
+                                      box-shadow: 0 5px 20px rgba(0,0,0,0.3); transition: all 0.3s ease;"
+                               onmouseover="this.style.background='#27ae60'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)'"
+                               onmouseout="this.style.background='#2ecc71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.3)'">
+                                👩‍🏫 Educator Development Workshop (Coding)
+                            </a>
+                            <p style="margin-top: 15px; font-size: 0.95em; color: #ffffff;">Professional development slides for teachers</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- SUBJECT RESOURCES WITH DROPDOWN -->
             <div class="card" style="margin-top: 20px; padding: 30px;">
-                <h3 style="font-size: 1.8em; margin-bottom: 10px; text-align: center;">📚 Subject Resources for Teaching</h3>
-                <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px; font-size: 1.1em;">Access curriculum materials and teaching resources for each subject</p>
+                <div class="dropdown-header" onclick="toggleDropdown('subjects-section')">
+                    <h3>
+                        <span style="font-size: 1.8em;">📚 Subject Resources for Teaching</span>
+                        <span class="dropdown-arrow" id="subjects-section-arrow">▼</span>
+                    </h3>
+                </div>
                 
-                <!-- Subject Buttons Grid -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
+                <div id="subjects-section" class="dropdown-content">
+                    <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px; font-size: 1.1em;">Access curriculum materials and teaching resources for each subject</p>
                     
-                    <!-- Maths Button -->
-                    <a href="https://www.education.com/resources/math/" target="_blank"
-                       style="display: block; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); 
-                              color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
-                              box-shadow: 0 5px 20px rgba(52, 152, 219, 0.3); transition: all 0.3s ease; text-align: center;"
-                       onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(52, 152, 219, 0.5)'"
-                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(52, 152, 219, 0.3)'">
-                        <div style="font-size: 3em; margin-bottom: 10px;">🔢</div>
-                        <div style="font-size: 1.3em; font-weight: bold;">Mathematics</div>
-                        <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">Numbers, calculations & problem solving</div>
-                    </a>
+                    <!-- Subject Buttons Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
+                        
+                        <!-- Maths Button -->
+                        <a href="https://www.education.com/resources/math/" target="_blank"
+                           style="display: block; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); 
+                                  color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
+                                  box-shadow: 0 5px 20px rgba(52, 152, 219, 0.3); transition: all 0.3s ease; text-align: center;"
+                           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(52, 152, 219, 0.5)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(52, 152, 219, 0.3)'">
+                            <div style="font-size: 3em; margin-bottom: 10px;">🔢</div>
+                            <div style="font-size: 1.3em; font-weight: bold;">Mathematics</div>
+                            <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">Numbers, calculations & problem solving</div>
+                        </a>
 
-                    <!-- English Button -->
-                    <a href="https://www.education.com/resources/english-language-arts/" target="_blank"
-                       style="display: block; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); 
-                              color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
-                              box-shadow: 0 5px 20px rgba(231, 76, 60, 0.3); transition: all 0.3s ease; text-align: center;"
-                       onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(231, 76, 60, 0.5)'"
-                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(231, 76, 60, 0.3)'">
-                        <div style="font-size: 3em; margin-bottom: 10px;">📖</div>
-                        <div style="font-size: 1.3em; font-weight: bold;">English</div>
-                        <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">Reading, writing & language skills</div>
-                    </a>
+                        <!-- English Button -->
+                        <a href="https://www.education.com/resources/english-language-arts/" target="_blank"
+                           style="display: block; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); 
+                                  color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
+                                  box-shadow: 0 5px 20px rgba(231, 76, 60, 0.3); transition: all 0.3s ease; text-align: center;"
+                           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(231, 76, 60, 0.5)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(231, 76, 60, 0.3)'">
+                            <div style="font-size: 3em; margin-bottom: 10px;">📖</div>
+                            <div style="font-size: 1.3em; font-weight: bold;">English</div>
+                            <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">Reading, writing & language skills</div>
+                        </a>
 
-                    <!-- Science Button -->
-                    <a href="https://www.education.com/resources/science/" target="_blank"
-                       style="display: block; background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); 
-                              color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
-                              box-shadow: 0 5px 20px rgba(46, 204, 113, 0.3); transition: all 0.3s ease; text-align: center;"
-                       onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(46, 204, 113, 0.5)'"
-                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(46, 204, 113, 0.3)'">
-                        <div style="font-size: 3em; margin-bottom: 10px;">🔬</div>
-                        <div style="font-size: 1.3em; font-weight: bold;">Science</div>
-                        <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">Experiments, discovery & nature</div>
-                    </a>
+                        <!-- Afrikaans Button -->
+                        <a href="https://www.twinkl.co.za/search?q=afrikaans&c=195&ca=386&ct=ks1&r=teacher&fco=30630" target="_blank"
+                           style="display: block; background: linear-gradient(135deg, #f39c12 0%, #d68910 100%); 
+                                  color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
+                                  box-shadow: 0 5px 20px rgba(243, 156, 18, 0.3); transition: all 0.3s ease; text-align: center;"
+                           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(243, 156, 18, 0.5)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(243, 156, 18, 0.3)'">
+                            <div style="font-size: 3em; margin-bottom: 10px;">🇿🇦</div>
+                            <div style="font-size: 1.3em; font-weight: bold;">Afrikaans</div>
+                            <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">Eerste addisionele taal</div>
+                        </a>
 
-                    <!-- Social Studies Button -->
-                    <a href="https://www.education.com/resources/social-studies/" target="_blank"
-                       style="display: block; background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); 
-                              color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
-                              box-shadow: 0 5px 20px rgba(243, 156, 18, 0.3); transition: all 0.3s ease; text-align: center;"
-                       onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(243, 156, 18, 0.5)'"
-                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(243, 156, 18, 0.3)'">
-                        <div style="font-size: 3em; margin-bottom: 10px;">🌍</div>
-                        <div style="font-size: 1.3em; font-weight: bold;">Social Studies</div>
-                        <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">History, geography & culture</div>
-                    </a>
+                        <!-- Science Button -->
+                        <a href="https://www.education.com/resources/science/" target="_blank"
+                           style="display: block; background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); 
+                                  color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
+                                  box-shadow: 0 5px 20px rgba(46, 204, 113, 0.3); transition: all 0.3s ease; text-align: center;"
+                           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(46, 204, 113, 0.5)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(46, 204, 113, 0.3)'">
+                            <div style="font-size: 3em; margin-bottom: 10px;">🔬</div>
+                            <div style="font-size: 1.3em; font-weight: bold;">Science</div>
+                            <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">Experiments, discovery & nature</div>
+                        </a>
+
+                        <!-- Social Studies Button -->
+                        <a href="https://www.education.com/resources/social-studies/" target="_blank"
+                           style="display: block; background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); 
+                                  color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
+                                  box-shadow: 0 5px 20px rgba(155, 89, 182, 0.3); transition: all 0.3s ease; text-align: center;"
+                           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(155, 89, 182, 0.5)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(155, 89, 182, 0.3)'">
+                            <div style="font-size: 3em; margin-bottom: 10px;">🌍</div>
+                            <div style="font-size: 1.3em; font-weight: bold;">Social Studies</div>
+                            <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">History, geography & culture</div>
+                        </a>
+
+                        <!-- Foundation Phase Library Button -->
+                        <a href="https://sites.google.com/wced.info/cwed-foundation-phase/home?authuser=0" target="_blank"
+                           style="display: block; background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); 
+                                  color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
+                                  box-shadow: 0 5px 20px rgba(26, 188, 156, 0.3); transition: all 0.3s ease; text-align: center;"
+                           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(26, 188, 156, 0.5)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(26, 188, 156, 0.3)'">
+                            <div style="font-size: 3em; margin-bottom: 10px;">📚</div>
+                            <div style="font-size: 1.3em; font-weight: bold;">Foundation Phase Library</div>
+                            <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">WCED Foundation Phase resources</div>
+                        </a>
+
+                        <!-- Rainbow Books Button -->
+                        <a href="https://wcedeportal.co.za/rainbow-workbooks" target="_blank"
+                           style="display: block; background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%); 
+                                  color: white; padding: 30px 20px; text-decoration: none; border-radius: 15px; 
+                                  box-shadow: 0 5px 20px rgba(233, 30, 99, 0.3); transition: all 0.3s ease; text-align: center;"
+                           onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(233, 30, 99, 0.5)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(233, 30, 99, 0.3)'">
+                            <div style="font-size: 3em; margin-bottom: 10px;">🌈</div>
+                            <div style="font-size: 1.3em; font-weight: bold;">Rainbow Books</div>
+                            <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">WCED Rainbow Workbooks</div>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Teacher Resources Section -->
+            <!-- DBE SUPPORT TOOLS WITH DROPDOWN -->
             <div class="card" style="margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
-                <h3 style="font-size: 1.8em; margin-bottom: 10px; text-align: center; color: #2c3e50;">📚 Teacher Resources</h3>
-                <p style="text-align: center; color: #34495e; margin-bottom: 30px; font-size: 1.05em;">Access official Department of Basic Education resources for curriculum planning and teaching support</p>
+                <div class="dropdown-header" onclick="toggleDropdown('dbe-section')">
+                    <h3>
+                        <span style="font-size: 1.8em; color: #2c3e50;">📚 DBE Support Tools</span>
+                        <span class="dropdown-arrow" id="dbe-section-arrow">▼</span>
+                    </h3>
+                </div>
                 
-                <div style="max-width: 900px; margin: 0 auto;">
-                    <!-- DBE ATP's -->
-                    <a href="https://www.education.gov.za/Curriculum/NationalCurriculumStatementsGradesR-12/2023ATPsFP.aspx" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 20px;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
-                              border-left: 5px solid #3498db;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">📋</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #3498db; margin-bottom: 5px;">DBE Annual Teaching Plans (ATPs)</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">2023 Foundation Phase curriculum planning guides</div>
+                <div id="dbe-section" class="dropdown-content">
+                    <p style="text-align: center; color: #34495e; margin-bottom: 30px; font-size: 1.05em;">Access official Department of Basic Education resources for curriculum planning and teaching support</p>
+                    
+                    <div style="max-width: 900px; margin: 0 auto;">
+                        <!-- DBE ATP's -->
+                        <a href="https://www.education.gov.za/Curriculum/NationalCurriculumStatementsGradesR-12/2023ATPsFP.aspx" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
+                                  border-left: 5px solid #3498db;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">📋</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #3498db; margin-bottom: 5px;">DBE Annual Teaching Plans (ATPs)</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">2023 Foundation Phase curriculum planning guides</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #3498db;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #3498db;">→</div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- DBE Workbooks -->
-                    <a href="https://www.education.gov.za/Curriculum/LearningandTeachingSupportMaterials(LTSM)/2025Workbooks1.aspx" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 20px;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
-                              border-left: 5px solid #e74c3c;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">📚</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #e74c3c; margin-bottom: 5px;">DBE Workbooks 2025</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">Official learner workbooks and teaching support materials</div>
+                        <!-- DBE Workbooks -->
+                        <a href="https://www.education.gov.za/Curriculum/LearningandTeachingSupportMaterials(LTSM)/2025Workbooks1.aspx" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
+                                  border-left: 5px solid #e74c3c;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">📚</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #e74c3c; margin-bottom: 5px;">DBE Workbooks 2025</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">Official learner workbooks and teaching support materials</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #e74c3c;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #e74c3c;">→</div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- DBE Rainbow Workbooks -->
-                    <a href="https://wcedeportal.co.za/rainbow-workbooks" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 20px;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
-                              border-left: 5px solid #2ecc71;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">🌈</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #2ecc71; margin-bottom: 5px;">DBE Rainbow Workbooks</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">Official WCED Rainbow Workbooks for learners</div>
+                        <!-- DBE Rainbow Workbooks -->
+                        <a href="https://wcedeportal.co.za/rainbow-workbooks" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
+                                  border-left: 5px solid #2ecc71;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">🌈</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #2ecc71; margin-bottom: 5px;">DBE Rainbow Workbooks</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">Official WCED Rainbow Workbooks for learners</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #2ecc71;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #2ecc71;">→</div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- Curriculum Assessment Policy Statements (CAPS) -->
-                    <a href="https://wcedeportal.co.za/curriculum-assessment-policy-statements" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 20px;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
-                              border-left: 5px solid #f39c12;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">📋</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #f39c12; margin-bottom: 5px;">Curriculum Assessment Policy Statements (CAPS)</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">Official curriculum policy documents and guidelines</div>
+                        <!-- Curriculum Assessment Policy Statements (CAPS) -->
+                        <a href="https://wcedeportal.co.za/curriculum-assessment-policy-statements" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
+                                  border-left: 5px solid #f39c12;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">📋</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #f39c12; margin-bottom: 5px;">Curriculum Assessment Policy Statements (CAPS)</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">Official curriculum policy documents and guidelines</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #f39c12;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #f39c12;">→</div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- Thutong Foundation for Learning -->
-                    <a href="https://www.thutong.doe.gov.za/Default.aspx?alias=www.thutong.doe.gov.za/foundationsforlearning" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 0;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
-                              border-left: 5px solid #9b59b6;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">🎯</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #9b59b6; margin-bottom: 5px;">Thutong Foundation for Learning</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">DBE educational portal with foundation phase resources and materials</div>
+                        <!-- Thutong Foundation for Learning -->
+                        <a href="https://www.thutong.doe.gov.za/Default.aspx?alias=www.thutong.doe.gov.za/foundationsforlearning" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 0;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;
+                                  border-left: 5px solid #9b59b6;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">🎯</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #9b59b6; margin-bottom: 5px;">Thutong Foundation for Learning</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">DBE educational portal with foundation phase resources and materials</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #9b59b6;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #9b59b6;">→</div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- AI Tools Section -->
+            <!-- AI TOOLS WITH DROPDOWN -->
             <div class="card" style="margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                <h3 style="font-size: 1.8em; margin-bottom: 10px; text-align: center; color: white;">🤖 AI Tools</h3>
-                <p style="text-align: center; color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: 1.05em;">Enhance your teaching with AI-powered tools and resources</p>
+                <div class="dropdown-header" onclick="toggleDropdown('ai-section')" style="background: rgba(255,255,255,0.1);">
+                    <h3>
+                        <span style="font-size: 1.8em; color: white;">🤖 AI Tools</span>
+                        <span class="dropdown-arrow" id="ai-section-arrow" style="color: white;">▼</span>
+                    </h3>
+                </div>
                 
-                <div style="max-width: 900px; margin: 0 auto;">
-                    <!-- Ari AI Assistant -->
-                    <a href="https://www.twinkl.co.za/ari-hub" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 20px;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
-                              border-left: 5px solid #9b59b6;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">🤖</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #9b59b6; margin-bottom: 5px;">Ari AI Assistant</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">Your intelligent teaching companion for lesson planning and support</div>
+                <div id="ai-section" class="dropdown-content">
+                    <p style="text-align: center; color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: 1.05em;">Enhance your teaching with AI-powered tools and resources</p>
+                    
+                    <div style="max-width: 900px; margin: 0 auto;">
+                        <!-- Ari AI Assistant -->
+                        <a href="https://www.twinkl.co.za/ari-hub" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+                                  border-left: 5px solid #9b59b6;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">🤖</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #9b59b6; margin-bottom: 5px;">Ari AI Assistant</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">Your intelligent teaching companion for lesson planning and support</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #9b59b6;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #9b59b6;">→</div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- Create Resources -->
-                    <a href="https://www.twinkl.co.za/create" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 20px;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
-                              border-left: 5px solid #e67e22;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">✨</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #e67e22; margin-bottom: 5px;">Create Resources</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">Design custom worksheets, activities and teaching materials</div>
+                        <!-- Create Resources -->
+                        <a href="https://www.twinkl.co.za/create" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+                                  border-left: 5px solid #e67e22;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">✨</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #e67e22; margin-bottom: 5px;">Create Resources</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">Design custom worksheets, activities and teaching materials</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #e67e22;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #e67e22;">→</div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- Twinkl Teacher Tools -->
-                    <a href="https://www.twinkl.co.za/resources/south-africa-resources/teacher-tools-south-africa-suid-afrika/english-teacher-tools-south-africa-suid-afrika" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 20px;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
-                              border-left: 5px solid #16a085;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">🛠️</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #16a085; margin-bottom: 5px;">Twinkl Teacher Tools</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">South African curriculum-aligned teaching resources and tools</div>
+                        <!-- Twinkl Teacher Tools -->
+                        <a href="https://www.twinkl.co.za/resources/south-africa-resources/teacher-tools-south-africa-suid-afrika/english-teacher-tools-south-africa-suid-afrika" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+                                  border-left: 5px solid #16a085;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">🛠️</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #16a085; margin-bottom: 5px;">Twinkl Teacher Tools</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">South African curriculum-aligned teaching resources and tools</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #16a085;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #16a085;">→</div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- Google Translate -->
-                    <a href="https://translate.google.com/?sl=af&tl=en&op=translate" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 20px;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
-                              border-left: 5px solid #3498db;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">🌐</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #3498db; margin-bottom: 5px;">Google Translate</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">Translate between Afrikaans, English and other languages</div>
+                        <!-- Google Translate -->
+                        <a href="https://translate.google.com/?sl=af&tl=en&op=translate" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+                                  border-left: 5px solid #3498db;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">🌐</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #3498db; margin-bottom: 5px;">Google Translate</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">Translate between Afrikaans, English and other languages</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #3498db;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #3498db;">→</div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- Canva AI Image Generator -->
-                    <a href="https://www.canva.com/ai-image-generator/" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 20px;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
-                              border-left: 5px solid #00c6ff;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">🎨</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #00c6ff; margin-bottom: 5px;">Canva AI Image Generator</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">Create stunning visuals for lessons, posters, worksheets and presentations</div>
+                        <!-- Canva AI Image Generator -->
+                        <a href="https://www.canva.com/ai-image-generator/" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+                                  border-left: 5px solid #00c6ff;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">🎨</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #00c6ff; margin-bottom: 5px;">Canva AI Image Generator</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">Create stunning visuals for lessons, posters, worksheets and presentations</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #00c6ff;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #00c6ff;">→</div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- Perchance AI Image Generator -->
-                    <a href="https://perchance.org/ai-text-to-image-generator" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 25px; 
-                              text-decoration: none; border-radius: 12px; margin-bottom: 0;
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
-                              border-left: 5px solid #764ba2;"
-                       onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
-                       onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 2.5em;">✨</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.2em; font-weight: bold; color: #764ba2; margin-bottom: 5px;">Perchance AI Image Generator</div>
-                                <div style="font-size: 0.95em; color: #7f8c8d;">Free unlimited AI image creation for educational materials - no sign up required</div>
+                        <!-- Perchance AI Image Generator -->
+                        <a href="https://perchance.org/ai-text-to-image-generator" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 25px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 0;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+                                  border-left: 5px solid #764ba2;"
+                           onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.25)'"
+                           onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 2.5em;">✨</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.2em; font-weight: bold; color: #764ba2; margin-bottom: 5px;">Perchance AI Image Generator</div>
+                                    <div style="font-size: 0.95em; color: #7f8c8d;">Free unlimited AI image creation for educational materials - no sign up required</div>
+                                </div>
+                                <div style="font-size: 1.5em; color: #764ba2;">→</div>
                             </div>
-                            <div style="font-size: 1.5em; color: #764ba2;">→</div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Online Class Section -->
+            <!-- ONLINE CLASSROOM WITH DROPDOWN -->
             <div class="card" style="margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);">
-                <h3 style="font-size: 1.8em; margin-bottom: 10px; text-align: center; color: white;">💻 Online Class</h3>
-                <p style="text-align: center; color: rgba(255,255,255,0.95); margin-bottom: 30px; font-size: 1.05em;">Connect with your students virtually and manage your online classroom</p>
+                <div class="dropdown-header" onclick="toggleDropdown('classroom-section')" style="background: rgba(255,255,255,0.1);">
+                    <h3>
+                        <span style="font-size: 1.8em; color: white;">💻 Online Classroom</span>
+                        <span class="dropdown-arrow" id="classroom-section-arrow" style="color: white;">▼</span>
+                    </h3>
+                </div>
                 
-                <div style="max-width: 600px; margin: 0 auto;">
-                    <!-- ClassDojo -->
-                    <a href="https://teach.classdojo.com/#/launchpad" target="_blank"
-                       style="display: block; background: white; color: #2c3e50; padding: 30px; 
-                              text-decoration: none; border-radius: 12px; 
-                              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
-                              border-left: 5px solid #00c896;"
-                       onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.25)'"
-                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <div style="font-size: 3em;">🎓</div>
-                            <div style="flex: 1;">
-                                <div style="font-size: 1.4em; font-weight: bold; color: #00c896; margin-bottom: 8px;">ClassDojo</div>
-                                <div style="font-size: 1em; color: #7f8c8d; margin-bottom: 5px;">Manage your virtual classroom with ease</div>
-                                <div style="font-size: 0.9em; color: #95a5a6;">Connect with students, share activities, and build classroom community</div>
+                <div id="classroom-section" class="dropdown-content">
+                    <p style="text-align: center; color: rgba(255,255,255,0.95); margin-bottom: 30px; font-size: 1.05em;">Connect with your students virtually and manage your online classroom</p>
+                    
+                    <div style="max-width: 900px; margin: 0 auto;">
+                        <!-- ClassDojo -->
+                        <a href="https://teach.classdojo.com/#/launchpad" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 30px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 20px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+                                  border-left: 5px solid #00c896;"
+                           onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.25)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 3em;">🎓</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.4em; font-weight: bold; color: #00c896; margin-bottom: 8px;">ClassDojo</div>
+                                    <div style="font-size: 1em; color: #7f8c8d; margin-bottom: 5px;">Manage your virtual classroom with ease</div>
+                                    <div style="font-size: 0.9em; color: #95a5a6;">Connect with students, share activities, and build classroom community</div>
+                                </div>
+                                <div style="font-size: 2em; color: #00c896;">→</div>
                             </div>
-                            <div style="font-size: 2em; color: #00c896;">→</div>
-                        </div>
-                    </a>
+                        </a>
+
+                        <!-- Google Docs -->
+                        <a href="https://docs.google.com/document/" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 30px; 
+                                  text-decoration: none; border-radius: 12px; margin-bottom: 0;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+                                  border-left: 5px solid #4285f4;"
+                           onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.25)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 3em;">📄</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.4em; font-weight: bold; color: #4285f4; margin-bottom: 8px;">Google Docs</div>
+                                    <div style="font-size: 1em; color: #7f8c8d; margin-bottom: 5px;">Create and collaborate on documents</div>
+                                    <div style="font-size: 0.9em; color: #95a5a6;">Write lesson plans, worksheets, and collaborate with colleagues in real-time</div>
+                                </div>
+                                <div style="font-size: 2em; color: #4285f4;">→</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -944,6 +1087,20 @@
             }
             
             return false;
+        }
+
+        // Toggle dropdown sections
+        function toggleDropdown(sectionId) {
+            const content = document.getElementById(sectionId);
+            const arrow = document.getElementById(sectionId + '-arrow');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                arrow.classList.remove('open');
+            } else {
+                content.classList.add('open');
+                arrow.classList.add('open');
+            }
         }
 
         function logout() {
