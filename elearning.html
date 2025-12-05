@@ -523,6 +523,51 @@
                 <button onclick="logout()" class="btn" style="background: #e74c3c;">Logout</button>
             </div>
             
+            <!-- eLEARNING POLICIES SECTION WITH DROPDOWN -->
+            <div class="card" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: #ffffff; padding: 30px; margin-bottom: 25px;">
+                <div class="dropdown-header" onclick="toggleDropdown('elearning-section')" style="background: rgba(255,255,255,0.1); margin-bottom: 15px;">
+                    <h3 style="color: #ffffff;">
+                        <span>📋 eLearning Policies & Guidelines</span>
+                        <span class="dropdown-arrow" id="elearning-section-arrow">▼</span>
+                    </h3>
+                </div>
+                
+                <div id="elearning-section" class="dropdown-content">
+                    <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px; color: #ffffff;">
+                        Access official Department of Basic Education policies and guidelines on eLearning, digital safety, and parent involvement in digital education. 
+                        These resources help ensure safe, effective, and inclusive implementation of technology in teaching and learning.
+                    </p>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.15); padding: 25px; border-radius: 10px; margin: 20px 0;">
+                        <h4 style="color: #ffffff; margin-bottom: 20px; font-size: 1.3em;">📚 Policy Documents</h4>
+                        
+                        <!-- White Paper on e-Education -->
+                        <a href="https://www.gov.za/documents/white-papers/white-paper-e-education-transforming-learning-and-teaching-through" target="_blank"
+                           style="display: block; background: rgba(255, 255, 255, 0.9); color: #2c3e50; padding: 20px; 
+                                  text-decoration: none; border-radius: 10px; margin-bottom: 15px;
+                                  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;"
+                           onmouseover="this.style.background='#ffffff'; this.style.transform='translateX(8px)'; this.style.boxShadow='0 5px 15px rgba(0, 0, 0, 0.3)'"
+                           onmouseout="this.style.background='rgba(255, 255, 255, 0.9)'; this.style.transform='translateX(0)'; this.style.boxShadow='0 3px 10px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="font-size: 2em;">📄</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.1em; font-weight: bold; color: #2c3e50; margin-bottom: 5px;">White Paper on e-Education</div>
+                                    <div style="font-size: 0.9em; color: #7f8c8d;">Transforming learning and teaching through ICT</div>
+                                </div>
+                                <div style="font-size: 1.3em; color: #3498db;">→</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div style="background: rgba(52, 152, 219, 0.2); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <p style="font-size: 0.95em; color: #ffffff; margin: 0;">
+                            <strong>Note:</strong> More policy documents on internet safety, parent involvement, and digital citizenship will be added here. 
+                            Check back regularly for updates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
             <!-- CODING SECTION WITH DROPDOWN -->
             <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 30px;">
                 <div class="dropdown-header" onclick="toggleDropdown('coding-section')" style="background: rgba(255,255,255,0.1); margin-bottom: 15px;">
