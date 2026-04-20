@@ -569,6 +569,29 @@
                 localStorage.setItem('teacherInfo', JSON.stringify(teacherInfo));
             }, [teacherInfo]);
 
+            // Read URL hash on page load to auto-select class
+            useEffect(() => {
+                const hash = window.location.hash.substring(1); // Remove the # symbol
+                if (hash) {
+                    // Decode and check if it's a valid class
+                    const decodedClass = decodeURIComponent(hash);
+                    if (CLASS_DATA[decodedClass]) {
+                        setSelectedClass(decodedClass);
+                    }
+                }
+            }, []);
+
+            // Update URL hash when class is selected
+            useEffect(() => {
+                if (selectedClass) {
+                    const encodedClass = encodeURIComponent(selectedClass);
+                    window.location.hash = encodedClass;
+                } else {
+                    // Clear hash if no class selected
+                    history.replaceState(null, null, ' ');
+                }
+            }, [selectedClass]);
+
             const handleAttendanceToggle = (learnerId) => {
                 const key = `${selectedClass}_${selectedDate}`;
                 setAttendance(prev => ({

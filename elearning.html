@@ -462,14 +462,13 @@
                     <form id="student-login-form" onsubmit="return handleLogin(event, 'student')">
                         <div class="form-group">
                             <label for="student-username">Username:</label>
-                            <input type="text" id="student-username" required placeholder="Enter 12345">
+                            <input type="text" id="student-username" required>
                         </div>
                         <div class="form-group">
                             <label for="student-password">Password:</label>
-                            <input type="password" id="student-password" required placeholder="Enter 12345">
+                            <input type="password" id="student-password" required>
                         </div>
                         <button type="submit" class="btn">Student Login</button>
-                        <p style="margin-top: 10px; font-size: 0.9em; color: #7f8c8d;">Login: 12345 / Password: 12345</p>
                     </form>
                 </div>
                 <div class="card">
@@ -478,14 +477,13 @@
                     <form id="teacher-login-form" onsubmit="return handleLogin(event, 'teacher')">
                         <div class="form-group">
                             <label for="teacher-username">Username:</label>
-                            <input type="text" id="teacher-username" required placeholder="Enter 12345">
+                            <input type="text" id="teacher-username" required>
                         </div>
                         <div class="form-group">
                             <label for="teacher-password">Password:</label>
-                            <input type="password" id="teacher-password" required placeholder="Enter 12345">
+                            <input type="password" id="teacher-password" required>
                         </div>
                         <button type="submit" class="btn">Teacher Login</button>
-                        <p style="margin-top: 10px; font-size: 0.9em; color: #7f8c8d;">Login: 12345 / Password: 12345</p>
                     </form>
                 </div>
             </div>
@@ -1164,10 +1162,15 @@
     </footer>
 
     <script>
-        // Login credentials (both username and password are 12345)
-        const CREDENTIALS = {
+        // Login credentials
+        const STUDENT_CREDENTIALS = {
             username: '12345',
             password: '12345'
+        };
+        
+        const TEACHER_CREDENTIALS = {
+            username: '4321',
+            password: '4321'
         };
 
         function handleLogin(event, userType) {
@@ -1179,8 +1182,11 @@
             const username = usernameInput.value;
             const password = passwordInput.value;
             
+            // Get appropriate credentials based on user type
+            const credentials = userType === 'student' ? STUDENT_CREDENTIALS : TEACHER_CREDENTIALS;
+            
             // Check credentials
-            if (username === CREDENTIALS.username && password === CREDENTIALS.password) {
+            if (username === credentials.username && password === credentials.password) {
                 // Hide login section
                 document.getElementById('login-section').style.display = 'none';
                 
@@ -1194,7 +1200,7 @@
                 // Scroll to top smoothly
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                alert('Incorrect username or password. Please use:\nUsername: 12345\nPassword: 12345');
+                alert('Incorrect username or password.');
             }
             
             return false;
