@@ -523,6 +523,53 @@
                 <button onclick="logout()" class="btn" style="background: #e74c3c;">Logout</button>
             </div>
             
+            <!-- eLEARNING MANAGEMENT SECTION WITH DROPDOWN -->
+            <div class="card" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: #ffffff; padding: 30px; margin-bottom: 25px;">
+                <div class="dropdown-header" onclick="toggleDropdown('management-section')" style="background: rgba(255,255,255,0.1); margin-bottom: 15px;">
+                    <h3 style="color: #ffffff;">
+                        <span>📊 e-Learning Management</span>
+                        <span class="dropdown-arrow" id="management-section-arrow">▼</span>
+                    </h3>
+                </div>
+                
+                <div id="management-section" class="dropdown-content">
+                    <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px; color: #ffffff;">
+                        Access your daily attendance tracking and remedial learner management system. 
+                        Mark attendance for your class, add learners to the remedial list, and manage all your classroom data in one place.
+                    </p>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.15); padding: 25px; border-radius: 10px; margin: 20px 0;">
+                        <h4 style="color: #ffffff; margin-bottom: 20px; font-size: 1.3em;">✅ Features</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">📋 <strong style="color: #ffffff;">Daily Attendance:</strong> Quick and easy attendance marking for your class</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">👥 <strong style="color: #ffffff;">Remedial Tracking:</strong> Add learners to remedial list with barrier identification</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">📱 <strong style="color: #ffffff;">Mobile-Friendly:</strong> Works perfectly on your phone</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">💾 <strong style="color: #ffffff;">Auto-Save:</strong> Data automatically syncs to Google Sheets</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">📧 <strong style="color: #ffffff;">Email Notifications:</strong> Coordinator receives automatic updates</li>
+                            <li style="margin: 10px 0; font-size: 1.05em; color: #ffffff;">🔄 <strong style="color: #ffffff;">Offline Mode:</strong> Works without internet, syncs when online</li>
+                        </ul>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <a href="attendance.html" target="_blank" 
+                           style="display: inline-block; background: #10b981; color: #ffffff; padding: 18px 40px; 
+                                  text-decoration: none; border-radius: 30px; font-size: 1.2em; font-weight: bold; 
+                                  box-shadow: 0 5px 20px rgba(0,0,0,0.3); transition: all 0.3s ease;"
+                           onmouseover="this.style.background='#059669'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)'"
+                           onmouseout="this.style.background='#10b981'; this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.3)'">
+                            🚀 Open Attendance & Remedial Tracker
+                        </a>
+                        <p style="margin-top: 15px; font-size: 0.95em; color: #ffffff;">Opens in a new tab - Works on any device</p>
+                    </div>
+
+                    <div style="background: rgba(16, 185, 129, 0.2); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <p style="font-size: 0.95em; color: #ffffff; margin: 0;">
+                            <strong>Quick Start:</strong> Select your class, mark attendance, and save. The coordinator receives automatic email notifications for all submissions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
             <!-- eLEARNING POLICIES SECTION WITH DROPDOWN -->
             <div class="card" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: #ffffff; padding: 30px; margin-bottom: 25px;">
                 <div class="dropdown-header" onclick="toggleDropdown('elearning-section')" style="background: rgba(255,255,255,0.1); margin-bottom: 15px;">

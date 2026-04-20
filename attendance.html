@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carissa Primary School - Attendance & Remedial Tracker</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: #f3f4f6;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #6b7280;
+            transition: all 0.3s;
+        }
+        
+        .nav-tab.active {
+            color: #3b82f6;
+            background: white;
+            border-bottom: 3px solid #3b82f6;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+        }
+        
+        select, input[type="date"], input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .stats-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .stats-box h3 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+        
+        .stats-box p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .learner-list {
+            margin-top: 20px;
+        }
+        
+        .learner-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: #f9fafb;
+        }
+        
+        .learner-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .learner-number {
+            background: #3b82f6;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .learner-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .learner-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: #d97706;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .btn-full {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        
+        .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        
+        .barrier-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .barrier-checkbox:hover {
+            background: #f3f4f6;
+        }
+        
+        .barrier-checkbox input[type="checkbox"] {
+            margin: 0;
+        }
+        
+        .barrier-checkbox label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .remedial-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: white;
+        }
+        
+        .remedial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .remedial-name {
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 16px;
+        }
+        
+        .remedial-class {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .remedial-barriers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .barrier-tag {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .remedial-comment {
+            background: #f9fafb;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #4b5563;
+        }
+        
+        .remedial-date {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 10px;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+            font-size: 16px;
+            font-weight: 600;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 2px solid #3b82f6;
+        }
+        
+        .sync-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .teacher-info-box {
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .teacher-info-box h3 {
+            color: #1e3a8a;
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .teacher-info-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .teacher-info-inputs input {
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .teacher-info-inputs input:focus {
+            border-color: #3b82f6;
+            outline: none;
+        }
+        
+        .sync-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .sync-dot.online {
+            background: #10b981;
+        }
+        
+        .sync-dot.offline {
+            background: #f59e0b;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .nav-tab {
+                font-size: 14px;
+                padding: 12px 8px;
+            }
+            
+            .learner-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .learner-actions {
+                width: 100%;
+                justify-content: space-between;
+                gap: 5px;
+            }
+            
+            .btn-small {
+                padding: 6px 8px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // ==========================================
+        // GOOGLE SHEETS CONFIGURATION
+        // ==========================================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw9w_-xNoTPR3Fa9dcYM5vSYLlBb4CPKcdJ21-zOKXpjrt-zQQgXf72JG-vNDlFf4JdWg/exec';
+        // ==========================================
+
+        // Class data embedded
+        const CLASS_DATA = {"Grade R Seashell":[{"number":1,"surname":"CHANAKILA","firstname":"David"},{"number":2,"surname":"GAMEDE","firstname":"Melokuhle"},{"number":3,"surname":"HELISO","firstname":"Zetseal"},{"number":4,"surname":"HLATSHWAYO","firstname":"Mrishan"},{"number":5,"surname":"KHUMALO","firstname":"Njabulo"},{"number":6,"surname":"KGAWANE","firstname":"Ziphozonke"},{"number":7,"surname":"MAHLANGU","firstname":"Nhlosokuhle"},{"number":8,"surname":"MAHLOBO","firstname":"Melokuhle"},{"number":9,"surname":"MAHLOBO","firstname":"Siyabonga"},{"number":10,"surname":"MANGANI","firstname":"Takunda"},{"number":11,"surname":"MASHABELA","firstname":"Omolebmo"},{"number":12,"surname":"MATIKINYE","firstname":"Hobab"},{"number":13,"surname":"MBUYANE","firstname":"Ayabonga"},{"number":14,"surname":"MDLULI","firstname":"Jane"},{"number":15,"surname":"MODISAKENG","firstname":"David"},{"number":16,"surname":"MOKOENA","firstname":"Mcebisi"},{"number":17,"surname":"MOKOENA","firstname":"Langelihle"},{"number":18,"surname":"RAMPEDI","firstname":"Lerumo"},{"number":19,"surname":"TINORWIRASHE","firstname":"Justin"},{"number":20,"surname":"KHAGAYI","firstname":"Ndalwenhle"},{"number":21,"surname":"MAKUA","firstname":"Naledi"},{"number":22,"surname":"MAKUNA","firstname":"Buntle"},{"number":23,"surname":"MAREYA","firstname":"Kimberly"},{"number":24,"surname":"MASANGO","firstname":"Mnqobi"},{"number":25,"surname":"MASETE","firstname":"Nomthandazo"},{"number":26,"surname":"MASHABATHAKGA","firstname":"Olive"},{"number":27,"surname":"MASHILE","firstname":"Princess"},{"number":28,"surname":"MASHILO","firstname":"Bontle"},{"number":29,"surname":"MATSEBE","firstname":"Liyema"},{"number":30,"surname":"MATSHIANA","firstname":"Noxolo"},{"number":31,"surname":"MBAMBO","firstname":"Hlelolwenkosi"},{"number":32,"surname":"MODISAKENG","firstname":"Grace"},{"number":33,"surname":"MONYELA","firstname":"Shiko"},{"number":34,"surname":"MOYO","firstname":"Kaboentle"},{"number":35,"surname":"NHLEKO","firstname":"Amahle"},{"number":36,"surname":"SHABANGU","firstname":"Simelokuhle"},{"number":37,"surname":"SILINDA","firstname":"Hlelokuhle"},{"number":38,"surname":"TEGENYE","firstname":"Tsion"},{"number":39,"surname":"TSHABALALA","firstname":"Siyabonga"}],"Grade R Starfish":[{"number":1,"surname":"ABOSE","firstname":"Fires"},{"number":2,"surname":"ABZA","firstname":"Menia"},{"number":3,"surname":"BILA","firstname":"Rifumo"},{"number":4,"surname":"CHILOANE","firstname":"Alwande"},{"number":5,"surname":"CHIRINGA","firstname":"Kayden"},{"number":6,"surname":"CHIRINGA","firstname":"Kaylea"},{"number":7,"surname":"GORO","firstname":"Mufaro"},{"number":8,"surname":"HASSEN","firstname":"Sade"},{"number":9,"surname":"HLOPE","firstname":"Lwandle"},{"number":10,"surname":"JOLAOSO","firstname":"Judah"},{"number":11,"surname":"KENNY","firstname":"Wenzokuhle"},{"number":12,"surname":"KHOLOPHA","firstname":"Rofhiwa"},{"number":13,"surname":"LIYANE","firstname":"Kamogelo"},{"number":14,"surname":"MADONSELA","firstname":"Sphesihle"},{"number":15,"surname":"MAEPA","firstname":"Oratile"},{"number":16,"surname":"MAHLANGU","firstname":"Alakhe"},{"number":17,"surname":"MATLATJI","firstname":"Lethabo"},{"number":18,"surname":"MAWELA","firstname":"Kagiso"},{"number":19,"surname":"MLAMBO","firstname":"Siphesihle"},{"number":20,"surname":"MNISI","firstname":"Jivanté"},{"number":21,"surname":"MNISI","firstname":"Nhlakanipho"},{"number":22,"surname":"MOKABANE","firstname":"Bophelo"},{"number":23,"surname":"MULANGA","firstname":"Shadia"},{"number":24,"surname":"NDINISA","firstname":"Kamvelihle"},{"number":25,"surname":"NKONDE","firstname":"Siyabulela"},{"number":26,"surname":"NKOSI","firstname":"Alibongwe"},{"number":27,"surname":"NTSHAGASE","firstname":"Nyasha"},{"number":28,"surname":"NYALISA","firstname":"Mvemba"},{"number":29,"surname":"NZIMANDE","firstname":"Nondumiso"},{"number":30,"surname":"OLUBIYI","firstname":"Fininfoluwa"},{"number":31,"surname":"PHAKANE","firstname":"Tshegofatso"},{"number":32,"surname":"PHATLANE","firstname":"Mothekgi"},{"number":33,"surname":"SAYED","firstname":"Nedia"},{"number":34,"surname":"SEKGOBELA","firstname":"Thabiso"},{"number":35,"surname":"SELEPE","firstname":"Takatso"},{"number":36,"surname":"SILUMSA","firstname":"Amlonde"},{"number":37,"surname":"SITHOLE","firstname":"Akani"},{"number":38,"surname":"SKOSANA","firstname":"Leano"},{"number":39,"surname":"SKOSANA","firstname":"Zanokuhle"},{"number":40,"surname":"XABA","firstname":"Melokuhle"}],"Grade 1.1":[{"number":1,"surname":"ABUKAR +","firstname":"Rahilo"},{"number":2,"surname":"AUGUSTINE +","firstname":"Sharnel"},{"number":3,"surname":"BAWE +","firstname":"Mangaliso"},{"number":4,"surname":"BUKE","firstname":"Blessing"},{"number":5,"surname":"CHAKAWA +","firstname":"Liam"},{"number":6,"surname":"CHIBADA","firstname":"Trinity"},{"number":7,"surname":"DAYIMANE +","firstname":"Motheo"},{"number":8,"surname":"DLAMINI +","firstname":"Minenhle"},{"number":9,"surname":"EROMA +","firstname":"Shalom"},{"number":10,"surname":"GOWERO +","firstname":"Micah"},{"number":11,"surname":"GOZO","firstname":"Naishe"},{"number":12,"surname":"GUMBI","firstname":"Lukhona"},{"number":13,"surname":"HASSEN +","firstname":"Abuzer"},{"number":14,"surname":"HLATSHWAYO","firstname":"Elihle"},{"number":15,"surname":"HLATSHWAYO +","firstname":"Melokuhle"},{"number":16,"surname":"HLUNGWANE","firstname":"Nyandza"},{"number":17,"surname":"JACKSON","firstname":"Nate"},{"number":18,"surname":"JIYANE +","firstname":"Theodore"},{"number":19,"surname":"KHOZA","firstname":"Ndalwenhle"},{"number":20,"surname":"KOMANE +","firstname":"Lindokuhle"},{"number":21,"surname":"LEBOTSA","firstname":"Dimpho"},{"number":22,"surname":"LEKALAKALA +","firstname":"Reoobametse"},{"number":23,"surname":"MABENA","firstname":"Ndumiso"},{"number":24,"surname":"MAEKO","firstname":"Arabile"},{"number":25,"surname":"MAHLANGU","firstname":"Kwandokuhle"},{"number":26,"surname":"MAKINTA","firstname":"Jeff"},{"number":27,"surname":"MAKOMA","firstname":"Bohlale"},{"number":28,"surname":"MALAPANE +","firstname":"Kyle"},{"number":29,"surname":"MALEFAHLO","firstname":"Heavenly"},{"number":30,"surname":"MBUYANE","firstname":"Langelihle"},{"number":31,"surname":"MKHWANAZI","firstname":"Samukelo"},{"number":32,"surname":"MURONGA +","firstname":"Lufuno"},{"number":33,"surname":"NHEYA +","firstname":"Anashe"},{"number":34,"surname":"NKOSI","firstname":"Thandolwami"},{"number":35,"surname":"NKOSI","firstname":"Alondwe"},{"number":36,"surname":"NKOSI +","firstname":"Melokuhle"},{"number":37,"surname":"RAKOLOLO","firstname":"Atlegang"},{"number":38,"surname":"RATAU","firstname":"Selepe"},{"number":39,"surname":"SHIVITI","firstname":"Nkoka"},{"number":40,"surname":"SHONGWE +","firstname":"Thandoluhle"},{"number":41,"surname":"SKOSANA","firstname":"Nkazimulo"},{"number":42,"surname":"TAU","firstname":"Ellon"},{"number":43,"surname":"TIGEBU","firstname":"Betelem"},{"number":44,"surname":"TLALI","firstname":"Arabile"}],"Grade 1.2":[{"number":1,"surname":"ABZA +","firstname":"Merwan"},{"number":2,"surname":"DUBE","firstname":"Oratile"},{"number":3,"surname":"EJBO","firstname":"Mercy"},{"number":4,"surname":"GENETO","firstname":"Grumi"},{"number":5,"surname":"HLATSHWAYO +","firstname":"Naomi"},{"number":6,"surname":"HLOPHE","firstname":"Zobuhle"},{"number":7,"surname":"JOPE","firstname":"Shalom"},{"number":8,"surname":"KABASELE +","firstname":"Rennee"},{"number":9,"surname":"KGOGOLA","firstname":"Siphesihle"},{"number":10,"surname":"KOLOBE","firstname":"Keamagetswe"},{"number":11,"surname":"KUBHEKA +","firstname":"Siphokazi"},{"number":12,"surname":"KUFAKUNESU","firstname":"Medaniel"},{"number":13,"surname":"MAGUBANE +","firstname":"Banele"},{"number":14,"surname":"MAHLANGU","firstname":"Thandolwethu"},{"number":15,"surname":"MAKOFANE +","firstname":"Ndaloyethu"},{"number":16,"surname":"MAQOKOLO","firstname":"Asithandile"},{"number":17,"surname":"MARAKALLA +","firstname":"Lethabo"},{"number":18,"surname":"MASIMELA +","firstname":"Iminathi"},{"number":19,"surname":"MATHIBE","firstname":"Boitshepo"},{"number":20,"surname":"MGIDI +","firstname":"Banele"},{"number":21,"surname":"MKHONDO","firstname":"Teboho"},{"number":22,"surname":"MOFOKENG +","firstname":"Thembinkosi"},{"number":23,"surname":"MOGOTO","firstname":"Bohlale"},{"number":24,"surname":"MOKWANA +","firstname":"Bohlale"},{"number":25,"surname":"MOLOI","firstname":"Naledi"},{"number":26,"surname":"MONARENG +","firstname":"Sphamandla"},{"number":27,"surname":"MOTSWENI","firstname":"Khwezi"},{"number":28,"surname":"MTSWENI","firstname":"Njabulo"},{"number":29,"surname":"MUKWEVHO +","firstname":"Andisani"},{"number":30,"surname":"NKGADIMA +","firstname":"Tshiamo"},{"number":31,"surname":"NKGUDI","firstname":"Tshegofatso"},{"number":32,"surname":"NKOSI","firstname":"Samkelo"},{"number":33,"surname":"NTIMBA","firstname":"Bianca"},{"number":34,"surname":"NUKERI +","firstname":"Nicolas"},{"number":35,"surname":"NYATHIKAZI +","firstname":"Adian"},{"number":36,"surname":"OSOBOW +","firstname":"Abdi"},{"number":37,"surname":"RABANYE","firstname":"Oarabile"},{"number":38,"surname":"SANGWENI +","firstname":"Asimbonge"},{"number":39,"surname":"SIBOZA","firstname":"Siyamthanda"},{"number":40,"surname":"SIKOSANA","firstname":"Owenkosi"},{"number":41,"surname":"SINDANI +","firstname":"Mahlogonolo"},{"number":42,"surname":"THELA","firstname":"Enzokuhle"},{"number":43,"surname":"WOSORO +","firstname":"Israiel"}],"Grade 1.3":[{"number":1,"surname":"ABIRE","firstname":"Afiremi"},{"number":2,"surname":"AYENO +","firstname":"Abenazer"},{"number":3,"surname":"BOLTENO +","firstname":"Kurbal"},{"number":4,"surname":"CHILOANE +","firstname":"Simlindile"},{"number":5,"surname":"ENWEREJI","firstname":"Chidima"},{"number":6,"surname":"GUMBINI","firstname":"Melokuhle"},{"number":7,"surname":"GWEBU","firstname":"Abongile"},{"number":8,"surname":"KHOZA","firstname":"Sandile"},{"number":9,"surname":"LARAGO","firstname":"Kidan"},{"number":10,"surname":"MABELANE","firstname":"Busisiwe"},{"number":11,"surname":"MAGAGULA","firstname":"Hlelokuhle"},{"number":12,"surname":"MAKOLA +","firstname":"Omphile"},{"number":13,"surname":"MANZINI","firstname":"Philisande"},{"number":14,"surname":"MASANGO","firstname":"Sinokuhle"},{"number":15,"surname":"MASHIGWANE","firstname":"Ethan"},{"number":16,"surname":"MASILELA +","firstname":"Keabetswe"},{"number":17,"surname":"MATHEBULA","firstname":"Andiswa"},{"number":18,"surname":"MILANZI","firstname":"Sakhokuhle"},{"number":19,"surname":"MNDEBELE","firstname":"Siphamandla"},{"number":20,"surname":"MOGAPI","firstname":"Lunathi"},{"number":21,"surname":"MOKHWELEPA","firstname":"Karabo"},{"number":22,"surname":"MOLOBELA","firstname":"Obedience"},{"number":23,"surname":"MONAMA +","firstname":"Lwando"},{"number":24,"surname":"MONATE","firstname":"Uzimunami"},{"number":25,"surname":"MOSWANE +","firstname":"Kwakhanya"},{"number":26,"surname":"MPONTSHANE","firstname":"Kwenzokuhle"},{"number":27,"surname":"MTOMBENI +","firstname":"Simlindile"},{"number":28,"surname":"MUSHWANA","firstname":"Dzunisani"},{"number":29,"surname":"NDLALA +","firstname":"Enzokuhle"},{"number":30,"surname":"NDLANGAMANDLA","firstname":"Fezile"},{"number":31,"surname":"NKOSI +","firstname":"Alwande"},{"number":32,"surname":"OKWUDIRI +","firstname":"Samuel"},{"number":33,"surname":"RANGWAGA +","firstname":"Tshepang"},{"number":34,"surname":"SANGWENI +","firstname":"Matlale"},{"number":35,"surname":"SHAYI +","firstname":"Gomotsegang"},{"number":36,"surname":"SIBEKO +","firstname":"Zibusiso"},{"number":37,"surname":"TALANE","firstname":"Lesedi"},{"number":38,"surname":"TEMA","firstname":"Mmapaseka"},{"number":39,"surname":"WEMBOLVA","firstname":"Alicha"},{"number":40,"surname":"XABA","firstname":"Hlelokuhle"},{"number":41,"surname":"ZHOU","firstname":"Adelyn"},{"number":42,"surname":"ZOLA","firstname":"Kabasele"}],"Grade 2.1":[{"number":1,"surname":"ABERA","firstname":"Garamushe"},{"number":2,"surname":"ADERO ALEMU","firstname":"Mekelit"},{"number":3,"surname":"BHANHIRE","firstname":"Shaun"},{"number":4,"surname":"BOSHIELO","firstname":"Tshepiso"},{"number":5,"surname":"DLADLA","firstname":"Reatlegile"},{"number":6,"surname":"EJAMO","firstname":"Grum"},{"number":7,"surname":"ERMOLO","firstname":"Tenate"},{"number":8,"surname":"GAGABO","firstname":"Radeate"},{"number":9,"surname":"GIKA","firstname":"Paxton"},{"number":10,"surname":"HLATSHWAYO","firstname":"Simlindile"},{"number":11,"surname":"KHENISA","firstname":"Enzokuhle"},{"number":12,"surname":"KHUMALO","firstname":"Hlelokuhle"},{"number":13,"surname":"KWEDI","firstname":"Lefa"},{"number":14,"surname":"LESHABA","firstname":"Lethabo"},{"number":15,"surname":"MABENA","firstname":"Yannick"},{"number":16,"surname":"MAKAMU","firstname":"Mehawu"},{"number":17,"surname":"MAKHANYA","firstname":"Owethu"},{"number":18,"surname":"MAKUSHA","firstname":"Bethel"},{"number":19,"surname":"MALEKA","firstname":"Amogelang"},{"number":20,"surname":"MALESA","firstname":"Sinakhokonke"},{"number":21,"surname":"MANOGO","firstname":"Boikanyo"},{"number":22,"surname":"MAPHUMULO","firstname":"Okuhlekwenkosi"},{"number":23,"surname":"MASEKO","firstname":"Sinempilo"},{"number":24,"surname":"MASINGA","firstname":"Blessing"},{"number":25,"surname":"MATABANE","firstname":"Bokamoso"},{"number":26,"surname":"MATHONSI","firstname":"Khaya"},{"number":27,"surname":"MOGALAKI","firstname":"Mpho"},{"number":28,"surname":"MOHLALA","firstname":"Mmbatho"},{"number":29,"surname":"MOKGABUDI","firstname":"Kemelo"},{"number":30,"surname":"MPANZA","firstname":"Njabulo"},{"number":31,"surname":"MTHIMUNYE","firstname":"Zenathi"},{"number":32,"surname":"MUKWANGWARIWA","firstname":"Ryan"},{"number":33,"surname":"NGWENYA","firstname":"Nkosentle"},{"number":34,"surname":"NKOSI","firstname":"Lethokuhle"},{"number":35,"surname":"NKOSI","firstname":"Thoba"},{"number":36,"surname":"NKOSI","firstname":"Mpilenhle"},{"number":37,"surname":"NSELE","firstname":"Uchena"},{"number":38,"surname":"PHAHLAMOHLAKA","firstname":"Junior"},{"number":39,"surname":"RIBA","firstname":"Tumisho"},{"number":40,"surname":"SAYED","firstname":"Adenane"},{"number":41,"surname":"SIMELANE","firstname":"Nokukhanya"},{"number":42,"surname":"TAU","firstname":"Kelearabile"},{"number":43,"surname":"TOBAKGALE","firstname":"Theto"},{"number":44,"surname":"UANE","firstname":"Difati"}],"Grade 2.2":[{"number":1,"surname":"ABOSE","firstname":"Ledia"},{"number":2,"surname":"ALIYE","firstname":"Alametsahye"},{"number":3,"surname":"CHANAKILA","firstname":"Micheal"},{"number":4,"surname":"DEBOCHI","firstname":"Malekemu"},{"number":5,"surname":"ELANISI","firstname":"Ozile"},{"number":6,"surname":"HLOPHE","firstname":"Mpilwenhle"},{"number":7,"surname":"JACOB","firstname":"Lian"},{"number":8,"surname":"JACOB","firstname":"Liah"},{"number":9,"surname":"LELAGO","firstname":"Abiser"},{"number":10,"surname":"MABOI","firstname":"Hope"},{"number":11,"surname":"MADONSELA","firstname":"Sinenjabulo"},{"number":12,"surname":"MADUMA #","firstname":"Ndalwenhle"},{"number":13,"surname":"MADYIBI","firstname":"Isiphile"},{"number":14,"surname":"MAKISO","firstname":"Meron"},{"number":15,"surname":"MAKOMBO","firstname":"Kabasele"},{"number":16,"surname":"MAMPURU","firstname":"Shabatso"},{"number":17,"surname":"MAPAMELA","firstname":"Olothando"},{"number":18,"surname":"MAPARA","firstname":"Jayceon"},{"number":19,"surname":"MASEKO","firstname":"Nkosingphile"},{"number":20,"surname":"MASINA","firstname":"Sibongokuhle"},{"number":21,"surname":"MBUYI","firstname":"Emrid"},{"number":22,"surname":"MGAYI","firstname":"Ernest Junior"},{"number":23,"surname":"MMADI","firstname":"Bokamoso"},{"number":24,"surname":"MNGOMEZULU","firstname":"Motheo"},{"number":25,"surname":"MNISI","firstname":"Scelokuhle"},{"number":26,"surname":"MNISI","firstname":"Phelokazi"},{"number":27,"surname":"MSANE","firstname":"Ziyanda"},{"number":28,"surname":"MTHETHWA","firstname":"Lubanzi"},{"number":29,"surname":"MTSUKI","firstname":"Kasia"},{"number":30,"surname":"MTSWENI","firstname":"Mnqobi"},{"number":31,"surname":"MTSWENI","firstname":"Naledi"},{"number":32,"surname":"MUKENDI","firstname":"Joy"},{"number":33,"surname":"NGOEPE +","firstname":"Boikgantsho"},{"number":34,"surname":"NGWATO","firstname":"Bonolo"},{"number":35,"surname":"NKAMBULE","firstname":"Melokuhle"},{"number":36,"surname":"NKOSI","firstname":"Ntokozo"},{"number":37,"surname":"NXUMALO","firstname":"Malibongwe"},{"number":38,"surname":"SANGWENI","firstname":"Azokuhle"},{"number":39,"surname":"SEERANE","firstname":"Bohlale"},{"number":40,"surname":"SEKGOBELA","firstname":"Kagiso"},{"number":41,"surname":"SIBANDE","firstname":"Zanokuhle"},{"number":42,"surname":"SKOSANA","firstname":"Pillasande"},{"number":43,"surname":"TAU","firstname":"Hlelolwakhe"},{"number":44,"surname":"ZWANE","firstname":"Pholosho"}],"Grade 2.3":[{"number":1,"surname":"BUTUMBI","firstname":"El Salem"},{"number":2,"surname":"CINDI","firstname":"Lungile Musa"},{"number":3,"surname":"DUSTER","firstname":"Amahle"},{"number":4,"surname":"JIMOH","firstname":"Serena"},{"number":5,"surname":"KAYIMBI MANASSEH","firstname":"Tshibalabala"},{"number":6,"surname":"KGAWANE","firstname":"Kevin"},{"number":7,"surname":"LEBYANE +","firstname":"Onthatile"},{"number":8,"surname":"LEIJUNGWANE","firstname":"Ndalenhle"},{"number":9,"surname":"LEPEILE","firstname":"Khumo"},{"number":10,"surname":"MABU","firstname":"Reitumetse"},{"number":11,"surname":"MACASSA","firstname":"Athandile"},{"number":12,"surname":"MAFOANE","firstname":"Nkosenhle"},{"number":13,"surname":"MAHAMBA +","firstname":"Thembelihle"},{"number":14,"surname":"MAKAMU","firstname":"Ziyanda"},{"number":15,"surname":"MANANA","firstname":"Lebohang"},{"number":16,"surname":"MATYEKA","firstname":"Sibahle"},{"number":17,"surname":"MHLANGA","firstname":"Bontle"},{"number":18,"surname":"MKHONZA","firstname":"Nkazimulo"},{"number":19,"surname":"MOIKANGOA","firstname":"Savior"},{"number":20,"surname":"MONAMA","firstname":"Ndalo"},{"number":21,"surname":"MSIZA","firstname":"Mbewenhle"},{"number":22,"surname":"MTHETHWA","firstname":"Thando"},{"number":23,"surname":"MULAMBO","firstname":"Sean"},{"number":24,"surname":"MUPAMHANGA","firstname":"Micaela"},{"number":25,"surname":"MWANANDIMAYI","firstname":"Delon"},{"number":26,"surname":"NCUBE","firstname":"Hlelolwenkosi"},{"number":27,"surname":"NDEGE","firstname":"Alvin"},{"number":28,"surname":"NGOMANE","firstname":"Langelihle"},{"number":29,"surname":"NKOSI +","firstname":"Nkuselo"},{"number":30,"surname":"NYANGINTSIMAYI","firstname":"Akahlulwa"},{"number":31,"surname":"SAMBO","firstname":"Angel"},{"number":32,"surname":"SEBOPA","firstname":"Onthatile"},{"number":33,"surname":"SHABANGU","firstname":"Alondwe"},{"number":34,"surname":"SHISANE","firstname":"Blessing"},{"number":35,"surname":"SIBIYA","firstname":"Amogelang"},{"number":36,"surname":"SISIKU","firstname":"Shallom"},{"number":37,"surname":"SITHOLE","firstname":"Oracle"},{"number":38,"surname":"TAU","firstname":"Kgaogelo"},{"number":39,"surname":"WANCHE","firstname":"Elisa"},{"number":40,"surname":"YAWAGO","firstname":"Precious"},{"number":41,"surname":"YENDE","firstname":"Londiwe"},{"number":42,"surname":"ZHOU","firstname":"Valerie"},{"number":43,"surname":"ZITHA","firstname":"Diamond"}],"Grade 3.1":[{"number":1,"surname":"ABEBE +","firstname":"Miklet"},{"number":2,"surname":"APHANE","firstname":"Lesego"},{"number":3,"surname":"BANZILA","firstname":"Wanzambi"},{"number":4,"surname":"BLAYI","firstname":"Hlelolenkosi"},{"number":5,"surname":"CHAKAWA","firstname":"Ethan"},{"number":6,"surname":"CHIPARAUSHE","firstname":"Alaine"},{"number":7,"surname":"DESALA","firstname":"Nhome"},{"number":8,"surname":"JOPE +","firstname":"Surprise"},{"number":9,"surname":"KOMANE","firstname":"Kamogelo"},{"number":10,"surname":"LINGWATI","firstname":"Nklululeko"},{"number":11,"surname":"LUBISI","firstname":"Pride"},{"number":12,"surname":"MAHLELA","firstname":"Nosipho"},{"number":13,"surname":"MAHLANGU","firstname":"Sinothile"},{"number":14,"surname":"MAHLANGU","firstname":"Bayanda"},{"number":15,"surname":"MAKUBU","firstname":"Mpendulo"},{"number":16,"surname":"MANJENGWA","firstname":"Timotenda"},{"number":17,"surname":"MARENGO","firstname":"Aiden"},{"number":18,"surname":"MASANGO","firstname":"Melokuhle"},{"number":19,"surname":"MASHEGO","firstname":"Sheldon"},{"number":20,"surname":"MASHIANE","firstname":"Lesedi"},{"number":21,"surname":"MASILELA","firstname":"Smelokuhle"},{"number":22,"surname":"MATSHIGA","firstname":"Ntando"},{"number":23,"surname":"MAZIBUKO","firstname":"Lethokuhle"},{"number":24,"surname":"MEJI +","firstname":"Esona"},{"number":25,"surname":"MOKGAMOGANE","firstname":"Bohlatse"},{"number":26,"surname":"MOKOENA","firstname":"Amahle"},{"number":27,"surname":"MOLOKO","firstname":"Izibusiso"},{"number":28,"surname":"MOULID","firstname":"Nasra"},{"number":29,"surname":"MTHUNTZI #","firstname":"Lethabo"},{"number":30,"surname":"MWALE","firstname":"Sinenhlanhla"},{"number":31,"surname":"NKADIMENG","firstname":"Lebogang"},{"number":32,"surname":"NONGANGA","firstname":"Luzuko"},{"number":33,"surname":"NQOBENI","firstname":"Khensani"},{"number":34,"surname":"NYALISA","firstname":"Nlandu"},{"number":35,"surname":"ONTORO","firstname":"Benny"},{"number":36,"surname":"OSOBOW","firstname":"Abdi"},{"number":37,"surname":"PAU","firstname":"Lesego"},{"number":38,"surname":"SANGWENI","firstname":"Buhlebenkosi"},{"number":39,"surname":"SIBIYA","firstname":"Jaden"},{"number":40,"surname":"SIBUYI","firstname":"Anela"},{"number":41,"surname":"THELA","firstname":"Hosanna"},{"number":42,"surname":"THULARI","firstname":"Mawenzokuhle"},{"number":43,"surname":"TSHELA","firstname":"Masedi"}],"Grade 3.2":[{"number":1,"surname":"DINGWANE","firstname":"Selaelo"},{"number":2,"surname":"FONDO","firstname":"Thembisile"},{"number":3,"surname":"GUMBI","firstname":"Hlelolwenkosi"},{"number":4,"surname":"ISSAAZALA","firstname":"Messi"},{"number":5,"surname":"KANYERA","firstname":"Shania"},{"number":6,"surname":"KHAGAYI","firstname":"Siyabonga"},{"number":7,"surname":"KOMANE","firstname":"Declared"},{"number":8,"surname":"KWATENGERA","firstname":"Tishah"},{"number":9,"surname":"MAKGOLANE","firstname":"Cynthia"},{"number":10,"surname":"MAKHUBEDU","firstname":"Kgaugelo"},{"number":11,"surname":"MALAZA","firstname":"Lethokuhle"},{"number":12,"surname":"MALINDLE","firstname":"Ntandoyenkosi"},{"number":13,"surname":"MAMAREMA","firstname":"Simlindile"},{"number":14,"surname":"MAPALETSEBE","firstname":"Koketso"},{"number":15,"surname":"MASEKO","firstname":"Nkazimulo"},{"number":16,"surname":"MASHLANE","firstname":"Shalom"},{"number":17,"surname":"MATEMA","firstname":"Siyamthanda"},{"number":18,"surname":"MATENTSHE","firstname":"Tebogo"},{"number":19,"surname":"MBONANI","firstname":"Eshaan"},{"number":20,"surname":"MDZIBA +","firstname":"Melusi"},{"number":21,"surname":"MHAULE","firstname":"Siyanda"},{"number":22,"surname":"MKHABELA","firstname":"Njabulo"},{"number":23,"surname":"MLAMBO","firstname":"Sibongumusa"},{"number":24,"surname":"MNISI","firstname":"Naledi"},{"number":25,"surname":"MOHLALA","firstname":"Mogau"},{"number":26,"surname":"MOHOTO","firstname":"Boikanyo"},{"number":27,"surname":"MOKOENA","firstname":"Mahle"},{"number":28,"surname":"MONGALE","firstname":"Nolwandle"},{"number":29,"surname":"MOTAU","firstname":"Sinethemba"},{"number":30,"surname":"MSIBI","firstname":"Sanele"},{"number":31,"surname":"MTHETHWA","firstname":"Lungelo"},{"number":32,"surname":"NDAMANE","firstname":"Aphiwe"},{"number":33,"surname":"NKADIMENG","firstname":"Princess"},{"number":34,"surname":"NKUTHA","firstname":"Nkanyiso"},{"number":35,"surname":"NTULI","firstname":"Nonhle"},{"number":36,"surname":"OWUSU","firstname":"Prince"},{"number":37,"surname":"PETJE","firstname":"Naledi"},{"number":38,"surname":"PETLA","firstname":"Motsele"},{"number":39,"surname":"REPINGA","firstname":"Lwandle"},{"number":40,"surname":"SIBANYONI","firstname":"Luhlelo"},{"number":41,"surname":"SITHOLE","firstname":"Pearl"},{"number":42,"surname":"SUMIBULO +","firstname":"Adana"}],"Grade 3.3":[{"number":1,"surname":"AHUKAR +","firstname":"Abdullahi"},{"number":2,"surname":"ALLESING","firstname":"Princess"},{"number":3,"surname":"BOLTEMO","firstname":"Dag"},{"number":4,"surname":"DUBE","firstname":"Langelihle"},{"number":5,"surname":"FUNANE","firstname":"Bathabile"},{"number":6,"surname":"HLAKULA","firstname":"Mlibo"},{"number":7,"surname":"LEKHULENI","firstname":"Nhlakanipho"},{"number":8,"surname":"LEROBANE","firstname":"Sebanisethu"},{"number":9,"surname":"MABENA","firstname":"Asemahle"},{"number":10,"surname":"MAHLANGU","firstname":"Bandile"},{"number":11,"surname":"MAREYA +","firstname":"Grace"},{"number":12,"surname":"MASEMOLA","firstname":"Nobuhle"},{"number":13,"surname":"MASHEGO","firstname":"Sfisokuhle"},{"number":14,"surname":"MASHIANE","firstname":"Siphokazi"},{"number":15,"surname":"MASILELA","firstname":"Nkazimulo"},{"number":16,"surname":"MASWA","firstname":"Johnson"},{"number":17,"surname":"MATHE","firstname":"Simlindile"},{"number":18,"surname":"MDLALOSE","firstname":"Philasande"},{"number":19,"surname":"MHLONGO","firstname":"Glory"},{"number":20,"surname":"MKHATSHWA","firstname":"Ziyanda"},{"number":21,"surname":"MOHLALA","firstname":"Keabetswe"},{"number":22,"surname":"MOKOENA","firstname":"Yibanathi"},{"number":23,"surname":"MOSEHLA","firstname":"Bontle"},{"number":24,"surname":"MATORO","firstname":"Mashudu"},{"number":25,"surname":"MOTSUMI","firstname":"Omphile"},{"number":26,"surname":"MOTSWENI","firstname":"Siphesihle"},{"number":27,"surname":"MTHIMUNYE","firstname":"Melokuhle"},{"number":28,"surname":"NGWATO","firstname":"Bohlale"},{"number":29,"surname":"NKALANGA","firstname":"Tsholofelo"},{"number":30,"surname":"NKOMO","firstname":"Junior"},{"number":31,"surname":"NKOSI","firstname":"Langaleihu"},{"number":32,"surname":"NKOSI","firstname":"Lwandile"},{"number":33,"surname":"NKOSI +","firstname":"Olwethu"},{"number":34,"surname":"NYUNDU","firstname":"Thandolwethu"},{"number":35,"surname":"PHILLIAS","firstname":"Luyanda"},{"number":36,"surname":"REEDS +","firstname":"Candice"},{"number":37,"surname":"SHILWANE","firstname":"Sherin"},{"number":38,"surname":"SHOBA","firstname":"Buhlebendalo"},{"number":39,"surname":"SIBANYONI","firstname":"Anele"},{"number":40,"surname":"SITHOLE","firstname":"Philasande"},{"number":41,"surname":"SITOLE","firstname":"Lethokuhle"},{"number":42,"surname":"SIYOTHULU","firstname":"Luthando"},{"number":43,"surname":"TABA","firstname":"Tshepiso"},{"number":44,"surname":"WOTITE","firstname":"Emmanuel"},{"number":45,"surname":"ZULU","firstname":"Manqoba"}],"Grade 4.1":[{"number":1,"surname":"ABOSSA","firstname":"Iburuke"},{"number":2,"surname":"GOZO","firstname":"Anotida"},{"number":3,"surname":"LEKOKWANE","firstname":"Amogelang"},{"number":4,"surname":"MABONA","firstname":"Olwethu"},{"number":5,"surname":"MABUZA","firstname":"Lethukuthula"},{"number":6,"surname":"MACASSA","firstname":"Prince"},{"number":7,"surname":"MAGUGULA","firstname":"Musa"},{"number":8,"surname":"MAQUBANE","firstname":"Afanele"},{"number":9,"surname":"MAHLANGU","firstname":"Prudence"},{"number":10,"surname":"MAKHANYA","firstname":"Sinazo"},{"number":11,"surname":"MAKUWA","firstname":"Thoriso"},{"number":12,"surname":"MAKWAKWA","firstname":"Thembelihle"},{"number":13,"surname":"MALEKA","firstname":"Serebudi"},{"number":14,"surname":"MALINGA","firstname":"Langelihle"},{"number":15,"surname":"MANGANI","firstname":"Munashe"},{"number":16,"surname":"MASEKO","firstname":"Hendric"},{"number":17,"surname":"MASHIGO","firstname":"Phenyo"},{"number":18,"surname":"MATHEBULA","firstname":"Mpilwenhle"},{"number":19,"surname":"MKHUMANE","firstname":"Banda"},{"number":20,"surname":"MKIZE","firstname":"Mpilo"},{"number":21,"surname":"MOHLALA +","firstname":"Naledi"},{"number":22,"surname":"MOKWENA","firstname":"Princess"},{"number":23,"surname":"MOLEBALENG +","firstname":"Maya"},{"number":24,"surname":"MOTAU","firstname":"Neo Madison"},{"number":25,"surname":"MTSWENI","firstname":"Luyanda"},{"number":26,"surname":"MULANGA","firstname":"Wichrisill"},{"number":27,"surname":"MUNYAI +","firstname":"Sanelisiwe"},{"number":28,"surname":"NGONGWANE","firstname":"Nkosinathi"},{"number":29,"surname":"NKOSI","firstname":"Anele"},{"number":30,"surname":"NUKERI +","firstname":"Nadiah"},{"number":31,"surname":"OLUBIYI","firstname":"Oluwakorede"},{"number":32,"surname":"RAMPYAPEDI","firstname":"Karabo"},{"number":33,"surname":"SAYED","firstname":"Imran"},{"number":34,"surname":"SEERANE","firstname":"Amogelang"},{"number":35,"surname":"SHAKWANE","firstname":"Thandolwethu"},{"number":36,"surname":"SIBANYONI","firstname":"Hlelokuhle"},{"number":37,"surname":"SIKHONDE","firstname":"Sinhle"},{"number":38,"surname":"SKHOSANA","firstname":"Mpilwenhle"},{"number":39,"surname":"SKHOSANA","firstname":"Olwethu"},{"number":40,"surname":"THOBAKGALE","firstname":"Bokang"},{"number":41,"surname":"TWALA","firstname":"Mandy"}],"Grade 4.2":[{"number":1,"surname":"ALEMU +","firstname":"Kalkidan"},{"number":2,"surname":"ALIYE","firstname":"Efeme"},{"number":3,"surname":"BUKE","firstname":"Dobala"},{"number":4,"surname":"CHIDI","firstname":"Paballo"},{"number":5,"surname":"CHIRINGA","firstname":"Ruvarashe"},{"number":6,"surname":"DLADLA +","firstname":"Asiphilokuhle"},{"number":7,"surname":"HOYEKUSISO","firstname":"Gift"},{"number":8,"surname":"MAGAGULA","firstname":"Nkazimulo"},{"number":9,"surname":"MAHLAKA +","firstname":"Thabiso"},{"number":10,"surname":"MAKUNYANE +","firstname":"Kagiso"},{"number":11,"surname":"MALATJI","firstname":"Rebone"},{"number":12,"surname":"MALEPE +","firstname":"Thoriso"},{"number":13,"surname":"MALLEKE","firstname":"Amuhle"},{"number":14,"surname":"MAMBHA","firstname":"Zewande"},{"number":15,"surname":"MASEKO","firstname":"Onthatile"},{"number":16,"surname":"MATLALA","firstname":"Oarabile"},{"number":17,"surname":"MBANGULA","firstname":"Mpendulo"},{"number":18,"surname":"MBUYI","firstname":"Joys"},{"number":19,"surname":"MHLANGA","firstname":"Bonolo"},{"number":20,"surname":"MNCINA","firstname":"Zikhona"},{"number":21,"surname":"MNDAWE","firstname":"Dimpho"},{"number":22,"surname":"MNDEBELE","firstname":"Nkosingiphile"},{"number":23,"surname":"MNISI","firstname":"Ayanda"},{"number":24,"surname":"MOETANALO","firstname":"Devine"},{"number":25,"surname":"MOKETE","firstname":"Fortunate"},{"number":26,"surname":"MOKGABUDI","firstname":"Ferrarre"},{"number":27,"surname":"MOKOENA +","firstname":"Sbonelo"},{"number":28,"surname":"MORIRI","firstname":"Karabo"},{"number":29,"surname":"MOTAUNG","firstname":"Blessing"},{"number":30,"surname":"MTHEMBU","firstname":"Nhlakanipho"},{"number":31,"surname":"MTHIMUNYE","firstname":"Melokuhle"},{"number":32,"surname":"MYENI","firstname":"Sphesihle"},{"number":33,"surname":"NKOSI","firstname":"Mlibo"},{"number":34,"surname":"NKOSI","firstname":"Faith"},{"number":35,"surname":"NKOSI","firstname":"Busisekile"},{"number":36,"surname":"NTULI","firstname":"Minenhle"},{"number":37,"surname":"RATAU","firstname":"Ntshwekgolo"},{"number":38,"surname":"SAMBO","firstname":"Lihle"},{"number":39,"surname":"SCHOEMAN","firstname":"Hlumisa"},{"number":40,"surname":"SIBANYONI","firstname":"Sinenhlanhla"},{"number":41,"surname":"SIBITANE","firstname":"Thembelihle"},{"number":42,"surname":"ZITHA","firstname":"Tyler"}],"Grade 4.3":[{"number":1,"surname":"APRIL","firstname":"Emuhle"},{"number":2,"surname":"ALFA","firstname":"Ngalula"},{"number":3,"surname":"BALOYI","firstname":"Mafiyallah"},{"number":4,"surname":"ERMOLO","firstname":"Abigail"},{"number":5,"surname":"GULE","firstname":"Lethokuhle"},{"number":6,"surname":"HELISO","firstname":"Beselot"},{"number":7,"surname":"JOLAOSO","firstname":"Ilerolunwa"},{"number":8,"surname":"KANKU","firstname":"Greatness"},{"number":9,"surname":"KHALO +","firstname":"Dikeledi"},{"number":10,"surname":"KHOZA","firstname":"Antonius"},{"number":11,"surname":"KOLOBE","firstname":"Lebogang"},{"number":12,"surname":"KOSA","firstname":"Olwethu"},{"number":13,"surname":"LEFEFA +","firstname":"Paballo"},{"number":14,"surname":"MANOGO","firstname":"Tshiamo"},{"number":15,"surname":"MABENA","firstname":"Unathi"},{"number":16,"surname":"MABOEA","firstname":"Rethabile"},{"number":17,"surname":"MABOGOANE","firstname":"Kamogelo"},{"number":18,"surname":"MABUNDA","firstname":"Amukelani"},{"number":19,"surname":"MAHLANGU +","firstname":"Lungile"},{"number":20,"surname":"MALAPANE","firstname":"Tebogo"},{"number":21,"surname":"MHLONGO","firstname":"Yoliswa"},{"number":22,"surname":"MKHANGAZI","firstname":"Mnqobi"},{"number":23,"surname":"MNISI","firstname":"Akeyshia"},{"number":24,"surname":"MOKABANE","firstname":"Bokamoso"},{"number":25,"surname":"MOTJIENG +","firstname":"Reneilwe"},{"number":26,"surname":"MTHETHWA","firstname":"Smandile"},{"number":27,"surname":"MTHETHWA","firstname":"Felicia"},{"number":28,"surname":"NDJEBA","firstname":"Bolemwa"},{"number":29,"surname":"NGWENYA +","firstname":"Innovate"},{"number":30,"surname":"NKAMBULE","firstname":"Uthingo"},{"number":31,"surname":"NKOSI","firstname":"Nkolo"},{"number":32,"surname":"NKOSI","firstname":"Sinothando"},{"number":33,"surname":"NYAKANE","firstname":"Nkateko"},{"number":34,"surname":"PHALANDWA","firstname":"Vhutali"},{"number":35,"surname":"SHABANGU","firstname":"Siyabathanda"},{"number":36,"surname":"SIKHONDE","firstname":"Tumelo"},{"number":37,"surname":"SILUMA","firstname":"Lethokuhle"},{"number":38,"surname":"SITHOLE","firstname":"Samkelisiwe"},{"number":39,"surname":"SITHOLE +","firstname":"Sasha"},{"number":40,"surname":"TSIE","firstname":"Fisokuhle"},{"number":41,"surname":"VILAKAZI","firstname":"Nosipho"},{"number":42,"surname":"WILLIAMS +","firstname":"Pharrell"}],"Grade 5.1":[{"number":1,"surname":"ABUKAR +","firstname":"Abdulhafid"},{"number":2,"surname":"ALIYE","firstname":"Abecer"},{"number":3,"surname":"ANYANWU","firstname":"Osinachi"},{"number":4,"surname":"AYENO","firstname":"Hirut"},{"number":5,"surname":"DESALA","firstname":"Tigabe"},{"number":6,"surname":"DUBE","firstname":"Lwazi"},{"number":7,"surname":"GENETU","firstname":"Jonathan"},{"number":8,"surname":"KLOU +","firstname":"Keamogetsoe"},{"number":9,"surname":"LELAGO","firstname":"Bitseit"},{"number":10,"surname":"MABENA","firstname":"Ndumiso"},{"number":11,"surname":"MABENA","firstname":"Sinegugu"},{"number":12,"surname":"MAHAMBA +","firstname":"Simnikiwe"},{"number":13,"surname":"MAHLANGU","firstname":"Musawakhe"},{"number":14,"surname":"MAHLANGU","firstname":"Siphesihle"},{"number":15,"surname":"MAHLANGU","firstname":"Tandolethu"},{"number":16,"surname":"MAKUSHA","firstname":"Blessing"},{"number":17,"surname":"MALAZA","firstname":"Clayton"},{"number":18,"surname":"MALINGA","firstname":"Musawenkosi"},{"number":19,"surname":"MAMAILA","firstname":"Lungelo"},{"number":20,"surname":"MANGANI","firstname":"Tapiswanashe"},{"number":21,"surname":"MAQOKOLO","firstname":"Aneesa"},{"number":22,"surname":"MASHIZHA","firstname":"Natasha"},{"number":23,"surname":"MASILELA +","firstname":"Siyabonga"},{"number":24,"surname":"MASUKU","firstname":"Samkelo"},{"number":25,"surname":"MATENTSHE","firstname":"Angel"},{"number":26,"surname":"MKHABELA","firstname":"Lwethu"},{"number":27,"surname":"MKHONZA","firstname":"Curtis"},{"number":28,"surname":"MNISI","firstname":"Nkosingiphile"},{"number":29,"surname":"MOENG","firstname":"Leeto"},{"number":30,"surname":"MOKWENA +","firstname":"Kgothatso"},{"number":31,"surname":"MORABA","firstname":"Siphelele"},{"number":32,"surname":"MOSEHATHEBE","firstname":"Oratile"},{"number":33,"surname":"MOTHOMOGOLO","firstname":"Tiisetso"},{"number":34,"surname":"MPANZA","firstname":"Ntando"},{"number":35,"surname":"NCUBE","firstname":"Princess"},{"number":36,"surname":"NDHLOVU","firstname":"Buhlebezulu"},{"number":37,"surname":"NTSHAYI-NTSHAYI","firstname":"Bandile"},{"number":38,"surname":"NXAWE +","firstname":"Siyabulela"},{"number":39,"surname":"NXUMALO","firstname":"Manqoba"},{"number":40,"surname":"SEBOPA","firstname":"Shalom"},{"number":41,"surname":"SISIKU +","firstname":"Patrick"},{"number":42,"surname":"TJIA +","firstname":"Mogan"},{"number":43,"surname":"ZHOU","firstname":"Kyle"}],"Grade 5.2":[{"number":1,"surname":"BUTHELEZI","firstname":"Kyle"},{"number":2,"surname":"CHILOANE +","firstname":"Hope"},{"number":3,"surname":"DESHEGO +","firstname":"Tshepiso"},{"number":4,"surname":"DUBE","firstname":"Zothani"},{"number":5,"surname":"GAMEDE","firstname":"Lethokuhle"},{"number":6,"surname":"GAVENI +","firstname":"Prosperity"},{"number":7,"surname":"GICHAMO","firstname":"Berekt"},{"number":8,"surname":"GUMBINI","firstname":"Minenhle"},{"number":9,"surname":"GUMEDE","firstname":"Minenhle"},{"number":10,"surname":"HLONGWANE","firstname":"Kearabilwe"},{"number":11,"surname":"KHUMALO +","firstname":"Nkazimulo"},{"number":12,"surname":"KOLOBE","firstname":"Bongowethu"},{"number":13,"surname":"MABENA","firstname":"Sinokuhle"},{"number":14,"surname":"MABUNDA","firstname":"Khentsani"},{"number":15,"surname":"MADLALA","firstname":"Alwande"},{"number":16,"surname":"MAEPA","firstname":"Mogau"},{"number":17,"surname":"MAKOBE","firstname":"Bonolo"},{"number":18,"surname":"MALAZA","firstname":"Bontle"},{"number":19,"surname":"MASHIGO","firstname":"Precious"},{"number":20,"surname":"MASHIGO","firstname":"Reabetswe"},{"number":21,"surname":"MASHIANE +","firstname":"Sphiwosethu"},{"number":22,"surname":"MASHILE","firstname":"Tubakonke"},{"number":23,"surname":"MATHEBULA","firstname":"Melokuhle"},{"number":24,"surname":"MDHLULI","firstname":"Thandolwethu"},{"number":25,"surname":"MKHABELA","firstname":"Silindo'óhle"},{"number":26,"surname":"MOKOENA","firstname":"Mxolisi"},{"number":27,"surname":"MOTHA +","firstname":"Sphiwo"},{"number":28,"surname":"MTSHWENI","firstname":"Sithelosihle"},{"number":29,"surname":"MULANGA","firstname":"Messiah"},{"number":30,"surname":"MUREMBA +","firstname":"Venus"},{"number":31,"surname":"NGWENYA","firstname":"Ndumiso"},{"number":32,"surname":"NHLABATHI","firstname":"Owethu"},{"number":33,"surname":"NTULI","firstname":"Phakamile"},{"number":34,"surname":"OSOBOW","firstname":"Maria"},{"number":35,"surname":"PALEDI","firstname":"Reatlegile"},{"number":36,"surname":"SERAGE","firstname":"Thandolwethu"},{"number":37,"surname":"SHABANGU","firstname":"Omphile"},{"number":38,"surname":"SHABANGU","firstname":"Thabang"},{"number":39,"surname":"SHANDU","firstname":"Smelokuhle"},{"number":40,"surname":"SIBANDA","firstname":"Thandolwethu"},{"number":41,"surname":"SISWANA","firstname":"Nthandokayise"},{"number":42,"surname":"TSHEHLA","firstname":"Ditebogo"},{"number":43,"surname":"WANZAMBI","firstname":"Mwambi"}],"Grade 5.3":[{"number":1,"surname":"BLAYI","firstname":"Maria"},{"number":2,"surname":"ABAYNEY +","firstname":"Eyobed"},{"number":3,"surname":"BALEKE","firstname":"Joy"},{"number":4,"surname":"BEJIGO +","firstname":"Honelen"},{"number":5,"surname":"BOKWALA","firstname":"Lungulu"},{"number":6,"surname":"CHINGOSHO","firstname":"Adrian"},{"number":7,"surname":"HLATSHWAYO+","firstname":"Esihle"},{"number":8,"surname":"KHOZA +","firstname":"Unathi"},{"number":9,"surname":"KHUMBANE +","firstname":"Hlelolenkosi"},{"number":10,"surname":"MABENA","firstname":"Siyamthanda"},{"number":11,"surname":"MAHLANGA","firstname":"Musawenkosi"},{"number":12,"surname":"MAHLANGU","firstname":"Siyamthanda"},{"number":13,"surname":"MAHLANGU","firstname":"Khanyisile"},{"number":14,"surname":"MAKHAFOLA","firstname":"Tshegofatso"},{"number":15,"surname":"MAKINTA","firstname":"Nadia"},{"number":16,"surname":"MAKUA +","firstname":"Simphiwe"},{"number":17,"surname":"MAKUNYANE","firstname":"Tetelo"},{"number":18,"surname":"MAMPANE +","firstname":"Keegan"},{"number":19,"surname":"MASHABELA +","firstname":"Diabo"},{"number":20,"surname":"MBIZANE","firstname":"Melokuhle"},{"number":21,"surname":"MJIYAKHO","firstname":"Mpilwenhel"},{"number":22,"surname":"MKHATSHWA","firstname":"Lwandle"},{"number":23,"surname":"MORIRI","firstname":"Faith"},{"number":24,"surname":"MPHAHLELE","firstname":"Kopano"},{"number":25,"surname":"MPHAHLELE","firstname":"Theto"},{"number":26,"surname":"MTHOMBENI","firstname":"Owethu"},{"number":27,"surname":"MUHLARHI","firstname":"Muhluri"},{"number":28,"surname":"MULAMBA","firstname":"Surprise"},{"number":29,"surname":"NCONGWANE+","firstname":"Ohawe"},{"number":30,"surname":"NGOBE","firstname":"Simphiwe"},{"number":31,"surname":"NGOMA","firstname":"Mpilo"},{"number":32,"surname":"NKOSI +","firstname":"Nhlakanipho"},{"number":33,"surname":"NZIMANDE","firstname":"Junior"},{"number":34,"surname":"PHETLA","firstname":"Kamogelo"},{"number":35,"surname":"SEBOPELA","firstname":"Atlegang"},{"number":36,"surname":"SEROKA","firstname":"Moraswi"},{"number":37,"surname":"SHITA","firstname":"Jabu"},{"number":38,"surname":"SIBANYONI","firstname":"Banele"},{"number":39,"surname":"SIMIBULO +","firstname":"Guab"},{"number":40,"surname":"TAMANYANE","firstname":"Keoratile"},{"number":41,"surname":"TSHOBA","firstname":"Lufuno"},{"number":42,"surname":"ZITHA","firstname":"Innocentia"}],"Grade 6.1":[{"number":1,"surname":"ATIEMO +","firstname":"Angel"},{"number":2,"surname":"BHANHIRE","firstname":"Shameka"},{"number":3,"surname":"BLAYI","firstname":"Thozina"},{"number":4,"surname":"CHOEU","firstname":"Kamogelo"},{"number":5,"surname":"DOLAMO","firstname":"Tumelo"},{"number":6,"surname":"HADEBE +","firstname":"Emihle"},{"number":7,"surname":"JIYANE","firstname":"Kamogelo"},{"number":8,"surname":"JOFE","firstname":"Abenazer"},{"number":9,"surname":"KGOMO","firstname":"Bokang"},{"number":10,"surname":"KHOZA","firstname":"Makeyla"},{"number":11,"surname":"MABELANE","firstname":"Tumisho"},{"number":12,"surname":"MABENA","firstname":"Musawenkosi"},{"number":13,"surname":"MABOI","firstname":"Confidence"},{"number":14,"surname":"MABUNDA","firstname":"Thandolwethu"},{"number":15,"surname":"MABUZA","firstname":"Clinton"},{"number":16,"surname":"MAHLAKA +","firstname":"Lethabo"},{"number":17,"surname":"MAKAMU","firstname":"Elimelech"},{"number":18,"surname":"MAKGOTA +","firstname":"Grace"},{"number":19,"surname":"MAKUA","firstname":"Keabetswe"},{"number":20,"surname":"MALALE","firstname":"Ntshokwe"},{"number":21,"surname":"MANASWE +","firstname":"Kamogelo"},{"number":22,"surname":"MARABE +","firstname":"Bongithemba"},{"number":23,"surname":"MDLULI","firstname":"Princess"},{"number":24,"surname":"MNISI","firstname":"Ntsako"},{"number":25,"surname":"MOKWENA","firstname":"Ditheto"},{"number":26,"surname":"MUTEMERI","firstname":"Brandon"},{"number":27,"surname":"NKOSI","firstname":"Tsheamo"},{"number":28,"surname":"NSIBANDE +","firstname":"Owami"},{"number":29,"surname":"ONTORO","firstname":"Abehizer"},{"number":30,"surname":"PHIRI","firstname":"Buhle Oratilwe"},{"number":31,"surname":"RAKGALAKANE","firstname":"Khumoyarona"},{"number":32,"surname":"SHABANGU","firstname":"Sipho"},{"number":33,"surname":"SHABANGU","firstname":"Sinethembelihle"},{"number":34,"surname":"SIBUYI","firstname":"Amahle"},{"number":35,"surname":"SIBUYI","firstname":"Praise"},{"number":36,"surname":"SIMANGO","firstname":"Tinyiko"},{"number":37,"surname":"SOOTHO","firstname":"Sbongiseni"},{"number":38,"surname":"TSHABALALA","firstname":"Olwethu"},{"number":39,"surname":"WOTITE","firstname":"Hane"}],"Grade 6.2":[{"number":1,"surname":"BEMBE","firstname":"Ntokozo"},{"number":2,"surname":"GENETO","firstname":"Blessing"},{"number":3,"surname":"KGOGOLO +","firstname":"Theto"},{"number":4,"surname":"MABUZA","firstname":"Andile"},{"number":5,"surname":"MABUZA","firstname":"Amanda"},{"number":6,"surname":"MAHLANGU","firstname":"Anathi"},{"number":7,"surname":"MAHLANGU","firstname":"Siphosethu"},{"number":8,"surname":"MAMPANE","firstname":"Bophelo"},{"number":9,"surname":"MASHABATHAKGA +","firstname":"Shalom"},{"number":10,"surname":"MATHEBULA","firstname":"Prince"},{"number":11,"surname":"MBIZANA","firstname":"Nkazimulo"},{"number":12,"surname":"MBOKANE","firstname":"Lethokuhle"},{"number":13,"surname":"MLOTSHWA","firstname":"Ozwayo"},{"number":14,"surname":"MNYAKENI +","firstname":"Buhle"},{"number":15,"surname":"MSIBI","firstname":"Ntandokazi"},{"number":16,"surname":"MTIMUNYE","firstname":"Prince"},{"number":17,"surname":"MTSHWENI","firstname":"Nobuhle"},{"number":18,"surname":"MTSWENI","firstname":"Khanyisile"},{"number":19,"surname":"MUKWANGWARIWA","firstname":"Adriel"},{"number":20,"surname":"MUPAMHANGA","firstname":"Rufaro"},{"number":21,"surname":"NCONGWANE","firstname":"Owenkosi"},{"number":22,"surname":"NCUBE","firstname":"Blessing"},{"number":23,"surname":"NHIRE","firstname":"Ryan"},{"number":24,"surname":"NKABINDE","firstname":"Ntandoyenkosi"},{"number":25,"surname":"NKAMBULE","firstname":"Sibahle"},{"number":26,"surname":"NKGUDI","firstname":"Koena"},{"number":27,"surname":"NKOSI","firstname":"Amahle"},{"number":28,"surname":"OSOTEKU","firstname":"Imisioluwa"},{"number":29,"surname":"PHILLIAS","firstname":"Luthando"},{"number":30,"surname":"SEKGALE","firstname":"Kemoratile"},{"number":31,"surname":"SHONHIWA","firstname":"Tinashe"},{"number":32,"surname":"SIBIYA +","firstname":"Princess"},{"number":33,"surname":"TAU","firstname":"Amogelang"},{"number":34,"surname":"THEMBA","firstname":"Sinethemba"},{"number":35,"surname":"THOBEJANE","firstname":"Kgotso"},{"number":36,"surname":"TLOTI","firstname":"Thero"},{"number":37,"surname":"ZINYEMBA","firstname":"Lucia"},{"number":38,"surname":"ZITHA","firstname":"Musa"},{"number":39,"surname":"ZULU","firstname":"Simphiwe"}],"Grade 6.3":[{"number":1,"surname":"ABUKAR","firstname":"Abdukadir"},{"number":2,"surname":"ABUKAR","firstname":"Marryan"},{"number":3,"surname":"DLAMINI","firstname":"Honour"},{"number":4,"surname":"DUBE","firstname":"Phiwokuhle"},{"number":5,"surname":"KHOZA","firstname":"Khayalethu"},{"number":6,"surname":"KHUMALO","firstname":"Olwethu"},{"number":7,"surname":"LOLITA","firstname":"Samuel"},{"number":8,"surname":"MAEBANE","firstname":"Lchlogolono"},{"number":9,"surname":"MAHLANGU","firstname":"Andile"},{"number":10,"surname":"MAHLANGU","firstname":"Siyabonga"},{"number":11,"surname":"MAHLANGU","firstname":"Lithabo"},{"number":12,"surname":"MAKARIMAYI","firstname":"Makatendeka"},{"number":13,"surname":"MAKINA","firstname":"Khadija"},{"number":14,"surname":"MALEPE","firstname":"Cassandra"},{"number":15,"surname":"MARARA","firstname":"Tadisa"},{"number":16,"surname":"MASEKO","firstname":"Lusanda"},{"number":17,"surname":"MASEKO","firstname":"Precious"},{"number":18,"surname":"MASILELA","firstname":"Nadia"},{"number":19,"surname":"MNISI","firstname":"Faith"},{"number":20,"surname":"MOKABANE","firstname":"Thato"},{"number":21,"surname":"MOKOENA","firstname":"Dinco"},{"number":22,"surname":"MOKWENA","firstname":"Thandolwethu"},{"number":23,"surname":"MOSWANE","firstname":"Desire"},{"number":24,"surname":"MOULID","firstname":"Sumaya"},{"number":25,"surname":"MTHETHWA","firstname":"Ntandoyenkosi"},{"number":26,"surname":"MUSELI","firstname":"Ashley"},{"number":27,"surname":"NKOSI","firstname":"Mnqobi"},{"number":28,"surname":"NTHOLENG","firstname":"Kabelo"},{"number":29,"surname":"OSOBOW","firstname":"Abdulgani"},{"number":30,"surname":"RAKOLOLO","firstname":"Noko"},{"number":31,"surname":"SEKGOBELA","firstname":"Kholofelo"},{"number":32,"surname":"SIBAYA","firstname":"Jaylin"},{"number":33,"surname":"SIMELANE","firstname":"Sphiwe"},{"number":34,"surname":"TALANA","firstname":"Bathabile"},{"number":35,"surname":"TINORWIRASHE","firstname":"Junior"},{"number":36,"surname":"VESERA","firstname":"Farai"},{"number":37,"surname":"YAWAGO","firstname":"Given"},{"number":38,"surname":"ZULU","firstname":"Siyabonga"}],"Grade 7.1":[{"number":1,"surname":"BHEMBE","firstname":"Cebelihle"},{"number":2,"surname":"CADY","firstname":"Isabella"},{"number":3,"surname":"CHAUKE","firstname":"Nhlonipho"},{"number":4,"surname":"CHIDZIWO","firstname":"Patience"},{"number":5,"surname":"EJBO","firstname":"Juhana"},{"number":6,"surname":"GUMBI","firstname":"Melokuhle"},{"number":7,"surname":"JIYANE","firstname":"Bokamoso"},{"number":8,"surname":"KABASELE","firstname":"Kabasele"},{"number":9,"surname":"KABASELE","firstname":"Thando"},{"number":10,"surname":"KANYERA","firstname":"Shalom"},{"number":11,"surname":"KASHAMA","firstname":"Kadiobo"},{"number":12,"surname":"LEPELLE","firstname":"Kelello"},{"number":13,"surname":"LETAU","firstname":"Keamogetswe"},{"number":14,"surname":"MABOKE","firstname":"Themba-JNR"},{"number":15,"surname":"MAHLANGU","firstname":"Njabulo"},{"number":16,"surname":"MAHLANGU","firstname":"Sphesihle"},{"number":17,"surname":"MAMPANE +","firstname":"Rehatile"},{"number":18,"surname":"MANOGO","firstname":"Boitumelo"},{"number":19,"surname":"MATHIBELA","firstname":"Donald"},{"number":20,"surname":"MOENG","firstname":"Mpho"},{"number":21,"surname":"MOFOKENG","firstname":"Mthokozisi"},{"number":22,"surname":"MOHLAHLO","firstname":"Ngwato"},{"number":23,"surname":"MTENJANI","firstname":"Kwano"},{"number":24,"surname":"NDIMANDE","firstname":"Siyamthanda"},{"number":25,"surname":"NKOSI","firstname":"Hlelokuhle"},{"number":26,"surname":"NXUMALO","firstname":"Zwide"},{"number":27,"surname":"PHASHA","firstname":"Bokang"},{"number":28,"surname":"PHILLIAS","firstname":"Mphilolenhle"},{"number":29,"surname":"SIBANYONI","firstname":"Langelihle"},{"number":30,"surname":"SITHOLE","firstname":"Wandile"},{"number":31,"surname":"SKHOSANA","firstname":"Nkosinathi"},{"number":32,"surname":"SKOSANA","firstname":"Thixounathi"},{"number":33,"surname":"TATIRA","firstname":"Michelle"},{"number":34,"surname":"TATIRA","firstname":"Meagan"},{"number":35,"surname":"THEMBA","firstname":"Nomfundo"},{"number":36,"surname":"TLHAPI","firstname":"Letticia"},{"number":37,"surname":"TLOU","firstname":"Ntandokazi"},{"number":38,"surname":"TSHEHLA","firstname":"Bontle"},{"number":39,"surname":"ZITHA","firstname":"Ntsako"},{"number":40,"surname":"ZWANE","firstname":"Sheridian"}],"Grade 7.2":[{"number":1,"surname":"BLAYI","firstname":"Nokubonga"},{"number":2,"surname":"CHAKAWA","firstname":"Kim"},{"number":3,"surname":"CHIDI","firstname":"Boikano"},{"number":4,"surname":"CHIDZIWO","firstname":"Pardon"},{"number":5,"surname":"COLLINS","firstname":"Owami"},{"number":6,"surname":"HENNING","firstname":"Nkosinathi"},{"number":7,"surname":"HLEZA","firstname":"Zinhle"},{"number":8,"surname":"HLOPHE","firstname":"Siyamthanda"},{"number":9,"surname":"KGWEDI","firstname":"Sbusiso"},{"number":10,"surname":"KHUMALO","firstname":"Thandumusa"},{"number":11,"surname":"KOLOBE","firstname":"Beyonce"},{"number":12,"surname":"KOSA","firstname":"Vuyelwa"},{"number":13,"surname":"LEDWABA","firstname":"Lethabo"},{"number":14,"surname":"LESHABA","firstname":"Tsiamo"},{"number":15,"surname":"LUFALANKA","firstname":"Japheth"},{"number":16,"surname":"MABENA","firstname":"Buhlebenkosi"},{"number":17,"surname":"MABUNDA","firstname":"Tsakane"},{"number":18,"surname":"MAKWAKWA","firstname":"Oratilwe"},{"number":19,"surname":"MAMPURU","firstname":"Boikgantsho"},{"number":20,"surname":"MANANA","firstname":"Nkosinathi"},{"number":21,"surname":"MASEKO","firstname":"Mpilo"},{"number":22,"surname":"MASHEGO","firstname":"Hlelolenkosi"},{"number":23,"surname":"MASINGA","firstname":"Thandolwethu"},{"number":24,"surname":"MHLABA","firstname":"Grace"},{"number":25,"surname":"MNGOMEZULU","firstname":"Lwandle"},{"number":26,"surname":"MNISI","firstname":"Philasande"},{"number":27,"surname":"MOKOENA","firstname":"Mothekgi"},{"number":28,"surname":"MOZIBA","firstname":"Ntombikayise"},{"number":29,"surname":"MPHAHLWA","firstname":"Minenhle"},{"number":30,"surname":"MUKOMBWE","firstname":"Atidaishe"},{"number":31,"surname":"NGAKE","firstname":"Tshepang"},{"number":32,"surname":"NKOSI","firstname":"Munei"},{"number":33,"surname":"NKOSI","firstname":"Nkosingiphile"},{"number":34,"surname":"SELEPE +","firstname":"Merlannie"},{"number":35,"surname":"SIBANYONI","firstname":"Mbali"},{"number":36,"surname":"SKOSANA","firstname":"Lwandle"},{"number":37,"surname":"SONJICA","firstname":"Peethikamva"},{"number":38,"surname":"UWA","firstname":"Stella"},{"number":39,"surname":"WILLIAMS +","firstname":"Akeelah"}],"Grade 7.3":[{"number":1,"surname":"MAHLANGU","firstname":"Khulubuse"},{"number":2,"surname":"MAILE","firstname":"Thapelo"},{"number":3,"surname":"MAKOLA +","firstname":"Lydia"},{"number":4,"surname":"MALUNGA","firstname":"Mduduzi"},{"number":5,"surname":"MASANGO","firstname":"Aphile"},{"number":6,"surname":"MASANGO","firstname":"Thandolwethu"},{"number":7,"surname":"MASILELA","firstname":"Blessing"},{"number":8,"surname":"MATULUDI","firstname":"Tamedi"},{"number":9,"surname":"MMAGAPA","firstname":"Mahlaise"},{"number":10,"surname":"MOTHA","firstname":"Lethokuhle"},{"number":11,"surname":"MLOTSHWA","firstname":"Mamukelo"},{"number":12,"surname":"NTIMBA","firstname":"Blessing"},{"number":13,"surname":"SHABALALA","firstname":"Bandile"},{"number":14,"surname":"SHABANGU","firstname":"Simamukele"},{"number":15,"surname":"SIFUNDA","firstname":"Prince"},{"number":16,"surname":"SILINGILE","firstname":"Simtholile"},{"number":17,"surname":"TABU","firstname":"Assani"},{"number":18,"surname":"THOBOKGALE","firstname":"Tshepang"},{"number":19,"surname":"THWALA","firstname":"Nqubeko"},{"number":20,"surname":"MABUZA","firstname":"Lindokuhle"},{"number":21,"surname":"MABUZA","firstname":"Thakgatso"},{"number":22,"surname":"MAHLANGU","firstname":"Amahle"},{"number":23,"surname":"MAKOFANE","firstname":"Owethu"},{"number":24,"surname":"MALAZA","firstname":"Lonwabo"},{"number":25,"surname":"MASHININI","firstname":"Siphesihle"},{"number":26,"surname":"MATHIBE","firstname":"Mahlatsi"},{"number":27,"surname":"MAZIBUKO","firstname":"Ofentshe"},{"number":28,"surname":"MHLANGA","firstname":"Mpendulo"},{"number":29,"surname":"MHLONGO","firstname":"Zinhle"},{"number":30,"surname":"MOTLHAMME","firstname":"Oletlile"},{"number":31,"surname":"MSIBI","firstname":"Masesi"},{"number":32,"surname":"MUNASUNGI","firstname":"Pretty"},{"number":33,"surname":"NAVESS","firstname":"Mandy"},{"number":34,"surname":"NGELE","firstname":"Mogau"},{"number":35,"surname":"NGWANE","firstname":"Tsakane"},{"number":36,"surname":"NKABINDE","firstname":"Nkosenhle"},{"number":37,"surname":"NYOSI","firstname":"Lethu"},{"number":38,"surname":"RANGWAGA","firstname":"Tshepiso"},{"number":39,"surname":"SENOELO","firstname":"Buang"},{"number":40,"surname":"SHIVITI","firstname":"Graca"}]};
+
+        const BARRIERS = [
+            'Reading',
+            'Maths',
+            'Speaking',
+            'Struggles with English',
+            'Writing',
+            'Concentration',
+            'Behaviour',
+            'Fine Motor Skills',
+            'Gross Motor Skills',
+            'Memory',
+            'Following Instructions'
+        ];
+
+        function AttendanceApp() {
+            const [activeTab, setActiveTab] = useState('attendance');
+            const [selectedClass, setSelectedClass] = useState('');
+            const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+            const [attendance, setAttendance] = useState({});
+            const [remedialList, setRemedialList] = useState([]);
+            const [showRemedialModal, setShowRemedialModal] = useState(false);
+            const [selectedLearner, setSelectedLearner] = useState(null);
+            const [remedialForm, setRemedialForm] = useState({
+                barriers: [],
+                comment: ''
+            });
+            const [savedMessage, setSavedMessage] = useState('');
+            const [isOnline, setIsOnline] = useState(navigator.onLine);
+            const [editedNames, setEditedNames] = useState({});
+            const [showEditModal, setShowEditModal] = useState(false);
+            const [editingLearner, setEditingLearner] = useState(null);
+            const [editForm, setEditForm] = useState({ surname: '', firstname: '' });
+            const [teacherInfo, setTeacherInfo] = useState({});
+
+            // Load data from localStorage
+            useEffect(() => {
+                const savedAttendance = localStorage.getItem('attendance');
+                const savedRemedial = localStorage.getItem('remedialList');
+                const savedEditedNames = localStorage.getItem('editedNames');
+                const savedTeacherInfo = localStorage.getItem('teacherInfo');
+                
+                if (savedAttendance) setAttendance(JSON.parse(savedAttendance));
+                if (savedRemedial) setRemedialList(JSON.parse(savedRemedial));
+                if (savedEditedNames) setEditedNames(JSON.parse(savedEditedNames));
+                if (savedTeacherInfo) setTeacherInfo(JSON.parse(savedTeacherInfo));
+
+                // Online/offline detection
+                window.addEventListener('online', () => setIsOnline(true));
+                window.addEventListener('offline', () => setIsOnline(false));
+            }, []);
+
+            // Save to localStorage whenever data changes
+            useEffect(() => {
+                localStorage.setItem('attendance', JSON.stringify(attendance));
+            }, [attendance]);
+
+            useEffect(() => {
+                localStorage.setItem('remedialList', JSON.stringify(remedialList));
+            }, [remedialList]);
+
+            useEffect(() => {
+                localStorage.setItem('editedNames', JSON.stringify(editedNames));
+            }, [editedNames]);
+
+            useEffect(() => {
+                localStorage.setItem('teacherInfo', JSON.stringify(teacherInfo));
+            }, [teacherInfo]);
+
+            const handleAttendanceToggle = (learnerId) => {
+                const key = `${selectedClass}_${selectedDate}`;
+                setAttendance(prev => ({
+                    ...prev,
+                    [key]: {
+                        ...(prev[key] || {}),
+                        [learnerId]: !prev[key]?.[learnerId]
+                    }
+                }));
+            };
+
+            const getCurrentClassAttendance = () => {
+                const key = `${selectedClass}_${selectedDate}`;
+                return attendance[key] || {};
+            };
+
+            const getAttendanceStats = () => {
+                const classData = CLASS_DATA[selectedClass] || [];
+                const currentAttendance = getCurrentClassAttendance();
+                const present = Object.values(currentAttendance).filter(Boolean).length;
+                const total = classData.length;
+                return { present, total };
+            };
+
+            const saveAttendance = async () => {
+                if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') {
+                    setSavedMessage('⚠ Please configure Google Sheets URL first!');
+                    setTimeout(() => setSavedMessage(''), 4000);
+                    return;
+                }
+
+                setSavedMessage('⏳ Saving to Google Sheets...');
+
+                try {
+                    const response = await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            type: 'attendance',
+                            className: selectedClass,
+                            date: selectedDate,
+                            attendance: getCurrentClassAttendance()
+                        }),
+                        mode: 'no-cors' // Required for Google Apps Script
+                    });
+
+                    setSavedMessage('✓ Attendance saved successfully! Email sent to leratom2012@gmail.com');
+                    
+                    // Scroll to top to show message
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Auto-hide message after 5 seconds
+                    setTimeout(() => {
+                        setSavedMessage('');
+                    }, 5000);
+                    
+                } catch (error) {
+                    console.error('Error saving attendance:', error);
+                    setSavedMessage('✓ Saved locally. Will sync when online.');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setTimeout(() => setSavedMessage(''), 5000);
+                }
+            };
+
+            const openRemedialModal = (learner) => {
+                setSelectedLearner(learner);
+                setShowRemedialModal(true);
+                setRemedialForm({ barriers: [], comment: '' });
+            };
+
+            const handleBarrierToggle = (barrier) => {
+                setRemedialForm(prev => ({
+                    ...prev,
+                    barriers: prev.barriers.includes(barrier)
+                        ? prev.barriers.filter(b => b !== barrier)
+                        : [...prev.barriers, barrier]
+                }));
+            };
+
+            const saveRemedialEntry = async () => {
+                const newEntry = {
+                    id: Date.now(),
+                    learner: selectedLearner,
+                    className: selectedClass,
+                    barriers: remedialForm.barriers,
+                    comment: remedialForm.comment,
+                    dateAdded: new Date().toISOString()
+                };
+
+                setRemedialList(prev => [...prev, newEntry]);
+                setShowRemedialModal(false);
+
+                if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') {
+                    setSavedMessage('✓ Added to remedial list (saved locally)');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setTimeout(() => setSavedMessage(''), 5000);
+                    return;
+                }
+
+                setSavedMessage('⏳ Saving to Google Sheets...');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            type: 'remedial',
+                            ...newEntry
+                        }),
+                        mode: 'no-cors' // Required for Google Apps Script
+                    });
+
+                    setSavedMessage(`✓ ${selectedLearner.surname}, ${selectedLearner.firstname} added to remedial list! Email sent to leratom2012@gmail.com`);
+                    setTimeout(() => setSavedMessage(''), 5000);
+                } catch (error) {
+                    console.error('Error saving remedial entry:', error);
+                    setSavedMessage('✓ Saved locally. Will sync when online.');
+                    setTimeout(() => setSavedMessage(''), 5000);
+                }
+            };
+
+            const removeFromRemedial = (id) => {
+                if (confirm('Remove this learner from the remedial list?')) {
+                    setRemedialList(prev => prev.filter(entry => entry.id !== id));
+                    setSavedMessage('✓ Learner removed from remedial list');
+                    setTimeout(() => setSavedMessage(''), 3000);
+                }
+            };
+
+            const openEditModal = (learner) => {
+                const learnerId = `${selectedClass}_${learner.number}`;
+                const edited = editedNames[learnerId] || learner;
+                
+                setEditingLearner({ ...learner, learnerId });
+                setEditForm({
+                    surname: edited.surname,
+                    firstname: edited.firstname
+                });
+                setShowEditModal(true);
+            };
+
+            const saveEditedName = () => {
+                const learnerId = editingLearner.learnerId;
+                
+                setEditedNames(prev => ({
+                    ...prev,
+                    [learnerId]: {
+                        surname: editForm.surname,
+                        firstname: editForm.firstname
+                    }
+                }));
+                
+                setShowEditModal(false);
+                setSavedMessage('✓ Name updated successfully!');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => setSavedMessage(''), 3000);
+            };
+
+            const getDisplayName = (learner) => {
+                const learnerId = `${selectedClass}_${learner.number}`;
+                const edited = editedNames[learnerId];
+                
+                if (edited) {
+                    return {
+                        ...learner,
+                        surname: edited.surname,
+                        firstname: edited.firstname
+                    };
+                }
+                return learner;
+            };
+
+            const updateTeacherInfo = (field, value) => {
+                setTeacherInfo(prev => ({
+                    ...prev,
+                    [selectedClass]: {
+                        ...(prev[selectedClass] || {}),
+                        [field]: value
+                    }
+                }));
+            };
+
+            const getCurrentTeacherInfo = () => {
+                return teacherInfo[selectedClass] || { name: '', whatsapp: '' };
+            };
+
+            const classNames = Object.keys(CLASS_DATA);
+            const currentClassData = CLASS_DATA[selectedClass] || [];
+            const stats = selectedClass ? getAttendanceStats() : { present: 0, total: 0 };
+
+            return (
+                <div className="container">
+                    <div className="header">
+                        <h1>Carissa Primary School</h1>
+                        <p>Attendance & Remedial Tracking System</p>
+                    </div>
+
+                    <div className="nav-tabs">
+                        <button 
+                            className={`nav-tab ${activeTab === 'attendance' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('attendance')}
+                        >
+                            📋 Attendance
+                        </button>
+                        <button 
+                            className={`nav-tab ${activeTab === 'remedial' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('remedial')}
+                        >
+                            🎯 Remedial List
+                        </button>
+                    </div>
+
+                    <div className="content">
+                        {savedMessage && (
+                            <div className="alert alert-success">{savedMessage}</div>
+                        )}
+
+                        {activeTab === 'attendance' && (
+                            <div>
+                                <div className="form-group">
+                                    <label>Select Class</label>
+                                    <select 
+                                        value={selectedClass} 
+                                        onChange={(e) => setSelectedClass(e.target.value)}
+                                    >
+                                        <option value="">-- Choose a class --</option>
+                                        {classNames.map(name => (
+                                            <option key={name} value={name}>{name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Select Date</label>
+                                    <input 
+                                        type="date" 
+                                        value={selectedDate}
+                                        onChange={(e) => setSelectedDate(e.target.value)}
+                                    />
+                                </div>
+
+                                {selectedClass && (
+                                    <>
+                                        <div className="teacher-info-box">
+                                            <h3>👩‍🏫 Class Teacher Information</h3>
+                                            <div className="teacher-info-inputs">
+                                                <input 
+                                                    type="text"
+                                                    placeholder="Teacher Name"
+                                                    value={getCurrentTeacherInfo().name}
+                                                    onChange={(e) => updateTeacherInfo('name', e.target.value)}
+                                                />
+                                                <input 
+                                                    type="tel"
+                                                    placeholder="WhatsApp Number (e.g., 0812345678)"
+                                                    value={getCurrentTeacherInfo().whatsapp}
+                                                    onChange={(e) => updateTeacherInfo('whatsapp', e.target.value)}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="stats-box">
+                                            <h3>{stats.present}/{stats.total}</h3>
+                                            <p>Present Today</p>
+                                        </div>
+
+                                        <div className="learner-list">
+                                            {currentClassData.map(learner => {
+                                                const displayLearner = getDisplayName(learner);
+                                                const learnerId = `${displayLearner.surname}_${displayLearner.firstname}`;
+                                                const isPresent = getCurrentClassAttendance()[learnerId];
+                                                
+                                                return (
+                                                    <div key={learner.number} className="learner-item">
+                                                        <div className="learner-info">
+                                                            <div className="learner-number">{learner.number}</div>
+                                                            <div className="learner-name">
+                                                                {displayLearner.surname}, {displayLearner.firstname}
+                                                            </div>
+                                                        </div>
+                                                        <div className="learner-actions">
+                                                            <button 
+                                                                className="btn btn-primary btn-small"
+                                                                onClick={() => openEditModal(learner)}
+                                                                style={{ fontSize: '12px', padding: '6px 10px' }}
+                                                            >
+                                                                ✏️ Edit
+                                                            </button>
+                                                            <div className="checkbox-wrapper">
+                                                                <input 
+                                                                    type="checkbox"
+                                                                    checked={isPresent || false}
+                                                                    onChange={() => handleAttendanceToggle(learnerId)}
+                                                                />
+                                                                <label>{isPresent ? 'Present' : 'Absent'}</label>
+                                                            </div>
+                                                            <button 
+                                                                className="btn btn-warning btn-small"
+                                                                onClick={() => openRemedialModal(displayLearner)}
+                                                            >
+                                                                + Remedial
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+
+                                        <button 
+                                            className="btn btn-success btn-full"
+                                            onClick={saveAttendance}
+                                        >
+                                            💾 Save Attendance
+                                        </button>
+                                    </>
+                                )}
+                            </div>
+                        )}
+
+                        {activeTab === 'remedial' && (
+                            <div>
+                                {remedialList.length === 0 ? (
+                                    <div className="alert alert-info">
+                                        No learners currently on the remedial list.
+                                    </div>
+                                ) : (
+                                    remedialList.map(entry => (
+                                        <div key={entry.id} className="remedial-card">
+                                            <div className="remedial-header">
+                                                <div>
+                                                    <div className="remedial-name">
+                                                        {entry.learner.surname}, {entry.learner.firstname}
+                                                    </div>
+                                                    <div className="remedial-class">{entry.class}</div>
+                                                </div>
+                                                <button 
+                                                    className="btn btn-danger btn-small"
+                                                    onClick={() => removeFromRemedial(entry.id)}
+                                                >
+                                                    Remove
+                                                </button>
+                                            </div>
+                                            
+                                            <div className="remedial-barriers">
+                                                {entry.barriers.map(barrier => (
+                                                    <span key={barrier} className="barrier-tag">{barrier}</span>
+                                                ))}
+                                            </div>
+
+                                            {entry.comment && (
+                                                <div className="remedial-comment">
+                                                    💬 {entry.comment}
+                                                </div>
+                                            )}
+
+                                            <div className="remedial-date">
+                                                Added: {new Date(entry.dateAdded).toLocaleDateString()}
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    {showRemedialModal && (
+                        <div className="modal" onClick={() => setShowRemedialModal(false)}>
+                            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                                <div className="modal-header">
+                                    <button className="modal-close" onClick={() => setShowRemedialModal(false)}>×</button>
+                                    <h2>Add to Remedial List</h2>
+                                    <p>{selectedLearner?.surname}, {selectedLearner?.firstname}</p>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Select Barriers to Learning</label>
+                                    {BARRIERS.map(barrier => (
+                                        <div key={barrier} className="barrier-checkbox">
+                                            <input 
+                                                type="checkbox"
+                                                checked={remedialForm.barriers.includes(barrier)}
+                                                onChange={() => handleBarrierToggle(barrier)}
+                                                id={barrier}
+                                            />
+                                            <label htmlFor={barrier}>{barrier}</label>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Teacher Comments</label>
+                                    <textarea 
+                                        value={remedialForm.comment}
+                                        onChange={(e) => setRemedialForm(prev => ({...prev, comment: e.target.value}))}
+                                        rows="4"
+                                        placeholder="Add any additional notes about the learner's struggles..."
+                                    />
+                                </div>
+
+                                <button 
+                                    className="btn btn-success btn-full"
+                                    onClick={saveRemedialEntry}
+                                    disabled={remedialForm.barriers.length === 0}
+                                >
+                                    Save to Remedial List
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {showEditModal && (
+                        <div className="modal" onClick={() => setShowEditModal(false)}>
+                            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                                <div className="modal-header">
+                                    <button className="modal-close" onClick={() => setShowEditModal(false)}>×</button>
+                                    <h2>Edit Learner Name</h2>
+                                    <p style={{fontSize: '14px', color: '#6b7280'}}>Number: {editingLearner?.number}</p>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Surname</label>
+                                    <input 
+                                        type="text"
+                                        value={editForm.surname}
+                                        onChange={(e) => setEditForm(prev => ({...prev, surname: e.target.value}))}
+                                        placeholder="Enter surname"
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label>First Name</label>
+                                    <input 
+                                        type="text"
+                                        value={editForm.firstname}
+                                        onChange={(e) => setEditForm(prev => ({...prev, firstname: e.target.value}))}
+                                        placeholder="Enter first name"
+                                    />
+                                </div>
+
+                                <button 
+                                    className="btn btn-success btn-full"
+                                    onClick={saveEditedName}
+                                    disabled={!editForm.surname.trim() || !editForm.firstname.trim()}
+                                >
+                                    Save Name
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="sync-status">
+                        <div className={`sync-dot ${isOnline ? 'online' : 'offline'}`}></div>
+                        <span>{isOnline ? 'Online' : 'Offline Mode'}</span>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<AttendanceApp />, document.getElementById('root'));
+    </script>
+</body>
+</html>
