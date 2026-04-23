@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}School Digest - Carissa Primary School{% endblock %}
+
+{% block content %}
+<div class="hero" style="padding: 2rem;">
+    <h1>School Digest</h1>
+    <p>Stay informed with the latest news, events and newsletters</p>
+</div>
+
+<div class="container">
+    <!-- FEATURED: Road to e-Learning -->
+    <div style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); border-radius: 12px; padding: 2.5rem; margin-bottom: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+        <div style="background: rgba(255,255,255,0.95); border-radius: 10px; padding: 2rem; margin-bottom: 1.5rem;">
+            <span style="display: inline-block; background: linear-gradient(135deg, #3b82f6, #1e3a8a); color: white; padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem;">FEATURED</span>
+            <h2 style="color: #1e3a8a; font-size: 2.2rem; margin-bottom: 1rem; font-weight: bold;">Road to e-Learning</h2>
+            
+            <!-- Video Embed -->
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin: 1.5rem 0; background: #000;">
+                <iframe src="https://x6y53kb2ztacs.ok.kimi.link/" 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            
+            <div style="color: #2c3e50; line-height: 1.8; font-size: 1.05rem;">
+                <p style="margin-bottom: 1.2rem; font-size: 1.15rem; font-weight: 600; color: #1e3a8a;">
+                    Carissa Primary School is Growing!
+                </p>
+                
+                <p style="margin-bottom: 1.2rem;">
+                    We are excited to share our journey towards becoming a digitally empowered learning environment. 
+                    Whilst our e-learning programme has not officially started yet, we are hard at work laying the 
+                    groundwork that will transform education at Carissa Primary School.
+                </p>
+                
+                <p style="margin-bottom: 1.2rem;">
+                    Our dedicated team is currently focused on building the essential infrastructure needed to bring 
+                    quality digital education to every classroom. This includes connecting reliable internet access 
+                    throughout the entire school premises, ensuring that every learner will have equal access to 
+                    online educational resources.
+                </p>
+                
+                <p style="margin-bottom: 1.2rem;">
+                    The "Road to e-Learning" represents more than just technology. It's about opening doors to endless 
+                    learning possibilities, preparing our learners for a digital future, and ensuring that Carissa Primary 
+                    School remains at the forefront of educational excellence in our community.
+                </p>
+                
+                <p style="margin-bottom: 1.2rem; font-weight: 600; color: #1e3a8a;">
+                    What We're Working On:
+                </p>
+                
+                <ul style="list-style-position: inside; margin-bottom: 1.2rem; padding-left: 1rem;">
+                    <li style="margin-bottom: 0.8rem;">🌐 Installing high-speed internet connectivity across all classrooms</li>
+                    <li style="margin-bottom: 0.8rem;">💻 Setting up digital infrastructure and learning platforms</li>
+                    <li style="margin-bottom: 0.8rem;">👩‍🏫 Preparing teachers through training and development programmes</li>
+                    <li style="margin-bottom: 0.8rem;">📚 Curating quality digital learning resources aligned with CAPS curriculum</li>
+                    <li style="margin-bottom: 0.8rem;">🔧 Testing and refining our e-learning management systems</li>
+                </ul>
+                
+                <p style="margin-bottom: 1.2rem;">
+                    We believe that every child deserves access to the best educational tools available. As we continue 
+                    this journey, we are committed to ensuring that the transition to e-learning is smooth, inclusive, 
+                    and beneficial for all our learners from Grade R to Grade 7.
+                </p>
+                
+                <p style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); padding: 1.2rem; border-radius: 8px; border-left: 4px solid #3b82f6; margin-bottom: 1.2rem;">
+                    <strong style="color: #1e40af;">Stay Connected:</strong> We will keep our school community updated 
+                    on our progress as we move closer to launching our e-learning programme. Thank you for your patience 
+                    and support as we work towards this exciting new chapter for Carissa Primary School.
+                </p>
+                
+                <p style="text-align: center; margin-top: 2rem; color: #64748b; font-style: italic; font-size: 0.95rem;">
+                    Together, we're building a brighter digital future for our learners. 🚀
+                </p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; color: white; font-size: 0.9rem; opacity: 0.9;">
+            📅 Featured Article | Carissa Primary School e-Learning Initiative
+        </div>
+    </div>
+
+    <!-- Regular News Items -->
+    <h2 style="margin-bottom: 1.5rem; color: #2c3e50; font-size: 1.8rem;">Latest News & Updates</h2>
+    
+    {% if news_items %}
+        <div class="news-grid">
+            {% for news in news_items %}
+            <div class="news-card">
+                {% if news.image_path %}
+                <img src="{{ url_for('static', filename=news.image_path) }}" alt="{{ news.title }}" class="news-image">
+                {% else %}
+                <div style="width: 100%; height: 200px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));"></div>
+                {% endif %}
+                <div class="news-content">
+                    <span class="news-category">{{ news.category or 'General' }}</span>
+                    <h3 class="news-title">{{ news.title }}</h3>
+                    <p class="news-excerpt">{{ news.content[:150] }}{% if news.content|length > 150 %}...{% endif %}</p>
+                    <div class="news-date">{{ news.created_at }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div style="text-align: center; padding: 4rem; color: var(--text-light);">
+            <h3>No news items yet</h3>
+            <p>Check back soon for updates from our school community!</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
