@@ -521,6 +521,40 @@
                 <button onclick="logout()" class="btn" style="background: #e74c3c;">Logout</button>
             </div>
             
+            <!-- INTERVENTION TRACKER -->
+            <div class="card" style="margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #2e5cb8 0%, #4a7fc1 100%);">
+                <div class="dropdown-header" onclick="toggleDropdown('intervention-section')" style="background: rgba(255,255,255,0.1);">
+                    <h3>
+                        <span style="font-size: 1.8em; color: white;">🎯 Intervention Tracker</span>
+                        <span class="dropdown-arrow" id="intervention-section-arrow" style="color: white;">▼</span>
+                    </h3>
+                </div>
+                
+                <div id="intervention-section" class="dropdown-content">
+                    <p style="text-align: center; color: rgba(255,255,255,0.95); margin-bottom: 30px; font-size: 1.05em;">Track and manage remedial interventions for struggling learners</p>
+                    
+                    <div style="max-width: 900px; margin: 0 auto;">
+                        <a href="https://app-bm8iirul18u9.appmedo.com/learnworld/" target="_blank"
+                           style="display: block; background: white; color: #2c3e50; padding: 30px; 
+                                  text-decoration: none; border-radius: 12px;
+                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+                                  border-left: 5px solid #2dd4bf;"
+                           onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.25)'"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="font-size: 3em;">🎯</div>
+                                <div style="flex: 1;">
+                                    <div style="font-size: 1.4em; font-weight: bold; color: #2e5cb8; margin-bottom: 8px;">Remedial Intervention Tracker</div>
+                                    <div style="font-size: 1em; color: #7f8c8d; margin-bottom: 5px;">Identify and track learners needing remedial support</div>
+                                    <div style="font-size: 0.9em; color: #95a5a6;">Track 11 barrier types • Filter by barrier • Export to Excel • All 957 learners</div>
+                                </div>
+                                <div style="font-size: 2em; color: #2e5cb8;">→</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
             <!-- eLEARNING MANAGEMENT SECTION WITH DROPDOWN -->
             <div class="card" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: #ffffff; padding: 30px; margin-bottom: 25px;">
                 <div class="dropdown-header" onclick="toggleDropdown('management-section')" style="background: rgba(255,255,255,0.1); margin-bottom: 15px;">
@@ -865,41 +899,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- INTERVENTION TRACKER -->
-            <div class="card" style="margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #2e5cb8 0%, #4a7fc1 100%);">
-                <div class="dropdown-header" onclick="toggleDropdown('intervention-section')" style="background: rgba(255,255,255,0.1);">
-                    <h3>
-                        <span style="font-size: 1.8em; color: white;">🎯 Intervention Tracker</span>
-                        <span class="dropdown-arrow" id="intervention-section-arrow" style="color: white;">▼</span>
-                    </h3>
-                </div>
-                
-                <div id="intervention-section" class="dropdown-content">
-                    <p style="text-align: center; color: rgba(255,255,255,0.95); margin-bottom: 30px; font-size: 1.05em;">Track and manage remedial interventions for struggling learners</p>
-                    
-                    <div style="max-width: 900px; margin: 0 auto;">
-                        <a href="https://carissa-intervention-tracker.replit.app/" target="_blank"
-                           style="display: block; background: white; color: #2c3e50; padding: 30px; 
-                                  text-decoration: none; border-radius: 12px;
-                                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
-                                  border-left: 5px solid #2dd4bf;"
-                           onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.25)'"
-                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-                            <div style="display: flex; align-items: center; gap: 20px;">
-                                <div style="font-size: 3em;">🎯</div>
-                                <div style="flex: 1;">
-                                    <div style="font-size: 1.4em; font-weight: bold; color: #2e5cb8; margin-bottom: 8px;">Remedial Intervention Tracker</div>
-                                    <div style="font-size: 1em; color: #7f8c8d; margin-bottom: 5px;">Identify and track learners needing remedial support</div>
-                                    <div style="font-size: 0.9em; color: #95a5a6;">Track 11 barrier types • Filter by barrier • Export to Excel • All 957 learners</div>
-                                </div>
-                                <div style="font-size: 2em; color: #2e5cb8;">→</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+            
             <!-- AI TOOLS WITH DROPDOWN -->
             <div class="card" style="margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                 <div class="dropdown-header" onclick="toggleDropdown('ai-section')" style="background: rgba(255,255,255,0.1);">
