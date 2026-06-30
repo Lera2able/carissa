@@ -4,8 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>e-Learning - Carissa Primary School</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/Lera2able/carissa/main/static/images/logo.png">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #F8F9FA;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 2rem;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #263238;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00ACC1;
+        }
+
+        /* Hero Section */
         .elearning-hero {
             background: linear-gradient(135deg, #00ACC1 0%, #00838F 50%, #006064 100%);
             color: white;
@@ -26,9 +64,32 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .elearning-hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
-        .elearning-hero p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
+        .hero-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.3);
+            margin: 0 auto 1.5rem;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .elearning-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .elearning-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        .hero-motto {
+            font-style: italic;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
 
+        /* Login Portals */
         .login-portals {
             max-width: 1000px;
             margin: 3rem auto;
@@ -98,15 +159,16 @@
         }
 
         .portal-btn.teacher {
-            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            background: linear-gradient(135deg, #00ACC1, #00838F);
             color: white;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 172, 193, 0.3);
         }
         .portal-btn.teacher:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 172, 193, 0.4);
         }
 
+        /* Features Section */
         .features-section {
             background: #F8F9FA;
             padding: 4rem 2rem;
@@ -139,24 +201,52 @@
             margin: 0 auto 1rem;
             font-size: 1.8rem;
             background: #E0F7FA;
+            color: #00ACC1;
         }
 
         .feature-card h3 { color: #263238; margin-bottom: 0.5rem; }
         .feature-card p { color: #78909C; font-size: 0.95rem; }
 
+        /* Footer */
+        .footer {
+            background: white;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #E0E0E0;
+        }
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            border: 3px solid #00ACC1;
+        }
+        .footer-school-name {
+            color: #00ACC1;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .footer-motto {
+            color: #78909C;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
         @media (max-width: 768px) {
             .elearning-hero h1 { font-size: 2rem; }
             .login-portals { grid-template-columns: 1fr; padding: 0 1rem; }
             .portal-card { padding: 2rem 1.5rem; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation (same as other pages) -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="../static/images/logo.png" alt="Carissa Primary School">
+                <img src="static/images/logo.png" alt="Carissa Primary School">
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
@@ -173,8 +263,10 @@
     <!-- Hero Section -->
     <section class="elearning-hero">
         <div class="elearning-hero-content">
-            <h1>🎓 Carissa e-Learning</h1>
-            <p>Your gateway to interactive learning, digital resources, and educational excellence. Access quality educational content anytime, anywhere.</p>
+            <img src="static/images/logo.png" alt="Carissa Primary School" class="hero-logo" onerror="this.style.display='none'">
+            <h1>Carissa e-Learning</h1>
+            <p>Your gateway to interactive learning, digital resources, and educational excellence.</p>
+            <p class="hero-motto">Growing Together</p>
         </div>
     </section>
 
@@ -229,10 +321,11 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <p>© 2026 Carissa Primary School. All rights reserved.</p>
-            <p>Email: carissaschool@telkomsa.net | Phone: 013 656 1286</p>
-        </div>
+        <img src="static/images/logo.png" alt="Carissa Primary School" class="footer-logo" onerror="this.style.display='none'">
+        <div class="footer-school-name">Carissa Primary School</div>
+        <div class="footer-motto">Growing Together</div>
+        <p>© 2026 Carissa Primary School. All rights reserved.</p>
+        <p>Email: carissaschool@telkomsa.net | Phone: 013 656 1286</p>
     </footer>
 </body>
 </html>
