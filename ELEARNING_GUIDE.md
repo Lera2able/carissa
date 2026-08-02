@@ -8,11 +8,12 @@ The Carissa Primary School eLearning platform now includes working login functio
 
 ## Login Credentials
 
-**For Everyone (Students & Teachers):**
-- **Username:** 12345
-- **Password:** 12345
+### For Learners
+- **Username:** Provided by the class teacher (example: `g71-01`)
+- **PIN:** Provided by the class teacher (example: `0001`)
 
-These credentials are displayed on the login forms for easy reference.
+### For Staff (Teachers & Admin)
+- Use the staff login form (`/login`) with your assigned username and password.
 
 ---
 
@@ -23,9 +24,9 @@ These credentials are displayed on the login forms for easy reference.
 1. **Navigate to the eLearning page**
 2. **Find the "For Students" card** on the left
 3. **Enter credentials:**
-   - Username: 12345
-   - Password: 12345
-4. **Click "Student Login"**
+   - Username: (example `g71-01`)
+   - PIN: (example `0001`)
+4. **Click "Sign In to Learn"**
 5. **You'll see the Student Dashboard** with:
    - Welcome message
    - Large "Start Learning!" button
@@ -36,10 +37,8 @@ These credentials are displayed on the login forms for easy reference.
 
 1. **Navigate to the eLearning page**
 2. **Find the "For Teachers" card** on the right
-3. **Enter credentials:**
-   - Username: 12345
-   - Password: 12345
-4. **Click "Teacher Login"**
+3. **Sign in using the staff login**
+4. **Click "Staff Login"**
 5. **You'll see the Teacher Dashboard** with:
    - Coding Classroom section with Scratch
    - Educator Development Workshop button

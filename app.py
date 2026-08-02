@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from functools import wraps
+from urllib.parse import quote
 import sqlite3
 import os
 from datetime import datetime
@@ -234,6 +235,28 @@ def login():
             flash('Invalid username or password', 'danger')
     
     return render_template('login.html')
+
+@app.route('/student/login', methods=['GET', 'POST'])
+def student_login():
+    """
+    Student sign-in page compatible with learner username + PIN.
+    Forwards the learner into the tracker learner portal so the same codes work everywhere.
+    """
+    if request.method == 'POST':
+        username = (request.form.get('username') or '').strip().lower()
+        pin = (request.form.get('pin') or '').strip()
+
+        if not username or not pin:
+            flash('Please enter your username and PIN', 'danger')
+            return render_template('student_login.html')
+
+        tracker_url = (
+            "https://tracker.carissaprimary.co.za/?portal=learner"
+            f"&user={quote(username)}&learner_pin={quote(pin)}"
+        )
+        return redirect(tracker_url)
+
+    return render_template('student_login.html')
 
 @app.route('/logout')
 def logout():
