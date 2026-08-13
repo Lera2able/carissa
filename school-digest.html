@@ -591,20 +591,35 @@
   #journalist-photo-view { display: none; }
   #journalist-photo-view.active { display: block; }
   .journalist-photo-frame {
-    max-width: 980px;
+    width: min(98vw, 1600px);
+    max-width: none;
     margin: 0 auto;
     background: #fff;
     border: 1px solid rgba(10, 122, 144, 0.14);
     border-radius: 24px;
-    overflow: hidden;
+    overflow: auto;
+    max-height: calc(100vh - 170px);
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+    background: #f6fbfc;
   }
   .journalist-photo-frame img {
     display: block;
-    width: 100%;
-    max-height: 80vh;
+    width: min(1800px, 170vw);
+    min-width: 1200px;
+    max-width: none;
+    height: auto;
     object-fit: contain;
     background: #f6fbfc;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .journalist-photo-frame {
+      max-height: calc(100vh - 155px);
+    }
+    .journalist-photo-frame img {
+      width: 185vw;
+      min-width: 1000px;
+    }
   }
   .journalist-photo-caption {
     padding: 1rem 1.2rem 1.3rem;
