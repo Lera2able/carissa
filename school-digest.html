@@ -128,6 +128,122 @@
     padding: 2.5rem 1.5rem 4rem;
   }
 
+  /* ── FEATURED STORY ── */
+  .featured-story {
+    margin-bottom: 2.4rem;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #0a3641;
+    color: #fff;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    cursor: pointer;
+  }
+  .featured-story-media {
+    min-height: 360px;
+    position: relative;
+    overflow: hidden;
+  }
+  .featured-story-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .featured-story-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.06));
+  }
+  .featured-story-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--teal-deep);
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .featured-story-play {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1;
+    width: 58px;
+    height: 58px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--teal-deep);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 900;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  }
+  .featured-story-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, #0c4754 0%, #0a3641 100%);
+  }
+  .featured-story-kicker {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 0.8rem;
+  }
+  .featured-story-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 0.9rem;
+  }
+  .featured-story-summary {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 1.3rem;
+  }
+  .featured-story-meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .featured-story-cta {
+    align-self: flex-start;
+    border: none;
+    border-radius: 999px;
+    background: #f7d54c;
+    color: #07323b;
+    padding: 0.85rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
   /* ── SECTION HEADING ── */
   .section-rule {
     display: flex;
@@ -155,34 +271,90 @@
   /* ── ARTICLE GRID ── */
   .article-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2px;
-    border: 1px solid var(--border);
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.4rem;
+    border: none;
   }
 
   /* ── ARTICLE CARD ── */
   .article-card {
-    background: var(--cream);
-    border: 1px solid var(--border-light);
+    background: #fff;
+    border: 1px solid rgba(10, 122, 144, 0.14);
+    border-radius: 18px;
     cursor: pointer;
-    transition: background 0.18s;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
   }
-  .article-card:hover { background: var(--cream-warm); }
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.1);
+  }
 
   .article-card-img {
     width: 100%;
     aspect-ratio: 16/9;
-    background: var(--cream-warm);
-    border-bottom: 1px solid var(--border-light);
+    background: #0b2f3a;
+    border-bottom: 1px solid rgba(10, 122, 144, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: relative;
   }
   .article-card-img svg { width: 100%; height: 100%; }
+  .article-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1);
+    transition: transform 0.25s ease;
+  }
+  .article-card:hover .article-card-img img { transform: scale(1.04); }
+
+  .article-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.58),
+      rgba(0, 0, 0, 0.12) 60%,
+      rgba(0, 0, 0, 0)
+    );
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0.85rem 0.9rem;
+    gap: 0.8rem;
+    pointer-events: none;
+  }
+  .article-pill {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #062e37;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 6px 10px;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  }
+  .article-play {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--teal-deep);
+    font-weight: 900;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  }
 
   .article-card-body {
     padding: 1.2rem 1.4rem 1.4rem;
@@ -201,7 +373,7 @@
   }
   .article-card-title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 700;
     line-height: 1.3;
     color: var(--ink);
@@ -209,7 +381,7 @@
   }
   .article-card-excerpt {
     font-family: 'Lora', serif;
-    font-size: 0.83rem;
+    font-size: 0.92rem;
     color: var(--ink-light);
     line-height: 1.65;
     flex: 1;
@@ -441,6 +613,9 @@
     .masthead-top { font-size: 9px; }
     .masthead-title { font-size: 2.2rem; }
     .page-wrap { padding: 1.5rem 1rem 3rem; }
+    .featured-story { grid-template-columns: 1fr; }
+    .featured-story-media { min-height: 250px; }
+    .featured-story-content { padding: 1.4rem; }
   }
 
   .digest-login-btn {
@@ -724,145 +899,60 @@
   <!-- GRID VIEW -->
   <section id="article-grid-section">
 
+    <div class="featured-story" onclick="openArticle('elearning')">
+      <div class="featured-story-media">
+        <img src="images/school-digest/elearning-computer-lab.png" alt="Featured Carissa e-learning story" loading="eager" />
+        <span class="featured-story-badge">Featured story</span>
+        <span class="featured-story-play" aria-hidden="true">▶</span>
+      </div>
+      <div class="featured-story-content">
+        <p class="featured-story-kicker">The Carissa Times front page</p>
+        <h2 class="featured-story-title">E-Learning Is Coming to Carissa</h2>
+        <p class="featured-story-summary">A bold new chapter is beginning in the computer lab. Open the feature story to see how digital learning, classroom technology, and the next phase of teaching at Carissa are coming together.</p>
+        <div class="featured-story-meta">
+          <span>14 April 2026</span>
+          <span>Technology &amp; Innovation</span>
+          <span>Video included</span>
+        </div>
+        <button class="featured-story-cta" onclick="openArticle('elearning'); event.stopPropagation()">Open featured story</button>
+      </div>
+    </div>
+
     <div class="section-rule"><h2>Latest Stories</h2></div>
 
     <div class="article-grid">
-
       <!-- CARD 1: E-Learning -->
       <div class="article-card" onclick="openArticle('elearning')">
         <div class="article-card-img">
-          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" fill="none">
-            <rect width="400" height="225" fill="#ede3c8"/>
-            <!-- Monitor body -->
-            <rect x="95" y="35" width="210" height="135" rx="10" fill="none" stroke="#0a7a90" stroke-width="2.5"/>
-            <rect x="104" y="44" width="192" height="115" rx="5" fill="white" opacity="0.45"/>
-            <!-- Monitor stand -->
-            <line x1="200" y1="170" x2="200" y2="190" stroke="#0a7a90" stroke-width="3.5" stroke-linecap="round"/>
-            <line x1="172" y1="190" x2="228" y2="190" stroke="#0a7a90" stroke-width="2.8" stroke-linecap="round"/>
-            <!-- Screen: bar chart bars -->
-            <rect x="118" y="118" width="18" height="35" rx="2" fill="#0e9cb8" opacity="0.38"/>
-            <rect x="142" y="104" width="18" height="49" rx="2" fill="#0e9cb8" opacity="0.48"/>
-            <rect x="166" y="90" width="18" height="63" rx="2" fill="#0e9cb8" opacity="0.55"/>
-            <rect x="190" y="110" width="18" height="43" rx="2" fill="#0e9cb8" opacity="0.43"/>
-            <rect x="214" y="78" width="18" height="75" rx="2" fill="#0e9cb8" opacity="0.65"/>
-            <rect x="238" y="96" width="18" height="57" rx="2" fill="#0e9cb8" opacity="0.5"/>
-            <!-- Chart baseline -->
-            <line x1="112" y1="153" x2="264" y2="153" stroke="#0a7a90" stroke-width="1.2" opacity="0.35"/>
-            <!-- Trend line over bars -->
-            <polyline points="127,130 151,110 175,96 199,116 223,84 247,102" stroke="#0a7a90" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.5" fill="none"/>
-            <!-- Screen header bar -->
-            <rect x="112" y="52" width="90" height="8" rx="2" fill="#0a7a90" opacity="0.4"/>
-            <rect x="112" y="64" width="60" height="5" rx="1" fill="#0a7a90" opacity="0.22"/>
-            <!-- Three dots (window controls) -->
-            <circle cx="256" cy="56" r="3" fill="#0e9cb8" opacity="0.5"/>
-            <circle cx="267" cy="56" r="3" fill="#0e9cb8" opacity="0.35"/>
-            <circle cx="278" cy="56" r="3" fill="#0e9cb8" opacity="0.2"/>
-            <!-- Wifi tower top-right -->
-            <line x1="338" y1="100" x2="338" y2="118" stroke="#0a7a90" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
-            <line x1="326" y1="118" x2="350" y2="118" stroke="#0a7a90" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
-            <path d="M326 90 Q338 83 350 90" stroke="#0e9cb8" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.7"/>
-            <path d="M319 81 Q338 71 357 81" stroke="#0e9cb8" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
-            <path d="M312 72 Q338 59 364 72" stroke="#0e9cb8" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.3"/>
-            <circle cx="338" cy="100" r="3" fill="#0e9cb8" opacity="0.7"/>
-            <!-- Lightbulb left -->
-            <circle cx="55" cy="72" r="17" fill="none" stroke="#0a7a90" stroke-width="2" opacity="0.45"/>
-            <line x1="49" y1="85" x2="61" y2="85" stroke="#0a7a90" stroke-width="1.8" opacity="0.45"/>
-            <line x1="51" y1="91" x2="59" y2="91" stroke="#0a7a90" stroke-width="1.8" opacity="0.45"/>
-            <line x1="55" y1="50" x2="55" y2="56" stroke="#0e9cb8" stroke-width="1.5" opacity="0.45"/>
-            <line x1="70" y1="57" x2="66" y2="61" stroke="#0e9cb8" stroke-width="1.5" opacity="0.4"/>
-            <line x1="40" y1="57" x2="44" y2="61" stroke="#0e9cb8" stroke-width="1.5" opacity="0.4"/>
-            <line x1="75" y1="72" x2="69" y2="72" stroke="#0e9cb8" stroke-width="1.5" opacity="0.35"/>
-            <line x1="35" y1="72" x2="41" y2="72" stroke="#0e9cb8" stroke-width="1.5" opacity="0.35"/>
-            <!-- Pencil bottom right, angled -->
-            <rect x="346" y="140" width="11" height="52" rx="2" fill="none" stroke="#0a7a90" stroke-width="2" opacity="0.5" transform="rotate(-20 352 166)"/>
-            <polygon points="346,192 357,192 351.5,207" fill="none" stroke="#0a7a90" stroke-width="2" opacity="0.5" transform="rotate(-20 352 166)"/>
-            <rect x="346" y="140" width="11" height="10" rx="2" fill="#0e9cb8" opacity="0.3" transform="rotate(-20 352 166)"/>
-            <line x1="346" y1="155" x2="357" y2="155" stroke="#0a7a90" stroke-width="1" opacity="0.3" transform="rotate(-20 352 166)"/>
-            <!-- Dotted connection lines (network feel) -->
-            <line x1="95" y1="107" x2="72" y2="88" stroke="#0e9cb8" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/>
-            <line x1="305" y1="107" x2="328" y2="100" stroke="#0e9cb8" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/>
-            <!-- Stars / sparkles -->
-            <text x="358" y="62" font-size="13" fill="#0e9cb8" opacity="0.3" font-family="serif">★</text>
-            <text x="38" y="140" font-size="9" fill="#0a7a90" opacity="0.25" font-family="serif">✦</text>
-            <text x="72" y="165" font-size="7" fill="#0e9cb8" opacity="0.2" font-family="serif">✦</text>
-            <!-- Label -->
-            <text x="200" y="215" font-size="11" fill="#0b5f72" opacity="0.4" text-anchor="middle" font-family="Georgia, serif" font-style="italic">Learning without walls</text>
-          </svg>
+          <img src="images/school-digest/elearning-computer-lab.png" alt="Carissa Primary School computer lab" loading="lazy" />
+          <div class="article-card-overlay">
+            <span class="article-pill">Click to watch</span>
+            <span class="article-play" aria-hidden="true">▶</span>
+          </div>
         </div>
         <div class="article-card-body">
           <p class="article-tag">Technology &amp; Innovation</p>
-          <h3 class="article-card-title">E-Learning Is Coming to Carissa!</h3>
-          <p class="article-card-excerpt">Something big is on the horizon. Carissa Primary is getting connected — and the way we teach and learn will never be quite the same again. Here's what's happening, and why it matters for every learner and teacher in our school.</p>
+          <h3 class="article-card-title">E-Learning Is Coming to Carissa</h3>
+          <p class="article-card-excerpt">New devices. New skills. New opportunities. Carissa Primary is getting connected, and the future of learning is about to land in our classrooms.</p>
           <div class="article-card-meta">
             <span>14 April 2026</span>
             <button class="read-more-btn" onclick="openArticle('elearning'); event.stopPropagation()">Read More →</button>
           </div>
         </div>
       </div>
-
       <!-- CARD 2: World Reading Day -->
       <div class="article-card" onclick="openArticle('readingday')">
         <div class="article-card-img">
-          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" fill="none">
-            <rect width="400" height="225" fill="#ede3c8"/>
-            <!-- Open book: left page -->
-            <path d="M200 92 C195 92 152 96 112 104 L110 178 C148 172 196 170 200 170 Z" fill="white" opacity="0.5" stroke="#0a7a90" stroke-width="2.2"/>
-            <!-- Open book: right page -->
-            <path d="M200 92 C205 92 248 96 288 104 L290 178 C252 172 204 170 200 170 Z" fill="white" opacity="0.5" stroke="#0a7a90" stroke-width="2.2"/>
-            <!-- Spine -->
-            <line x1="200" y1="92" x2="200" y2="170" stroke="#0a7a90" stroke-width="2" opacity="0.55"/>
-            <!-- Book shadow/base -->
-            <ellipse cx="200" cy="178" rx="95" ry="5" fill="#0a7a90" opacity="0.08"/>
-            <!-- Left page lines -->
-            <line x1="124" y1="116" x2="188" y2="114" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="122" y1="126" x2="188" y2="124" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="122" y1="136" x2="188" y2="134" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="123" y1="146" x2="188" y2="144" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="124" y1="156" x2="186" y2="154" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="125" y1="166" x2="175" y2="164" stroke="#0a7a90" stroke-width="1.2" opacity="0.22"/>
-            <!-- Right page lines -->
-            <line x1="212" y1="114" x2="276" y2="116" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="212" y1="124" x2="278" y2="126" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="212" y1="134" x2="278" y2="136" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="212" y1="144" x2="277" y2="146" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="212" y1="154" x2="276" y2="156" stroke="#0a7a90" stroke-width="1.2" opacity="0.28"/>
-            <line x1="212" y1="164" x2="258" y2="166" stroke="#0a7a90" stroke-width="1.2" opacity="0.22"/>
-            <!-- Fairy wand (top right, diagonal) -->
-            <line x1="318" y1="28" x2="268" y2="92" stroke="#0a7a90" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
-            <!-- Wand star (large) -->
-            <text x="307" y="38" font-size="26" fill="#0e9cb8" opacity="0.75" font-family="serif">★</text>
-            <!-- Sparkle trail -->
-            <text x="296" y="58" font-size="12" fill="#0e9cb8" opacity="0.58" font-family="serif">✦</text>
-            <text x="286" y="72" font-size="9" fill="#0e9cb8" opacity="0.45" font-family="serif">✦</text>
-            <text x="278" y="84" font-size="6" fill="#0e9cb8" opacity="0.32" font-family="serif">✦</text>
-            <!-- Floating letters from left page -->
-            <text x="140" y="88" font-size="20" fill="#0a7a90" opacity="0.38" font-family="Georgia, serif" font-weight="bold" transform="rotate(-12 140 88)">A</text>
-            <text x="168" y="70" font-size="16" fill="#0e9cb8" opacity="0.32" font-family="Georgia, serif" transform="rotate(6 168 70)">B</text>
-            <text x="92" y="82" font-size="13" fill="#0a7a90" opacity="0.28" font-family="Georgia, serif" transform="rotate(-18 92 82)">C</text>
-            <!-- Heart / love of reading detail -->
-            <text x="222" y="86" font-size="13" fill="#0e9cb8" opacity="0.32" font-family="serif">♥</text>
-            <!-- Stack of books (left side) -->
-            <rect x="34" y="148" width="64" height="13" rx="3" fill="none" stroke="#0a7a90" stroke-width="2" opacity="0.52"/>
-            <rect x="39" y="135" width="55" height="13" rx="3" fill="none" stroke="#0a7a90" stroke-width="2" opacity="0.44"/>
-            <rect x="30" y="122" width="70" height="13" rx="3" fill="none" stroke="#0a7a90" stroke-width="2" opacity="0.36"/>
-            <line x1="44" y1="148" x2="44" y2="161" stroke="#0a7a90" stroke-width="1" opacity="0.3"/>
-            <line x1="46" y1="135" x2="46" y2="148" stroke="#0a7a90" stroke-width="1" opacity="0.3"/>
-            <line x1="40" y1="122" x2="40" y2="135" stroke="#0a7a90" stroke-width="1" opacity="0.3"/>
-            <!-- Stack right side (smaller) -->
-            <rect x="306" y="150" width="50" height="11" rx="3" fill="none" stroke="#0a7a90" stroke-width="1.8" opacity="0.42"/>
-            <rect x="310" y="139" width="42" height="11" rx="3" fill="none" stroke="#0a7a90" stroke-width="1.8" opacity="0.35"/>
-            <!-- Scattered stars -->
-            <text x="358" y="90" font-size="11" fill="#0e9cb8" opacity="0.28" font-family="serif">★</text>
-            <text x="52" y="68" font-size="8" fill="#0a7a90" opacity="0.22" font-family="serif">✦</text>
-            <text x="345" y="170" font-size="9" fill="#0e9cb8" opacity="0.28" font-family="serif">✦</text>
-            <!-- Label -->
-            <text x="200" y="215" font-size="11" fill="#0b5f72" opacity="0.4" text-anchor="middle" font-family="Georgia, serif" font-style="italic">Every page, a new world</text>
-          </svg>
+          <img src="images/school-digest/world-reading-day-surf.png" alt="World Reading Day feature image" loading="lazy" />
+          <div class="article-card-overlay">
+            <span class="article-pill">Click to watch</span>
+            <span class="article-play" aria-hidden="true">▶</span>
+          </div>
         </div>
         <div class="article-card-body">
           <p class="article-tag">School Events</p>
           <h3 class="article-card-title">Carissa Celebrates World Reading Day</h3>
-          <p class="article-card-excerpt">Books, magic, and a whole lot of heart. Carissa Primary marked World Reading Day in a way that reminded us all why stories matter — and our very own Book Fairy made sure nobody forgot it in a hurry.</p>
+          <p class="article-card-excerpt">A school full of stories, smiles, and reading magic. World Reading Day at Carissa was not quiet, not ordinary, and definitely not forgettable.</p>
           <div class="article-card-meta">
             <span>23 April 2026</span>
             <button class="read-more-btn" onclick="openArticle('readingday'); event.stopPropagation()">Read More →</button>
