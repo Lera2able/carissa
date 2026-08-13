@@ -442,6 +442,170 @@
     .masthead-title { font-size: 2.2rem; }
     .page-wrap { padding: 1.5rem 1rem 3rem; }
   }
+
+  .digest-login-btn {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 999px;
+    background: #f7d54c;
+    color: var(--teal-deep);
+    padding: 0.65rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 0.92rem;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .digest-login-btn:hover { transform: translateY(-1px); background: #ffe16a; }
+  .digest-login-btn.is-ready {
+    background: #d7f7e3;
+    color: #0f6b38;
+  }
+  .journalist-modal[hidden] { display: none !important; }
+  .journalist-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    background: rgba(9, 35, 41, 0.68);
+  }
+  .journalist-modal-card {
+    width: min(760px, 100%);
+    max-height: 92vh;
+    overflow: auto;
+    background: #fffdf8;
+    border: 3px solid var(--teal);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(8, 53, 64, 0.24);
+    padding: 1.4rem;
+  }
+  .journalist-modal-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .journalist-modal-head h3 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    color: var(--ink);
+  }
+  .journalist-close-btn {
+    border: none;
+    background: #e7f6fa;
+    color: var(--teal-deep);
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .journalist-panel {
+    background: #fff;
+    border: 1px solid #d5e9ef;
+    border-radius: 18px;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  .journalist-panel h4 {
+    margin: 0 0 0.55rem;
+    color: var(--ink);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .journalist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+  .journalist-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .journalist-field.full { grid-column: 1 / -1; }
+  .journalist-field label {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 0.93rem;
+  }
+  .journalist-field input,
+  .journalist-field select {
+    border: 1px solid #bfdde6;
+    border-radius: 12px;
+    padding: 0.8rem 0.9rem;
+    font: inherit;
+    background: #fff;
+    color: var(--ink);
+  }
+  .journalist-helper {
+    margin: 0.2rem 0 0;
+    font-size: 0.88rem;
+    color: var(--ink-light);
+  }
+  .journalist-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .journalist-primary,
+  .journalist-secondary {
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.15rem;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .journalist-primary {
+    background: var(--teal);
+    color: #fff;
+  }
+  .journalist-primary:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+  .journalist-secondary {
+    background: #e7f6fa;
+    color: var(--teal-deep);
+  }
+  .journalist-status {
+    display: none;
+    margin-top: 0.9rem;
+    padding: 0.8rem 0.95rem;
+    border-radius: 14px;
+    font-size: 0.93rem;
+    font-weight: 700;
+  }
+  .journalist-status.show { display: block; }
+  .journalist-status.success {
+    background: #e8f8ef;
+    color: #0d6a39;
+    border: 1px solid #bfe7cd;
+  }
+  .journalist-status.error {
+    background: #fff1f1;
+    color: #a12e2e;
+    border: 1px solid #efc3c3;
+  }
+  @media (max-width: 760px) {
+    .digest-login-btn { margin-left: 0; }
+    .journalist-grid { grid-template-columns: 1fr; }
+    .journalist-modal-card { padding: 1rem; }
+    .journalist-modal-head h3 { font-size: 1.55rem; }
+  }
 </style>
 </head>
 <body>
@@ -462,6 +626,7 @@
     <span>📍 Emalahleni, Mpumalanga · South Africa</span>
     <span>Carissa Primary School</span>
     <span>Est. 2025 · Vol. 1</span>
+    <button type="button" class="digest-login-btn" id="digest-login-btn" onclick="openJournalistLogin()">📰 Journalist Login</button>
   </div>
 
   <div class="masthead-main">
@@ -486,6 +651,70 @@
     Written by our community, for our community. New stories drop regularly, so check back often!
   </div>
 </header>
+
+<div class="journalist-modal" id="journalist-login-modal" hidden>
+  <div class="journalist-modal-card" role="dialog" aria-modal="true" aria-labelledby="journalist-modal-title">
+    <div class="journalist-modal-head">
+      <div>
+        <h3 id="journalist-modal-title">Carissa Times Journalist Upload</h3>
+        <p class="journalist-helper">Journalists can sign in with the shared code, then submit an article file for review.</p>
+      </div>
+      <button type="button" class="journalist-close-btn" aria-label="Close journalist upload" onclick="closeJournalistLogin()">✕</button>
+    </div>
+
+    <div class="journalist-panel" id="journalist-code-panel">
+      <h4>Step 1 · Sign in</h4>
+      <div class="journalist-grid">
+        <div class="journalist-field full">
+          <label for="journalist-access-code">Journalist Code</label>
+          <input id="journalist-access-code" type="password" placeholder="Enter your journalist code" autocomplete="off" />
+          <p class="journalist-helper">Enter the school journalist code to unlock article uploads.</p>
+        </div>
+      </div>
+      <div class="journalist-actions">
+        <button type="button" class="journalist-primary" onclick="verifyJournalistCode()">Unlock Upload Form</button>
+        <button type="button" class="journalist-secondary" onclick="closeJournalistLogin()">Cancel</button>
+      </div>
+    </div>
+
+    <div class="journalist-panel" id="journalist-form-panel" hidden>
+      <h4>Step 2 · Submit your article</h4>
+      <form id="journalist-upload-form">
+        <div class="journalist-grid">
+          <div class="journalist-field">
+            <label for="journalist-name">Your Name</label>
+            <input id="journalist-name" name="name" type="text" required />
+          </div>
+          <div class="journalist-field">
+            <label for="journalist-grade">Grade</label>
+            <select id="journalist-grade" name="grade" required>
+              <option value="">Choose grade</option>
+              <option value="Grade 5">Grade 5</option>
+              <option value="Grade 6">Grade 6</option>
+              <option value="Grade 7">Grade 7</option>
+            </select>
+          </div>
+          <div class="journalist-field full">
+            <label for="journalist-title">Article Title</label>
+            <input id="journalist-title" name="articleTitle" type="text" required />
+          </div>
+          <div class="journalist-field full">
+            <label for="journalist-file">Upload Article</label>
+            <input id="journalist-file" name="articleFile" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+            <p class="journalist-helper">Accepted files: PDF, DOC, or DOCX. Keep the file under 5MB.</p>
+          </div>
+        </div>
+        <input type="hidden" name="accessCode" id="journalist-access-code-hidden" />
+        <div class="journalist-actions">
+          <button type="submit" class="journalist-primary" id="journalist-submit-btn">Send for Review</button>
+          <button type="button" class="journalist-secondary" onclick="resetJournalistAccess()">Change Code</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="journalist-status" id="journalist-status" aria-live="polite"></div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════ PAGE CONTENT ═══════════════════════════════════ -->
 <main class="page-wrap">
@@ -650,7 +879,7 @@
           <p>The Carissa Times needs <strong>you</strong>. If you are in Grade 5, 6, or 7 and you love writing, spotting stories, or just have something to say — this is your moment. We are building a real editorial team of student journalists who will write for this very page.</p>
           <p>No experience needed. Three journalists have already signed up. There is still room for more voices — and the next great Carissa Times story could be yours.</p>
           <p style="font-family:'Playfair Display',serif; font-style:italic; font-size:0.95rem; color:#0b5f72; margin-bottom:0.8rem;">"Every big journalist started with one small story. Yours starts here."</p>
-          <a href="#" class="join-cta" onclick="openArticle('journalists'); return false;">Come See Ma'am Lerato → Read More</a>
+          <a href="#" class="join-cta" onclick="openJournalistLogin(); return false;">Journalist Login → Submit Article</a>
         </div>
         <div class="join-doodle-col">
           <svg viewBox="0 0 170 200" xmlns="http://www.w3.org/2000/svg" fill="none" width="150">
@@ -799,7 +1028,7 @@
         <p>If you are in <strong>Grade 5, 6, or 7</strong> and you enjoy writing, reading, or just paying attention to what goes on around you — you qualify. You do not need to be the best writer in your class. You just need to be curious and willing to try. Three of your classmates have already signed up, and they are already excited. There is still space for a few more.</p>
 
         <h3>How Do You Sign Up?</h3>
-        <p>Simple. Come find <strong>Ma'am Lerato in the Computer Class</strong> during break or after school. Tell her you want to join the Times. That is it. No forms, no tests — just a conversation and a willingness to get started.</p>
+        <p>Use the <strong>Journalist Login</strong> button at the top of this page, enter the shared journalist code, and upload your article for review with your name, grade, article title, and document file.</p>
 
         <p>This is a chance to do something real, something that matters, and something that will still be on this website long after you have moved on to high school. We hope to see you soon.</p>
       </div>
@@ -821,6 +1050,146 @@
 </main>
 
 <script>
+  var JOURNALIST_CODE = 'carissajournal2026';
+
+  function getJournalistEls() {
+    return {
+      modal: document.getElementById('journalist-login-modal'),
+      status: document.getElementById('journalist-status'),
+      loginBtn: document.getElementById('digest-login-btn'),
+      codePanel: document.getElementById('journalist-code-panel'),
+      formPanel: document.getElementById('journalist-form-panel'),
+      codeInput: document.getElementById('journalist-access-code'),
+      hiddenCode: document.getElementById('journalist-access-code-hidden'),
+      submitBtn: document.getElementById('journalist-submit-btn'),
+      form: document.getElementById('journalist-upload-form')
+    };
+  }
+
+  function setJournalistStatus(message, type) {
+    var els = getJournalistEls();
+    if (!els.status) return;
+    els.status.textContent = message || '';
+    els.status.className = 'journalist-status' + (message ? ' show' : '') + (type ? ' ' + type : '');
+  }
+
+  function openJournalistLogin() {
+    var els = getJournalistEls();
+    if (!els.modal) return;
+    els.modal.hidden = false;
+    if (els.codeInput) els.codeInput.focus();
+    setJournalistStatus('', '');
+  }
+
+  function closeJournalistLogin() {
+    var els = getJournalistEls();
+    if (!els.modal) return;
+    els.modal.hidden = true;
+    setJournalistStatus('', '');
+  }
+
+  function markJournalistReady(isReady) {
+    var els = getJournalistEls();
+    if (!els.loginBtn) return;
+    els.loginBtn.classList.toggle('is-ready', !!isReady);
+    els.loginBtn.textContent = isReady ? '✅ Upload Ready' : '📰 Journalist Login';
+  }
+
+  function setJournalistUnlocked(accessCode) {
+    var els = getJournalistEls();
+    if (!els.codePanel || !els.formPanel || !els.hiddenCode) return;
+    els.codePanel.hidden = true;
+    els.formPanel.hidden = false;
+    els.hiddenCode.value = accessCode;
+    sessionStorage.setItem('carissaDigestJournalistAccess', 'granted');
+    markJournalistReady(true);
+    setJournalistStatus('Upload form unlocked. You can now submit your article for review.', 'success');
+  }
+
+  function resetJournalistAccess() {
+    var els = getJournalistEls();
+    if (els.codePanel) els.codePanel.hidden = false;
+    if (els.formPanel) els.formPanel.hidden = true;
+    if (els.codeInput) els.codeInput.value = '';
+    if (els.hiddenCode) els.hiddenCode.value = '';
+    sessionStorage.removeItem('carissaDigestJournalistAccess');
+    markJournalistReady(false);
+    setJournalistStatus('Please enter the journalist code again.', 'success');
+  }
+
+  function verifyJournalistCode() {
+    var els = getJournalistEls();
+    var code = (els.codeInput && els.codeInput.value ? els.codeInput.value : '').trim();
+    if (!code) {
+      setJournalistStatus('Please enter the journalist code first.', 'error');
+      return;
+    }
+    if (code !== JOURNALIST_CODE) {
+      setJournalistStatus('That journalist code is not correct. Please try again.', 'error');
+      return;
+    }
+    setJournalistUnlocked(code);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var els = getJournalistEls();
+    if (sessionStorage.getItem('carissaDigestJournalistAccess') === 'granted') {
+      setJournalistUnlocked(JOURNALIST_CODE);
+    } else {
+      markJournalistReady(false);
+    }
+
+    if (els.modal) {
+      els.modal.addEventListener('click', function(event) {
+        if (event.target === els.modal) closeJournalistLogin();
+      });
+    }
+
+    if (els.form) {
+      els.form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        var fileInput = document.getElementById('journalist-file');
+        var file = fileInput && fileInput.files ? fileInput.files[0] : null;
+        if (!file) {
+          setJournalistStatus('Please choose your article file before sending.', 'error');
+          return;
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          setJournalistStatus('Please keep the article file under 5MB.', 'error');
+          return;
+        }
+
+        var formData = new FormData(els.form);
+        if (els.submitBtn) {
+          els.submitBtn.disabled = true;
+          els.submitBtn.textContent = 'Sending...';
+        }
+        setJournalistStatus('Sending your article for review...', 'success');
+
+        try {
+          var response = await fetch('/api/journalist-submit', {
+            method: 'POST',
+            body: formData
+          });
+          var result = await response.json();
+          if (!response.ok || !result.success) {
+            throw new Error(result.error || 'Could not submit the article right now.');
+          }
+          els.form.reset();
+          if (els.hiddenCode) els.hiddenCode.value = JOURNALIST_CODE;
+          setJournalistStatus('Article sent successfully for review. Thank you, journalist!', 'success');
+        } catch (error) {
+          setJournalistStatus(error.message || 'Submission failed. Please try again.', 'error');
+        } finally {
+          if (els.submitBtn) {
+            els.submitBtn.disabled = false;
+            els.submitBtn.textContent = 'Send for Review';
+          }
+        }
+      });
+    }
+  });
+
   function openArticle(id) {
     document.getElementById('article-grid-section').classList.add('hidden');
     document.getElementById('article-view').classList.add('active');
