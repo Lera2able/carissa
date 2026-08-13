@@ -679,7 +679,7 @@
 
     <div class="journalist-panel" id="journalist-form-panel" hidden>
       <h4>Step 2 · Submit your article</h4>
-      <form id="journalist-upload-form">
+      <form id="journalist-upload-form" enctype="multipart/form-data" method="POST">
         <div class="journalist-grid">
           <div class="journalist-field">
             <label for="journalist-name">Your Name</label>
@@ -700,11 +700,13 @@
           </div>
           <div class="journalist-field full">
             <label for="journalist-file">Upload Article</label>
-            <input id="journalist-file" name="articleFile" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+            <input id="journalist-file" name="attachment" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
             <p class="journalist-helper">Accepted files: PDF, DOC, or DOCX. Keep the file under 5MB.</p>
           </div>
         </div>
         <input type="hidden" name="accessCode" id="journalist-access-code-hidden" />
+        <input type="hidden" name="access_key" value="8e0f7a8a-4a1d-4d19-9370-bfcb5ecaa931" />
+        <input type="hidden" name="subject" value="School Digest article submission" />
         <div class="journalist-actions">
           <button type="submit" class="journalist-primary" id="journalist-submit-btn">Send for Review</button>
           <button type="button" class="journalist-secondary" onclick="resetJournalistAccess()">Change Code</button>
@@ -1167,13 +1169,14 @@
         setJournalistStatus('Sending your article for review...', 'success');
 
         try {
-          var response = await fetch('/api/journalist-submit', {
+          // Web3Forms recommends client-side fetch (do not set content-type headers for file uploads).
+          var response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             body: formData
           });
           var result = await response.json();
           if (!response.ok || !result.success) {
-            throw new Error(result.error || 'Could not submit the article right now.');
+            throw new Error((result && result.message) ? result.message : 'Could not submit the article right now.');
           }
           els.form.reset();
           if (els.hiddenCode) els.hiddenCode.value = JOURNALIST_CODE;
