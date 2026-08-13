@@ -901,7 +901,7 @@
 
     <div class="featured-story" onclick="openArticle('elearning')">
       <div class="featured-story-media">
-        <img src="images/school-digest/elearning-computer-lab.png" alt="Featured Carissa e-learning story" loading="eager" />
+        <img src="images/school-digest/elearning-computer-lab.png?v=20260813b" alt="Featured Carissa e-learning story" loading="eager" onerror="setDigestImageFallback(this, 'E-Learning feature')" />
         <span class="featured-story-badge">Featured story</span>
         <span class="featured-story-play" aria-hidden="true">▶</span>
       </div>
@@ -924,7 +924,7 @@
       <!-- CARD 1: E-Learning -->
       <div class="article-card" onclick="openArticle('elearning')">
         <div class="article-card-img">
-          <img src="images/school-digest/elearning-computer-lab.png" alt="Carissa Primary School computer lab" loading="lazy" />
+          <img src="images/school-digest/elearning-computer-lab.png?v=20260813b" alt="Carissa Primary School computer lab" loading="lazy" onerror="setDigestImageFallback(this, 'E-Learning story image')" />
           <div class="article-card-overlay">
             <span class="article-pill">Click to watch</span>
             <span class="article-play" aria-hidden="true">▶</span>
@@ -943,7 +943,7 @@
       <!-- CARD 2: World Reading Day -->
       <div class="article-card" onclick="openArticle('readingday')">
         <div class="article-card-img">
-          <img src="images/school-digest/world-reading-day-surf.png" alt="World Reading Day feature image" loading="lazy" />
+          <img src="images/school-digest/world-reading-day-surf.png?v=20260813b" alt="World Reading Day feature image" loading="lazy" onerror="setDigestImageFallback(this, 'World Reading Day image')" />
           <div class="article-card-overlay">
             <span class="article-pill">Click to watch</span>
             <span class="article-play" aria-hidden="true">▶</span>
@@ -1295,6 +1295,22 @@
     document.getElementById('article-view').classList.remove('active');
     document.getElementById('article-grid-section').classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function setDigestImageFallback(img, label) {
+    if (!img) return;
+    var safeLabel = encodeURIComponent(label || 'Carissa Times');
+    img.onerror = null;
+    img.src =
+      "data:image/svg+xml;charset=UTF-8," +
+      "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675'>" +
+      "<rect width='1200' height='675' fill='%230a3641'/>" +
+      "<rect x='40' y='40' width='1120' height='595' rx='28' fill='%230f4a57' stroke='%231db6d4' stroke-width='4'/>" +
+      "<text x='90' y='170' fill='%23f7d54c' font-family='Georgia, serif' font-size='52' font-weight='700'>The Carissa Times</text>" +
+      "<text x='90' y='260' fill='white' font-family='Arial, sans-serif' font-size='34'>Image temporarily unavailable</text>" +
+      "<text x='90' y='320' fill='%23d9f3f9' font-family='Arial, sans-serif' font-size='26'>" + safeLabel + "</text>" +
+      "<text x='90' y='390' fill='%23d9f3f9' font-family='Arial, sans-serif' font-size='24'>Please refresh to load the latest media.</text>" +
+      "</svg>";
   }
 </script>
 
